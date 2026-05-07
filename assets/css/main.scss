@@ -134,15 +134,15 @@ p  { margin: 0 0 1em; }
     position: absolute; left: 0; right: 0; top: 100%;
     flex-direction: column; align-items: stretch;
     background: var(--white); border-bottom: 0 solid var(--line);
-    padding: .5rem var(--gutter) 1rem;
+    padding: 0 var(--gutter);
     gap: 0;
     max-height: 0; overflow: hidden;
-    transition: max-height .25s ease, border-bottom-width 0s .25s;
+    transition: max-height .25s ease, padding .25s ease, border-bottom-width 0s .25s;
   }
   .nav-links a { padding: .85rem 0; border-bottom: 1px solid var(--line); }
   .nav-links a:last-child { border-bottom: none; }
   .nav-cta { display: inline-block; margin-top: .6rem; text-align: center; }
-  .nav-toggle:checked ~ .nav-links { max-height: 480px; border-bottom-width: 1px; transition: max-height .25s ease; }
+  .nav-toggle:checked ~ .nav-links { max-height: 480px; padding: .5rem var(--gutter) 1rem; border-bottom-width: 1px; transition: max-height .25s ease, padding .25s ease; }
   .nav-toggle:checked ~ .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .nav-toggle:checked ~ .nav-burger span:nth-child(2) { opacity: 0; }
   .nav-toggle:checked ~ .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
