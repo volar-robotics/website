@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 44" role="img" aria-label="VOLAR ROBOTICS">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226 44" role="img" aria-label="VOLAR ROBOTICS">
   <defs>
     <linearGradient id="vg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#22D3EE"/>
@@ -15,6 +15,6 @@
     <text x="52" y="28">VOLAR</text>
   </g>
   <g fill="#5B6B82" font-family="Inter, system-ui, sans-serif" font-weight="500" font-size="9" letter-spacing="3">
-    <text x="138" y="28">ROBOTICS</text>
+    <text x="144" y="28">ROBOTICS</text>
   </g>
 </svg>
