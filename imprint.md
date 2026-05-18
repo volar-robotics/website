@@ -32,7 +32,7 @@ permalink: /imprint/
 
     <h2>Content</h2>
     <p>All product descriptions on this site reflect ongoing research and are provided for
-    informational purposes only. Logos and visual marks are placeholders pending finalisation
+    informational purposes only. Logos and visual marks are placeholders pending finalization
     of the corporate identity.</p>
 
     <p style="margin-top:2rem;"><a href="{{ '/' | relative_url }}">← Back to home</a></p>

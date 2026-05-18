@@ -109,4 +109,61 @@
 
   initCarousel(document.querySelector('.chapter-carousel'), 2);
   initCarousel(document.querySelector('.video-carousel'),   3);
+
+  // ── Video modal ──────────────────────────────────────────────────────────
+  // Clicking a .video-tile opens a centered modal that streams the source URL
+  // from the tile's inline <video class="thumb"> element. The inline element
+  // itself is just a static first-frame preview (controls removed).
+  (function () {
+    var modal = document.querySelector('.video-modal');
+    if (!modal) return;
+    var player   = modal.querySelector('.video-modal-player');
+    var caption  = modal.querySelector('.video-modal-caption');
+    var closeBtn = modal.querySelector('.video-modal-close');
+    var backdrop = modal.querySelector('.video-modal-backdrop');
+
+    function openModal(srcUrl, captionText) {
+      player.src = srcUrl;
+      caption.textContent = captionText || '';
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(function () {
+        player.play().catch(function () { /* gesture policy, user can click play */ });
+      });
+    }
+    function closeModal() {
+      player.pause();
+      player.removeAttribute('src');
+      player.load();
+      modal.hidden = true;
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.video-tile').forEach(function (tile) {
+      tile.setAttribute('tabindex', '0');
+      tile.setAttribute('role', 'button');
+      var v = tile.querySelector('video.thumb source');
+      var rawSrc = v ? v.getAttribute('src') : '';
+      var src    = rawSrc.split('#')[0];
+      var h4     = tile.querySelector('h4');
+      var label  = h4 ? h4.textContent : '';
+      tile.setAttribute('aria-label', 'Play video: ' + label);
+
+      tile.addEventListener('click', function () {
+        if (src) openModal(src, label);
+      });
+      tile.addEventListener('keydown', function (e) {
+        if ((e.key === 'Enter' || e.key === ' ') && src) {
+          e.preventDefault();
+          openModal(src, label);
+        }
+      });
+    });
+
+    closeBtn && closeBtn.addEventListener('click', closeModal);
+    backdrop && backdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  })();
 })();
