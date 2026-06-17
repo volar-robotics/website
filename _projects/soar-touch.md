@@ -24,7 +24,7 @@ permalink: /projects/soar-touch/
         validation to flight on a fully-actuated multirotor.
       </p>
       <div class="pill-row">
-        <span class="pill">Field-validated</span>
+        <span class="pill">Flight-validated</span>
         <span class="pill">2025–2026</span>
       </div>
     </div>

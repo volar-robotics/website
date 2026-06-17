@@ -60,16 +60,16 @@ title: Volar Robotics — Tactile aerial robotics for industrial inspection
         <span class="label">Inspection drone market by 2031 — 16.8% CAGR</span>
       </div>
       <div class="stat">
-        <span class="num">100%</span>
-        <span class="label">Material-agnostic: ferrous, concrete, composite, aluminum</span>
+        <span class="num">Any</span>
+        <span class="label">Material-agnostic by design — friction-based contact, no magnetic adhesion</span>
       </div>
       <div class="stat">
         <span class="num">0</span>
         <span class="label">Personnel at height — eliminate rope-access risk</span>
       </div>
       <div class="stat">
-        <span class="num">~60%</span>
-        <span class="label">Lower cost vs. tilting-rotor competitors</span>
+        <span class="num">No gimbals</span>
+        <span class="label">Fixed-pitch rotors, not tilting hardware — structurally lower cost</span>
       </div>
     </div>
   </div>
@@ -113,13 +113,13 @@ title: Volar Robotics — Tactile aerial robotics for industrial inspection
         <h3>Soft optical tactile sensing</h3>
         <div class="tech-body">
           <p>A silicone membrane with an internal camera that "sees" what the robot
-          touches. A learned regressor extracts contact-patch geometry, friction
-          coefficient and incipient slip at video rate — feeding the controller a live
-          map of what physics will allow.</p>
+          touches. A learned regressor extracts contact-patch geometry and three-axis
+          contact force at video rate — feeding the controller a live
+          map of the contact state.</p>
           <ul>
-            <li>High-resolution force and texture readout</li>
-            <li>Detects micro-slip before it becomes loss of contact</li>
-            <li>Online friction estimation on any substrate</li>
+            <li>High-resolution contact force and geometry readout</li>
+            <li>Designed to flag incipient slip before contact is lost</li>
+            <li>Online friction estimation across substrates — in development</li>
           </ul>
         </div>
       </article>
@@ -257,7 +257,7 @@ title: Volar Robotics — Tactile aerial robotics for industrial inspection
             carried from simulation through manipulator HIL to flight on a fully-actuated
             multirotor.</p>
             <div class="chapter-meta">
-              <span class="meta">Field-validated</span>
+              <span class="meta">Flight-validated</span>
               <span class="meta">2025–2026</span>
             </div>
             <a class="chapter-link" href="{{ '/projects/soar-touch/' | relative_url }}">Read more <span class="arrow">→</span></a>
