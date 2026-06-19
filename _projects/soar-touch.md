@@ -1,7 +1,7 @@
 ---
 layout: default
 title: SOAR-Touch — Volar Robotics
-permalink: /projects/soar-touch/
+permalink: /soar-touch/
 ---
 
 <section class="project-hero">
@@ -150,8 +150,8 @@ permalink: /projects/soar-touch/
       <li class="reveal">
         <p class="when">Mar 2026 · Deployment</p>
         <h3>Full stack on a robot manipulator</h3>
-        <p>The first hardware-in-the-loop experience stressing the complete SOAR-Touch stack — tactile perception, admittance,
-        and the energy-aware reference generator — exercised end-to-end on a Franka Research 3 manipulator.</p>
+        <p>The first hardware-in-the-loop experience stressing the complete SOAR-Touch stack (tactile perception, admittance,
+        and the energy-aware reference generator) exercised end-to-end on a Franka Research 3 manipulator.</p>
       </li>
       <li class="reveal">
         <p class="when">Apr 2026 · Aerial perception</p>

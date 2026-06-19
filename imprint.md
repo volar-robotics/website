@@ -27,8 +27,10 @@ permalink: /imprint/
     <p><a href="mailto:info@volar-robotics.com">info@volar-robotics.com</a></p>
 
     <h2>Status</h2>
-    <p>Innovative Start-up — formation in progress. Company registration details will be
-    added here once incorporation is complete.</p>
+    <p>Volar Robotics is incorporated as <strong>Volar Robotics S.r.l.</strong>, an Italian
+    limited liability company registered as an Innovative Start-up
+    (VAT / Tax code: IT 03374990590). Full company details are available in the
+    <a href="{{ '/legal/' | relative_url }}">Full Legal Notice</a>.</p>
 
     <h2>Content</h2>
     <p>All product descriptions on this site reflect ongoing research and are provided for
