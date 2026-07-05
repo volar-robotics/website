@@ -21,7 +21,7 @@ permalink: /privacy-policy/
     <h2>1. Data Controller</h2>
     <p>
       <strong>Volar Robotics S.r.l.</strong><br>
-      Registered office: Latina, Italy<br>
+      Registered office: Via Milazzo 2, 04100 Latina (LT), Italy<br>
       VAT: IT 03374990590<br>
       Email: <a href="mailto:info@volar-robotics.com">info@volar-robotics.com</a><br>
       PEC: <a href="mailto:volar-robotics@pec.it">volar-robotics@pec.it</a>
