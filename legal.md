@@ -13,8 +13,9 @@ permalink: /legal/
     <table style="border-collapse:collapse;width:100%;margin-bottom:1rem;">
       <tbody>
         <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;width:200px;vertical-align:top;">Legal name</td><td style="padding:.45rem 0;font-weight:500;">Volar Robotics S.r.l.</td></tr>
-        <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">Registered office</td><td style="padding:.45rem 0;">Latina, Italy</td></tr>
+        <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">Registered office</td><td style="padding:.45rem 0;">Via Milazzo 2, 04100 Latina (LT), Italy</td></tr>
         <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">VAT / Tax code</td><td style="padding:.45rem 0;font-family:var(--font-mono);letter-spacing:.04em;">IT 03374990590</td></tr>
+        <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">Companies Register</td><td style="padding:.45rem 0;">Registro delle Imprese di Latina — REA LT-336690</td></tr>
         <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">Share capital</td><td style="padding:.45rem 0;">€ 2,500.00 i.v.</td></tr>
         <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">Legal form</td><td style="padding:.45rem 0;">Società a responsabilità limitata (S.r.l.)</td></tr>
         <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">Country</td><td style="padding:.45rem 0;">Italy</td></tr>
@@ -37,12 +38,12 @@ permalink: /legal/
       <li><strong>Antonio Rapuano</strong> — Co-founder · AI &amp; Tactile Perception</li>
     </ul>
 
-    <h3 style="font-size:1rem;color:var(--navy);margin-top:1.5rem;">University Spin-off Status</h3>
+    <h3 style="font-size:1rem;color:var(--navy);margin-top:1.5rem;">University Start-up Status</h3>
     <p>
       Volar Robotics originates from research conducted at the
       <strong>Robotics Laboratory, DIAG — Dipartimento di Ingegneria Informatica, Automatica
       e Gestionale</strong> of <strong>Sapienza Università di Roma</strong>. The company holds
-      spin-off status recognised by the University.
+      Sapienza start-up status recognised by the University.
     </p>
 
     <h3 style="font-size:1rem;color:var(--navy);margin-top:1.5rem;">Corporate Objective</h3>
