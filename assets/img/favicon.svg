@@ -1,11 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#2E6BF0"/>
-      <stop offset="1" stop-color="#5B8DFF"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="#0A0E1A"/>
-  <path d="M10 46 C 24 14, 44 10, 54 24 C 42 26, 32 34, 28 46 Z" fill="url(#g)"/>
-  <circle cx="42" cy="20" r="3.2" fill="#F5A623"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Volar Robotics">
+<rect width="64" height="64" rx="14" fill="#041C25"/>
+<g fill="#FFFFFF" transform="translate(8,8) scale(0.128014)">
+<g transform="translate(-772.52002,-396.42001)">
+<g>
+<rect x="772.52002" y="534.92999" width="22.02" height="97.940002" rx="11.01" ry="11.01"/>
+<rect x="807.81" y="477.85001" width="22.02" height="86.199997" rx="11.01" ry="11.01"/>
+<rect x="843.10999" y="440.76001" width="22.02" height="111.54" rx="11.01" ry="11.01"/>
+<rect x="878.40002" y="419.89999" width="22.02" height="124.15" rx="11.01" ry="11.01"/>
+<rect x="913.70001" y="406.57001" width="22.02" height="107.48" rx="11.01" ry="11.01"/>
+<rect x="948.98999" y="396.42001" width="22.02" height="95.529999" rx="11.01" ry="11.01"/>
+<rect x="984.28003" y="406.57001" width="22.02" height="107.48" rx="11.01" ry="11.01"/>
+<rect x="1019.58" y="419.89999" width="22.02" height="124.15" rx="11.01" ry="11.01"/>
+<rect x="1054.87" y="440.76001" width="22.02" height="111.54" rx="11.01" ry="11.01"/>
+<rect x="1090.16" y="477.85001" width="22.02" height="86.199997" rx="11.01" ry="11.01"/> </g>
+<g>
+<rect x="1125.46" y="534.92999" width="22.02" height="97.940002" rx="11.01" ry="11.01" transform="rotate(180,1136.4677,583.9036)"/>
+<rect x="1090.16" y="603.76001" width="22.02" height="86.199997" rx="11.01" ry="11.01" transform="rotate(180,1101.1746,646.8592)"/>
+<rect x="1054.87" y="615.51001" width="22.02" height="111.54" rx="11.01" ry="11.01" transform="rotate(180,1065.8807,671.27735)"/>
+<rect x="1019.58" y="623.76001" width="22.02" height="124.15" rx="11.01" ry="11.01" transform="rotate(180,1030.5871,685.83545)"/>
+<rect x="984.28003" y="653.76001" width="22.02" height="107.48" rx="11.01" ry="11.01" transform="rotate(180,995.29355,707.49815)"/>
+<rect x="948.98999" y="675.84998" width="22.02" height="95.529999" rx="11.01" ry="11.01" transform="rotate(180,960,723.6174)"/>
+<rect x="913.70001" y="653.76001" width="22.02" height="107.48" rx="11.01" ry="11.01" transform="rotate(180,924.70645,707.49815)"/>
+<rect x="878.40002" y="623.76001" width="22.02" height="124.15" rx="11.01" ry="11.01" transform="rotate(180,889.4129,685.83545)"/>
+<rect x="843.10999" y="615.51001" width="22.02" height="111.54" rx="11.01" ry="11.01" transform="rotate(180,854.11935,671.27735)"/>
+<rect x="807.81" y="603.76001" width="22.02" height="86.199997" rx="11.01" ry="11.01" transform="rotate(180,818.82585,646.85995)"/> </g> </g>
+</g>
 </svg>
