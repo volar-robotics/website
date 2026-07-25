@@ -1,9 +1,10 @@
 title: Volar Robotics
-tagline: Enabling tactile interaction in the sky
+tagline: Enabling physical interaction in the sky
 description: >-
-  Volar Robotics builds soft aerial robots that physically interact with
-  industrial assets — turning drones from cameras into workers for
-  non-destructive testing and inspection.
+  Volar Robotics develops aerial robots capable of physically 
+  interacting with their environment, not just observing it: 
+  drones that establish stable contact for industrial inspection, 
+  the first step toward the “drone-as-a-worker” paradigm.
 url: "https://volar-robotics.com"
 baseurl: ""
 lang: en
