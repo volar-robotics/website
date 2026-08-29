@@ -23,7 +23,7 @@ permalink: /privacy-policy/
       <strong>Volar Robotics S.r.l.</strong><br>
       Registered office: Via Milazzo 2, 04100 Latina (LT), Italy<br>
       VAT: IT 03374990590<br>
-      Email: <a href="mailto:info@volar-robotics.com">info@volar-robotics.com</a><br>
+      Email: <a href="mailto:hello@volar-robotics.com">hello@volar-robotics.com</a><br>
       PEC: <a href="mailto:volar-robotics@pec.it">volar-robotics@pec.it</a>
     </p>
 
@@ -48,7 +48,7 @@ permalink: /privacy-policy/
 
     <h3 style="font-size:1rem;color:var(--navy);margin-top:1.5rem;">b) Email contact</h3>
     <p>
-      The Website provides an email address (<a href="mailto:info@volar-robotics.com">info@volar-robotics.com</a>)
+      The Website provides an email address (<a href="mailto:hello@volar-robotics.com">hello@volar-robotics.com</a>)
       for enquiries. If you write to us, we process the personal data contained in your message
       (at minimum your email address, and any information you choose to include) solely in order
       to respond to your enquiry and, where relevant, for any subsequent business communication.
@@ -97,7 +97,7 @@ permalink: /privacy-policy/
     </ul>
     <p>
       To exercise any of these rights, contact us at
-      <a href="mailto:info@volar-robotics.com">info@volar-robotics.com</a>.
+      <a href="mailto:hello@volar-robotics.com">hello@volar-robotics.com</a>.
       We will respond within one calendar month. You also have the right to lodge a complaint
       with the Italian supervisory authority:
     </p>

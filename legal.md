@@ -19,7 +19,7 @@ permalink: /legal/
         <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">Share capital</td><td style="padding:.45rem 0;">€ 2,500.00 i.v.</td></tr>
         <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">Legal form</td><td style="padding:.45rem 0;">Società a responsabilità limitata (S.r.l.)</td></tr>
         <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">Country</td><td style="padding:.45rem 0;">Italy</td></tr>
-        <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">General contact</td><td style="padding:.45rem 0;"><a href="mailto:info@volar-robotics.com">info@volar-robotics.com</a></td></tr>
+        <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">General contact</td><td style="padding:.45rem 0;"><a href="mailto:hello@volar-robotics.com">hello@volar-robotics.com</a></td></tr>
         <tr><td style="padding:.45rem .6rem .45rem 0;color:var(--muted);font-size:.9rem;vertical-align:top;">PEC</td><td style="padding:.45rem 0;"><a href="mailto:volar-robotics@pec.it">volar-robotics@pec.it</a></td></tr>
       </tbody>
     </table>

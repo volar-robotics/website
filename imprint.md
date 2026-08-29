@@ -24,7 +24,7 @@ permalink: /imprint/
     </ul>
 
     <h2>Contact</h2>
-    <p><a href="mailto:info@volar-robotics.com">info@volar-robotics.com</a></p>
+    <p><a href="mailto:hello@volar-robotics.com">hello@volar-robotics.com</a></p>
 
     <h2>Status</h2>
     <p>Volar Robotics is incorporated as <strong>Volar Robotics S.r.l.</strong>, an Italian

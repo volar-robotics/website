@@ -55,7 +55,7 @@ permalink: /cookie-policy/
     <h2>5. Contact</h2>
     <p>
       For any questions about this Cookie Policy:<br>
-      <a href="mailto:info@volar-robotics.com">info@volar-robotics.com</a>
+      <a href="mailto:hello@volar-robotics.com">hello@volar-robotics.com</a>
     </p>
 
     <p style="margin-top:2.5rem;">
