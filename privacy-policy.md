@@ -14,7 +14,7 @@ permalink: /privacy-policy/
       This Privacy Policy describes how <strong>Volar Robotics S.r.l.</strong> ("we", "us",
       "our") processes personal data in connection with your use of
       <strong>volar-robotics.com</strong> (the "Website"), in accordance with the EU General
-      Data Protection Regulation (GDPR — Regulation (EU) 2016/679) and applicable Italian
+      Data Protection Regulation (GDPR, Regulation (EU) 2016/679) and applicable Italian
       data protection law.
     </p>
 
@@ -81,17 +81,17 @@ permalink: /privacy-policy/
       Subject to the conditions and exceptions set out in the GDPR, you have the right to:
     </p>
     <ul>
-      <li><strong>Access</strong> — obtain confirmation of whether we process personal data
+      <li><strong>Access</strong>: obtain confirmation of whether we process personal data
         about you and, if so, a copy of it (Art. 15).</li>
-      <li><strong>Rectification</strong> — request correction of inaccurate or incomplete data
+      <li><strong>Rectification</strong>: request correction of inaccurate or incomplete data
         (Art. 16).</li>
-      <li><strong>Erasure</strong> — request deletion of your personal data in certain
+      <li><strong>Erasure</strong>: request deletion of your personal data in certain
         circumstances (Art. 17).</li>
-      <li><strong>Restriction</strong> — request that we restrict processing in certain
+      <li><strong>Restriction</strong>: request that we restrict processing in certain
         circumstances (Art. 18).</li>
-      <li><strong>Portability</strong> — receive data you have provided to us in a structured,
+      <li><strong>Portability</strong>: receive data you have provided to us in a structured,
         machine-readable format (Art. 20).</li>
-      <li><strong>Objection</strong> — object to processing based on legitimate interests
+      <li><strong>Objection</strong>: object to processing based on legitimate interests
         (Art. 21); we will cease processing unless we can demonstrate compelling legitimate
         grounds that override your interests.</li>
     </ul>
@@ -103,7 +103,7 @@ permalink: /privacy-policy/
     </p>
     <p>
       <strong>Garante per la protezione dei dati personali</strong><br>
-      Piazza Venezia 11, 00187 Roma — Italy<br>
+      Piazza Venezia 11, 00187 Roma, Italy<br>
       <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a>
     </p>
 

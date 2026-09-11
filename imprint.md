@@ -13,14 +13,14 @@ permalink: /imprint/
 
     <h2>Affiliation</h2>
     <p>
-      DIAG — Dipartimento di Ingegneria Informatica, Automatica e Gestionale<br>
+      DIAG, Dipartimento di Ingegneria Informatica, Automatica e Gestionale<br>
       Sapienza Università di Roma · Italy
     </p>
 
     <h2>Founders</h2>
     <ul>
-      <li>Simone Orelli — Co-founder, Physical Interaction</li>
-      <li>Antonio Rapuano — Co-founder, AI &amp; Tactile Perception</li>
+      <li>Simone Orelli (Co-founder, Physical Interaction)</li>
+      <li>Antonio Rapuano (Co-founder, AI &amp; Tactile Perception)</li>
     </ul>
 
     <h2>Contact</h2>

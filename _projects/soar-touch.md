@@ -53,7 +53,7 @@ permalink: /soar-touch/
       <p>A complete tactile sensing pipeline that turns a silicone-membrane camera
       sensor into a quantitative contact-state observer. A purpose-built characterization
       rig on a UR10 manipulator at Sapienza DIAG produced the ground-truth dataset for a
-      heteroscedastic deep regressor — itself trained against a physics-informed loss
+      heteroscedastic deep regressor, itself trained against a physics-informed loss
       that anchors lateral force estimates to torque consistency. An Extended Kalman
       Filter fuses the regressor's per-sample uncertainty with the carrier's pose to
       produce stable estimates of contact patch geometry and contact force. The full
@@ -89,8 +89,8 @@ permalink: /soar-touch/
       <div class="role-block reveal">
         <h4>Researchers</h4>
         <ul>
-          <li><strong>Simone Orelli</strong> · Volar Robotics — flight control &amp; physical interaction</li>
-          <li><strong>Antonio Rapuano</strong> · Volar Robotics — tactile perception &amp; AI</li>
+          <li><strong>Simone Orelli</strong> · Volar Robotics, flight control &amp; physical interaction</li>
+          <li><strong>Antonio Rapuano</strong> · Volar Robotics, tactile perception &amp; AI</li>
         </ul>
       </div>
 
@@ -161,7 +161,7 @@ permalink: /soar-touch/
       <li class="reveal">
         <p class="when">Apr 2026 · Aerial deployment</p>
         <h3>Full stack validated in flight</h3>
-        <p>The complete interaction control stack is engaged in-flight against vertical and upward-tilted surfaces, leveraging surface friction to enhance closed-loop stability and actively reduce the load borne by the actuators.</p>
+        <p>The complete interaction control stack is engaged in-flight against vertical and upward-tilted surfaces, using surface friction to improve closed-loop stability and actively reduce the load borne by the actuators.</p>
       </li>
       <li class="reveal">
         <p class="when">Apr 2026 · End</p>
@@ -293,7 +293,7 @@ permalink: /soar-touch/
             <p class="phase-label"><span class="phase-badge phase-badge--p2">Part II</span> Aerial deployment</p>
             <h4>Energy-aware flight with wall reaction</h4>
             <p>Same flight protocol against an upward-tilted surface. The wall reaction
-            force is leveraged to partially support the platform's weight.</p>
+            force partially supports the platform's weight.</p>
           </div>
         </article>
       </div><!-- /.carousel-track -->

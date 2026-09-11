@@ -13,7 +13,7 @@ permalink: /cookie-policy/
     <p>
       This Cookie Policy explains how <strong>Volar Robotics S.r.l.</strong> uses cookies and
       similar tracking technologies on <strong>volar-robotics.com</strong> (the "Website"),
-      in accordance with the EU General Data Protection Regulation (GDPR — Regulation (EU)
+      in accordance with the EU General Data Protection Regulation (GDPR, Regulation (EU)
       2016/679) and the ePrivacy Directive (2002/58/EC).
     </p>
 
@@ -26,7 +26,7 @@ permalink: /cookie-policy/
 
     <h2>2. Does This Website Use Cookies?</h2>
     <p>
-      <strong>No.</strong> This Website does not set any cookies — first-party or third-party.
+      <strong>No.</strong> This Website does not set any cookies, first-party or third-party.
       There is no analytics tool, no session management, no advertising network, and no
       third-party embedded content (widgets, maps, video players) that would introduce cookies.
       Your browser will not receive a <code>Set-Cookie</code> header from this Website.

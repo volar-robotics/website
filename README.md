@@ -21,7 +21,7 @@ Push to `main`. GitHub Pages builds and publishes automatically
 
 ## Structure
 
-- `index.html` — single-page landing.
-- `imprint.md` — legal / affiliation page.
-- `_layouts/`, `_includes/` — HTML shell and partials.
-- `assets/` — CSS (SCSS), JS, images.
+- `index.html`: single-page landing.
+- `imprint.md`: legal / affiliation page.
+- `_layouts/`, `_includes/`: HTML shell and partials.
+- `assets/`: CSS (SCSS), JS, images.
