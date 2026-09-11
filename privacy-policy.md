@@ -52,11 +52,20 @@ permalink: /privacy-policy/
       for enquiries. If you write to us, we process the personal data contained in your message
       (at minimum your email address, and any information you choose to include) solely in order
       to respond to your enquiry and, where relevant, for any subsequent business communication.
+    </p>
+
+    <p>
       We do not add your address to any mailing list, and we do not share it with third parties
-      except where strictly necessary to handle your request.<br>
+      except where strictly necessary to handle your request.
+    </p>
+
+    <p>
       <strong>Legal basis:</strong> legitimate interest in responding to business enquiries
       (Art. 6(1)(f) GDPR), or, where the communication relates to a potential or existing
-      contract, performance of or steps prior to a contract (Art. 6(1)(b) GDPR).<br>
+      contract, performance of or steps prior to a contract (Art. 6(1)(b) GDPR).
+    </p>
+
+    <p>
       <strong>Retention:</strong> email correspondence is kept for as long as the underlying
       business relationship or enquiry is active, and for a reasonable period thereafter for
       record-keeping purposes, subject to any overriding legal obligation.
@@ -110,7 +119,7 @@ permalink: /privacy-policy/
     <h2>6. Security</h2>
     <p>
       The Website is served exclusively over HTTPS. We implement appropriate technical and
-      organisational measures proportionate to the minimal data processing described above.
+      organizational measures proportionate to the minimal data processing described above.
     </p>
 
     <h2>7. Links to Third-Party Websites</h2>

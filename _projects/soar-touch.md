@@ -51,12 +51,18 @@ permalink: /soar-touch/
     <article class="work-block reveal">
       <h3>Part I · Soft optical tactile sensing</h3>
       <p>A complete tactile sensing pipeline that turns a silicone-membrane camera
-      sensor into a quantitative contact-state observer. A purpose-built characterization
+      sensor into a quantitative contact-state observer.</p>
+
+      <p>A purpose-built characterization
       rig on a UR10 manipulator at Sapienza DIAG produced the ground-truth dataset for a
       heteroscedastic deep regressor, itself trained against a physics-informed loss
-      that anchors lateral force estimates to torque consistency. An Extended Kalman
+      that anchors lateral force estimates to torque consistency.</p>
+
+      <p>An Extended Kalman
       Filter fuses the regressor's per-sample uncertainty with the carrier's pose to
-      produce stable estimates of contact patch geometry and contact force. The full
+      produce stable estimates of contact patch geometry and contact force.</p>
+
+      <p>The full
       pipeline was first validated in closed-loop force–motion control on the UR10, then
       deployed in flight on the UTwente miniThex hexarotor with both flat and
       tilted sensor-mount configurations.</p>
@@ -65,11 +71,15 @@ permalink: /soar-touch/
     <article class="work-block reveal">
       <h3>Part II · SOT-aided aerial interaction</h3>
       <p>An energy-aware aerial interaction stack built on top of the tactile pipeline.
-      A geometric SE(3) controller drives the multirotor's pose; a dual-channel
+      </p>
+
+      <p>A geometric SE(3) controller drives the multirotor's pose; a dual-channel
       admittance layer (contact-compliant in translation, stiff in rotation) shapes the contact
       wrench; an on-line manifold-aware reference generator solves a quadratic program
       on SO(3) at every cycle, exploiting the friction cone and surface reaction force
-      to minimize rotor power while maintaining the hybrid force–motion reference. The
+      to minimize rotor power while maintaining the hybrid force–motion reference.</p>
+
+      <p>The
       full stack was validated in Simulink with stochastic wind and contact-model
       uncertainty, then in hardware-in-the-loop on a Franka Research
       3 arm, then in free flight on the miniThex against both vertical and upward-tilted
