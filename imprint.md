@@ -9,7 +9,8 @@ permalink: /imprint/
     <h1>Imprint</h1>
 
     <p>This website presents <strong>Volar Robotics</strong>, an early-stage deep-tech venture
-    spinning off from the Robotics Laboratory of Sapienza Università di Roma.</p>
+    originating from the Robotics Laboratory of Sapienza Università di Roma and
+    recognised as a Sapienza university start-up.</p>
 
     <h2>Affiliation</h2>
     <p>
@@ -19,8 +20,8 @@ permalink: /imprint/
 
     <h2>Founders</h2>
     <ul>
-      <li>Simone Orelli (Co-founder, Physical Interaction)</li>
-      <li>Antonio Rapuano (Co-founder, AI &amp; Tactile Perception)</li>
+      <li>Simone Orelli (Co-founder)</li>
+      <li>Antonio Rapuano (Co-founder)</li>
     </ul>
 
     <h2>Contact</h2>
@@ -34,8 +35,8 @@ permalink: /imprint/
 
     <h2>Content</h2>
     <p>All product descriptions on this site reflect ongoing research and are provided for
-    informational purposes only. Logos and visual marks are placeholders pending finalization
-    of the corporate identity.</p>
+    informational purposes only. Laboratory demonstrations, development work and
+    longer-term research goals are identified separately on the relevant pages.</p>
 
     <p style="margin-top:2rem;"><a href="{{ '/' | relative_url }}">← Back to home</a></p>
   </div>

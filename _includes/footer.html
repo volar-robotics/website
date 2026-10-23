@@ -1,18 +1,18 @@
-<footer class="site-footer" role="contentinfo">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <img src="{{ '/assets/img/logo.svg' | relative_url }}" alt="Volar Robotics" width="128" height="44">
-      <p class="muted">Enabling physical interaction in the sky.</p>
-    </div>
-    <div class="footer-meta">
-      <p class="muted">© 2026 Volar Robotics S.r.l. - P.IVA / C.F.: 03374990590</p>
-      <p>
-        <a href="{{ '/legal/' | relative_url }}">Full Legal Notice</a>
-        &nbsp;·&nbsp;
-        <a href="{{ '/privacy-policy/' | relative_url }}">Privacy Policy</a>
-        &nbsp;·&nbsp;
-        <a href="{{ '/cookie-policy/' | relative_url }}">Cookie Policy</a>
-      </p>
+<footer class="site-footer">
+  <div class="footer-bottom">
+    <a href="{{ '/' | relative_url }}" class="footer-brand"
+      ><img
+        src="{{ '/assets/brand/volar-horizontal-lockup-white.svg' | relative_url }}"
+        width="180"
+        height="62"
+        alt="Volar Robotics"
+    /></a>
+    <p>Enabling tactile interaction in the sky.</p>
+    <div class="footer-legal">
+      <a href="{{ '/legal/' | relative_url }}">Legal</a
+      ><a href="{{ '/privacy-policy/' | relative_url }}">Privacy</a
+      ><a href="{{ '/cookie-policy/' | relative_url }}">Cookies</a
+      ><span>© {{ 'now' | date: '%Y' }} Volar Robotics S.r.l. · IT03374990590</span>
     </div>
   </div>
 </footer>

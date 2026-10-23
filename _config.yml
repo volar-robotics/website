@@ -1,10 +1,9 @@
 title: Volar Robotics
-tagline: Enabling physical interaction in the sky
+tagline: Enabling tactile interaction in the sky
 description: >-
-  Volar Robotics develops aerial robots capable of physically 
-  interacting with their environment, not just observing it: 
-  drones that establish stable contact for industrial inspection, 
-  the first step toward the “drone-as-a-worker” paradigm.
+  Volar Robotics develops friction-anchor interaction and soft-optical tactile sensing for aerial
+  robots that make controlled contact with infrastructure. Contact flight
+  demonstrated in the laboratory; industrial thickness inspection in development.
 url: "https://volar-robotics.com"
 baseurl: ""
 lang: en
@@ -34,6 +33,11 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - DESIGN.md
+  - assets/brand/README.md
+  - assets/models
+  - assets/js/product-viewer.js
+  - assets/vendor/three
   - vendor
   - .bundle
   - test

@@ -21,7 +21,21 @@ Push to `main`. GitHub Pages builds and publishes automatically
 
 ## Structure
 
-- `index.html`: single-page landing.
+- `index.html`: company introduction with the animated identity.
+- `technology.html`: miniThex with both technology pillars explained inline.
+- `work.html`: the research index.
+- `company.html`: founders and company background.
+- `aerial-robots-for-good.html`: the purpose article, reached from Company, with evidence and sources.
+- `_projects/`: SOAR-Touch demonstrations and active SOAR-NDT development.
 - `imprint.md`: legal / affiliation page.
 - `_layouts/`, `_includes/`: HTML shell and partials.
 - `assets/`: CSS (SCSS), JS, images.
+
+## Content notes
+
+Use “Enabling tactile interaction in the sky” as the company tagline.
+The two technology pillars are friction-anchor interaction and soft-optical tactile sensing.
+Keep laboratory demonstrations and development goals distinct; inspection is an application.
+The purpose article cites primary sources; check dated statistics before updating it.
+Design sources, motion rules, asset provenance and interaction checks are documented in `DESIGN.md`.
+The site needs no JavaScript build step. Engineering meshes and the engineering viewer are excluded from the public build.

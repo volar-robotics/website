@@ -1,0 +1,35 @@
+/* Generated from tokens/colors.json by scripts/build_assets.py; do not hand-edit. */
+:root {
+  --volar-deep-blue: #074158;
+  --volar-deep-blue-tint-1: #507989;
+  --volar-deep-blue-tint-2: #85A0AB;
+  --volar-deep-blue-tint-3: #CDD8DD;
+  --volar-aqua-green: #46B9B0;
+  --volar-aqua-green-tint-1: #74C6C5;
+  --volar-aqua-green-tint-2: #9BD3D4;
+  --volar-aqua-green-tint-3: #D6EBEA;
+  --volar-orange: #EB6029;
+  --volar-orange-tint-1: #F28E63;
+  --volar-orange-tint-2: #F6AC8D;
+  --volar-orange-tint-3: #FCDED1;
+  --volar-night-blue: #041C25;
+  --volar-night-blue-tint-1: #506168;
+  --volar-night-blue-tint-2: #808D91;
+  --volar-night-blue-tint-3: #CDD0D4;
+  --volar-sand: #FEE9D9;
+  --volar-sand-tint-1: #FEF0E3;
+  --volar-sand-tint-2: #FFF5ED;
+  --volar-sand-tint-3: #FFFBF8;
+  --volar-white: #FFFFFF;
+  --volar-brand-primary: #074158;
+  --volar-brand-secondary: #46B9B0;
+  --volar-brand-accent: #EB6029;
+  --volar-surface-dark: #041C25;
+  --volar-surface-light: #FEE9D9;
+  --volar-surface-white: #FFFFFF;
+  --volar-text-on-light: #041C25;
+  --volar-text-on-dark: #FEE9D9;
+  --volar-logo-mark: #074158;
+  --volar-logo-wordmark: #46B9B0;
+  --volar-logo-descriptor: #EB6029;
+}

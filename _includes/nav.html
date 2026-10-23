@@ -1,19 +1,10 @@
-<header class="site-nav" role="banner">
-  <div class="container nav-inner">
-    <a href="{{ '/' | relative_url }}#top" class="brand" aria-label="VOLAR ROBOTICS — home">
-      <img src="{{ '/assets/img/logo.svg' | relative_url }}" alt="" width="122" height="42">
-    </a>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-    <label for="nav-toggle" class="nav-burger" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </label>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="{{ '/' | relative_url }}#technology">Technology</a>
-      <a href="{{ '/' | relative_url }}#markets">Markets</a>
-      <a href="{{ '/' | relative_url }}#why">Why Volar</a>
-      <a href="{{ '/' | relative_url }}#research">Research</a>
-      <a href="{{ '/' | relative_url }}#team">Team</a>
-      <a href="{{ '/' | relative_url }}#contact" class="nav-cta">Contact</a>
-    </nav>
-  </div>
+<header class="site-nav">
+  <a class="brand" href="{{ '/' | relative_url }}" aria-label="Volar Robotics — home"><canvas class="brand-symbol" data-brand-mark="rest" data-cycle-marks="heart,tilde" data-hover-carve="heart" width="62" height="62" aria-hidden="true"></canvas><span class="brand-wordmark" aria-hidden="true"><img src="{{ '/assets/brand/volar-horizontal-lockup-color.svg' | relative_url }}" width="180" height="62" alt="" /></span></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav"><span>Menu</span><span class="menu-glyph" aria-hidden="true"></span></button>
+  <nav id="primary-nav" class="nav-links" aria-label="Main navigation">
+    <a href="{{ '/technology/' | relative_url }}"{% if page.nav == 'technology' %} aria-current="page"{% endif %}>Technology</a>
+    <a href="{{ '/work/' | relative_url }}"{% if page.nav == 'work' %} aria-current="page"{% endif %}>Research</a>
+    <a href="{{ '/company/' | relative_url }}"{% if page.nav == 'company' %} aria-current="page"{% endif %}>Company</a>
+    <button class="nav-contact" data-open="contact-dialog">Contact <span aria-hidden="true">↗</span></button>
+  </nav>
 </header>

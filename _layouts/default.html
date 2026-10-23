@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#FCF7F4">
+  <meta name="theme-color" content="#FEE9D9">
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/favicon.svg' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="preload" href="{{ '/assets/fonts/montserrat-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   {%- seo -%}
 </head>
-<body>
+<body class="{{ page.body_class | default: 'content-route' }}" data-baseurl="{{ site.baseurl }}">
   <a class="skip-link" href="#main">Skip to content</a>
   {% include nav.html %}
   <main id="main">
     {{ content }}
   </main>
   {% include footer.html %}
-  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+  {% include contact-dialog.html %}
+  <script src="{{ '/assets/js/experience.js' | relative_url }}" type="module"></script>
 </body>
 </html>

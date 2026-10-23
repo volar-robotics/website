@@ -34,8 +34,8 @@ permalink: /legal/
 
     <h3 style="font-size:1rem;color:var(--navy);margin-top:1.5rem;">Founders &amp; Management</h3>
     <ul>
-      <li><strong>Simone Orelli</strong> (Co-founder · Physical Interaction &amp; Hardware)</li>
-      <li><strong>Antonio Rapuano</strong> (Co-founder · AI &amp; Tactile Perception)</li>
+      <li><strong>Simone Orelli</strong> (Co-founder)</li>
+      <li><strong>Antonio Rapuano</strong> (Co-founder)</li>
     </ul>
 
     <h3 style="font-size:1rem;color:var(--navy);margin-top:1.5rem;">University Start-up Status</h3>
@@ -56,15 +56,7 @@ permalink: /legal/
 
     <h3 style="font-size:1rem;color:var(--navy);margin-top:1.5rem;">Research &amp; Development</h3>
     <p>
-      Volar Robotics invests a significant share of its expenditure in research, development, and
-      innovation activities. At least one founder holds a PhD-level qualification in a relevant
-      scientific or technological field.
-    </p>
-
-    <h3 style="font-size:1rem;color:var(--navy);margin-top:1.5rem;">Equity &amp; Financial Instruments</h3>
-    <p>
-      No equity or financial instruments have been issued to employees or collaborators under
-      incentive schemes at the current stage. This section will be updated as the company grows.
+      Volar Robotics carries out research and development in aerial interaction and tactile sensing.
     </p>
 
     <h2>Website Responsibility</h2>
