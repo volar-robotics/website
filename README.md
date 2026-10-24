@@ -1,5 +1,5 @@
 ---
-date: 2026-10-24
+date: 2026-10-25
 ---
 
 # volar-robotics.github.io
@@ -25,12 +25,13 @@ Push to `main`. GitHub Pages builds and publishes automatically
 
 ## Structure
 
-- `index.html`: company introduction with the animated identity.
+- `index.html`: company introduction, technology and one shared research scene.
 - `technology.html`: miniThex with both technology pillars explained inline.
-- `work.html`: the research index.
+- `work.html`: the research sequence, external project sites and full publication entries.
 - `company.html`: founders and company background.
 - `aerial-robots-for-good.html`: the purpose article, reached from Company, with evidence and sources.
-- `_projects/`: SOAR-Touch demonstrations and active SOAR-NDT development.
+- `_projects/`: project and publication metadata plus retained draft pages; collection output is disabled.
+- `_includes/research-projects.html`: shared research composition from project `home_order` and `home` metadata.
 - `imprint.md`: legal / affiliation page.
 - `_layouts/`, `_includes/`: HTML shell and partials.
 - `assets/`: CSS (SCSS), JS, images.

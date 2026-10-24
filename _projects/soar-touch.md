@@ -1,8 +1,32 @@
 ---
+date: 2026-10-25
 layout: default
 title: SOAR-Touch — Tactile contact in laboratory flight
 permalink: /soar-touch/
 nav: work
+project_url: https://sites.google.com/diag.uniroma1.it/soar-touch-website
+papers:
+  - title: Tactile Reconstruction of Contact Task Frames and Forces for Hybrid Force/Motion Control
+    short_title: Tactile reconstruction
+    url: https://arxiv.org/abs/2610.10020
+    status: arXiv preprint · 7 October 2026
+    scope: Tactile sensing and manipulator experiments.
+  - title: Second SOAR-Touch preprint
+    short_title: Second preprint
+    status: Forthcoming
+    scope: Link will be added when available.
+home_order: 10
+home:
+  name: SOAR-Touch
+  program: euROBIN · Sapienza & University of Twente
+  status: Laboratory experiments
+  summary: Combining friction-anchor interaction and soft-optical tactile sensing in contact-flight experiments.
+  scope: Demonstrated in controlled laboratory conditions.
+  media: photograph
+  image: /assets/img/research/contact-flight.webp
+  image_alt: The miniThex in contact flight against a laboratory wall at the University of Twente
+  caption: Laboratory contact flight · University of Twente
+  action: Explore SOAR-Touch
 ---
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   <a href="{{ '/work/' | relative_url }}">Research</a><span aria-hidden="true">/</span

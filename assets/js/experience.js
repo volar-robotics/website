@@ -1,8 +1,43 @@
+import { HomeStory } from './home-story.js';
+
 const base = document.body.dataset.baseurl || '';
 const asset = (path) => `${base}${path}`;
 const mediaPreference = matchMedia('(prefers-reduced-motion: reduce)');
 let paused = mediaPreference.matches || localStorage.getItem('volar-motion') === 'paused';
 const marks = new Set();
+let homeStory;
+const homeBrand = document.querySelector('.home-route .brand');
+const homeReturnProgress = () => {
+  const progress = Math.min(Math.max(scrollY / 160, 0), 1);
+  return paused ? Number(progress > 0) : progress;
+};
+function updateHomeBrand() {
+  if (!homeBrand) return;
+  document.body.style.setProperty('--home-departure', homeReturnProgress());
+  const brand = homeBrand.getBoundingClientRect();
+  const x = brand.left + brand.width / 2;
+  const y = brand.top + brand.height / 2;
+  const dark = [...document.querySelectorAll('.research-project-development, .site-footer')].some(
+    (surface) => {
+      const bounds = surface.getBoundingClientRect();
+      const research = surface.closest('.story-research');
+      return (
+        x >= bounds.left &&
+        x <= bounds.right &&
+        y >= bounds.top &&
+        y <= bounds.bottom &&
+        Number(getComputedStyle(surface).opacity) > 0.5 &&
+        (!research || !homeStory?.enhanced || Number(getComputedStyle(research).opacity) > 0.5)
+      );
+    },
+  );
+  if (document.body.classList.contains('home-on-dark') !== dark) {
+    document.body.classList.toggle('home-on-dark', dark);
+    marks.forEach((mark) => {
+      if (mark.scrollCarve) mark.draw();
+    });
+  }
+}
 const motionButton = document.createElement('button');
 motionButton.className = 'motion-toggle';
 motionButton.textContent = paused ? 'Resume motion' : 'Pause motion';
@@ -13,6 +48,8 @@ function setPaused(value) {
   document.documentElement.classList.toggle('motion-paused', paused);
   motionButton.textContent = paused ? 'Resume motion' : 'Pause motion';
   motionButton.setAttribute('aria-pressed', String(paused));
+  homeStory?.refresh();
+  updateHomeBrand();
   marks.forEach((mark) => mark.setPaused(paused));
 }
 motionButton.addEventListener('click', () => {
@@ -21,6 +58,16 @@ motionButton.addEventListener('click', () => {
 });
 mediaPreference.addEventListener('change', (event) => setPaused(event.matches));
 setPaused(paused);
+
+if (homeBrand) {
+  addEventListener('scroll', updateHomeBrand, { passive: true });
+  updateHomeBrand();
+  homeBrand.addEventListener('click', (event) => {
+    event.preventDefault();
+    history.replaceState(null, '', location.pathname + location.search);
+    scrollTo({ top: 0, behavior: paused ? 'instant' : 'smooth' });
+  });
+}
 
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav-links');
@@ -74,6 +121,7 @@ class CarvedMark {
     this.ctx = canvas.getContext('2d');
     this.data = data;
     this.rest = canvas.dataset.brandMark || 'rest';
+    this.scrollCarve = canvas.dataset.scrollCarve;
     this.current = data.carves[this.rest].map((bar) => [...bar]);
     this.visible = true;
     this.frame = 0;
@@ -104,8 +152,35 @@ class CarvedMark {
       parent.addEventListener('blur', () => this.to(this.rest));
     }
     canvas._volarMark = this;
+    if (this.scrollCarve) {
+      addEventListener(
+        'scroll',
+        () => {
+          if (this.frame) return;
+          this.frame = requestAnimationFrame(() => {
+            this.frame = 0;
+            this.drawScrollCarve();
+          });
+        },
+        { passive: true },
+      );
+      this.drawScrollCarve();
+    } else {
+      this.draw();
+      this.scheduleCycle();
+    }
+  }
+  drawScrollCarve() {
+    const progress = homeReturnProgress();
+    const t = progress * progress * (3 - 2 * progress);
+    const target = this.data.carves[this.scrollCarve];
+    this.current = this.data.carves[this.rest].map((bar, i) => [
+      bar[0],
+      bar[1] + (target[i][1] - bar[1]) * t,
+      bar[2],
+      bar[3] + (target[i][3] - bar[3]) * t,
+    ]);
     this.draw();
-    this.scheduleCycle();
   }
   draw() {
     const { canvas, ctx } = this;
@@ -167,18 +242,30 @@ class CarvedMark {
   }
   setPaused(value) {
     cancelAnimationFrame(this.frame);
+    this.frame = 0;
+    if (this.scrollCarve) {
+      this.drawScrollCarve();
+      return;
+    }
     if (value) this.to(this.rest);
     this.scheduleCycle();
   }
 }
 carvesReady.then((data) => {
-  if (data)
+  if (data) {
     document
       .querySelectorAll('[data-brand-mark]')
       .forEach((canvas) => marks.add(new CarvedMark(canvas, data)));
+    const story = document.querySelector('[data-home-story]');
+    if (story) homeStory = new HomeStory(story, data, () => paused, updateHomeBrand);
+  }
 });
 document.addEventListener('visibilitychange', () =>
   marks.forEach((mark) => {
+    if (mark.scrollCarve) {
+      mark.drawScrollCarve();
+      return;
+    }
     if (document.hidden) mark.to(mark.rest);
     mark.scheduleCycle();
   }),
@@ -284,11 +371,37 @@ document.querySelectorAll('a[href^="#source-"]').forEach((link) =>
 function revealHash() {
   if (!location.hash) return;
   const id = decodeURIComponent(location.hash.slice(1));
+  if (id === 'page-top') {
+    scrollTo({ top: 0, behavior: paused ? 'instant' : 'smooth' });
+    return;
+  }
+  if (id === 'technology' && document.querySelector('[data-home-story]')) {
+    if (homeStory?.enhanced) homeStory.revealTechnology();
+    else
+      document
+        .getElementById(id)
+        .scrollIntoView({ behavior: paused ? 'instant' : 'smooth', block: 'start' });
+    return;
+  }
+  if (
+    (id === 'research' || id.startsWith('project-')) &&
+    document.querySelector('[data-home-story]')
+  ) {
+    if (homeStory?.enhanced) homeStory.revealResearch();
+    else
+      document
+        .getElementById(id)
+        ?.scrollIntoView({ behavior: paused ? 'instant' : 'smooth', block: 'start' });
+    return;
+  }
   const target = document.getElementById(id);
   if (!target) return;
   target.closest('details')?.setAttribute('open', '');
   requestAnimationFrame(() =>
-    target.scrollIntoView({ behavior: paused ? 'instant' : 'smooth', block: 'center' }),
+    target.scrollIntoView({
+      behavior: paused ? 'instant' : 'smooth',
+      block: target.closest('.publications') ? 'start' : 'center',
+    }),
   );
 }
 window.addEventListener('hashchange', revealHash);

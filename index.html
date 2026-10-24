@@ -4,38 +4,115 @@ title: Volar Robotics — Enabling tactile interaction in the sky
 description: Volar Robotics develops friction-anchor interaction and soft-optical tactile sensing for aerial robots. Contact flight demonstrated in the laboratory.
 body_class: home-route
 ---
-<section class="home-hero" aria-labelledby="home-title">
-  <div class="hero-heading">
-    <p class="eyebrow">Volar Robotics</p>
-    <h1 id="home-title">
-      <span>Enabling</span> <em>tactile interaction</em> <span>in the sky.</span>
-    </h1>
-    <p class="hero-intro">
-      We develop aerial robots that use touch and surface contact to do useful work.
-    </p>
-    <a class="button button-dark" href="{{ '/technology/' | relative_url }}"
-      >Meet the technology <span aria-hidden="true">→</span></a
-    >
-    <a
-      class="hero-origin sapienza-signature"
-      href="https://www.uniroma1.it/it/pagina/vetrina-spin-e-start"
-      ><img
-        src="{{ '/assets/img/Uniroma1.svg' | relative_url }}"
-        width="354"
-        height="106"
-        alt="Sapienza Università di Roma"
-      /><span>Recognized<br />university start-up</span></a
-    >
-  </div>
-  <div class="home-identity">
-    <canvas
-      class="home-mark brand-canvas"
-      data-brand-mark="rest"
-      data-cycle-marks="heart,hexagon,tilde"
-      data-hover-carve="heart"
-      role="img"
-      aria-label="Volar's identity, animated through its carved shapes"
-    ></canvas>
-    <span class="identity-point" aria-hidden="true"></span>
+<section class="home-story" data-home-story aria-label="Volar Robotics: technology and research">
+  <div class="home-story-stage">
+    <div class="story-ground" aria-hidden="true"></div>
+    <div class="story-intro">
+      <div class="story-intro-copy">
+        <p class="eyebrow">Volar Robotics</p>
+        <h1 id="home-title">Enabling<br /><em>tactile interaction</em><br />in the sky.</h1>
+        <p class="story-intro-line">Aerial robots for controlled contact.</p>
+        <a class="text-link story-scroll" href="#technology"
+          >Scroll to explore <span aria-hidden="true">↓</span></a
+        >
+        <a
+          class="sapienza-signature story-origin"
+          href="https://www.uniroma1.it/it/pagina/vetrina-spin-e-start"
+        >
+          <img
+            src="{{ '/assets/img/Uniroma1.svg' | relative_url }}"
+            width="354"
+            height="106"
+            alt="Sapienza Università di Roma"
+          />
+          <span>Recognized<br />university start-up</span>
+        </a>
+      </div>
+      <div class="story-mark-source" aria-hidden="true">
+        <img
+          src="{{ '/assets/brand/volar-logomark-color.svg' | relative_url }}"
+          width="375"
+          height="375"
+          alt=""
+        />
+      </div>
+      <span class="accent-dot story-accent" aria-hidden="true"></span>
+    </div>
+    <div class="story-bars" aria-hidden="true"></div>
+    <section class="story-technology" id="technology" aria-labelledby="technology-title">
+      <header class="story-technology-heading">
+        <p class="eyebrow">The technology</p>
+        <h2 id="technology-title">Two pillars.<br /><em>One platform.</em></h2>
+      </header>
+      <div class="story-windows">
+        <figure class="story-platform" data-product-stage>
+          <div class="story-window story-product-window" data-story-window>
+            <div class="story-product-rear">
+              <div class="platform-drift">
+                <img
+                  src="{{ '/assets/img/platform-minithex.png' | relative_url }}"
+                  srcset="{{ '/assets/img/platform-minithex-small.png' | relative_url }} 1338w, {{ '/assets/img/platform-minithex.png' | relative_url }} 2409w"
+                  sizes="(max-width: 900px) 90vw, 650px"
+                  width="2409"
+                  height="1440"
+                  alt="miniThex research platform emerging from a capsule opening"
+                />
+              </div>
+            </div>
+            <div class="story-product-front" aria-hidden="true">
+              <div class="platform-drift">
+                <img
+                  src="{{ '/assets/img/platform-minithex.png' | relative_url }}"
+                  srcset="{{ '/assets/img/platform-minithex-small.png' | relative_url }} 1338w, {{ '/assets/img/platform-minithex.png' | relative_url }} 2409w"
+                  sizes="(max-width: 900px) 90vw, 650px"
+                  width="2409"
+                  height="1440"
+                  alt=""
+                />
+              </div>
+            </div>
+            <span class="accent-dot stage-orbit orbit-one" aria-hidden="true"></span>
+            <span
+              class="accent-dot accent-dot-sand stage-orbit orbit-two"
+              aria-hidden="true"
+            ></span>
+          </div>
+          <figcaption><strong>miniThex</strong><span>Research platform</span></figcaption>
+        </figure>
+        <article class="story-window story-pillar" data-story-window>
+          <div class="story-pillar-copy">
+            <h3>Friction-anchor<br />interaction</h3>
+            <p>Uses friction at the surface to support part of the robot’s load.</p>
+            <img
+              src="{{ '/assets/img/research/contact-flight.webp' | relative_url }}"
+              width="1200"
+              height="900"
+              alt="Contact flight against a laboratory wall"
+            />
+          </div>
+        </article>
+        <article class="story-window story-pillar" data-story-window>
+          <div class="story-pillar-copy">
+            <h3>Soft-optical<br />tactile sensing</h3>
+            <p>
+              Reads a soft sensor’s deformation to estimate contact force and surface orientation.
+            </p>
+            <img
+              src="{{ '/assets/img/research/tactile-input.webp' | relative_url }}"
+              width="450"
+              height="600"
+              alt="The camera view inside the soft tactile sensor"
+            />
+          </div>
+        </article>
+      </div>
+      <div class="story-technology-foot">
+        <p>Contact flight demonstrated in the laboratory.</p>
+        <a class="text-link" href="#research"
+          >Meet the projects <span aria-hidden="true">↓</span></a
+        >
+      </div>
+    </section>
+    {% include research-projects.html %}
   </div>
 </section>

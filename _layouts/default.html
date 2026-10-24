@@ -9,7 +9,7 @@
   <link rel="preload" href="{{ '/assets/fonts/montserrat-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   {%- seo -%}
 </head>
-<body class="{{ page.body_class | default: 'content-route' }}" data-baseurl="{{ site.baseurl }}">
+<body id="page-top" class="{{ page.body_class | default: 'content-route' }}" data-baseurl="{{ site.baseurl }}">
   <a class="skip-link" href="#main">Skip to content</a>
   {% include nav.html %}
   <main id="main">

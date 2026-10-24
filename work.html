@@ -8,50 +8,29 @@ nav: work
   <a href="{{ '/' | relative_url }}">Home</a><span aria-hidden="true">/</span
   ><span aria-current="page">Research</span>
 </nav>
-<header class="route-head">
-  <p class="eyebrow">Research</p>
-  <h1>Experiments.<br /><em>Then applications.</em></h1>
-  <p class="lede">
-    SOAR-Touch established laboratory foundations. SOAR-NDT explores their use in inspection.
-  </p>
-</header>
-<section class="work-grid" aria-label="Research projects">
-  <a class="work-entry" href="{{ '/soar-touch/' | relative_url }}">
-    <div class="work-entry-image">
-      <img
-        src="{{ '/assets/img/research/contact-flight.webp' | relative_url }}"
-        width="1200"
-        height="900"
-        alt="Tactile contact flight against a laboratory wall"
-      /><span class="inline-status">Laboratory experiments</span>
-    </div>
-    <div class="work-entry-text">
-      <p class="eyebrow">euROBIN</p>
-      <h2>SOAR-Touch</h2>
-      <p>Friction-anchor interaction and tactile sensing, tested together in contact flight.</p>
-      <span class="text-link">Explore the experiments <span aria-hidden="true">→</span></span>
-    </div>
-  </a>
-  <a class="work-entry" href="{{ '/soar-ndt/' | relative_url }}">
-    <div class="work-entry-image">
-      <div class="work-entry-field">
-        <canvas
-          data-brand-mark="hexagon"
-          data-hover-carve="arrow-right"
-          role="img"
-          aria-label="Volar's carved hexagon mark"
-        ></canvas>
-      </div>
-      <span class="inline-status">In development</span>
-    </div>
-    <div class="work-entry-text">
-      <p class="eyebrow">AUTOASSESS</p>
-      <h2>SOAR-NDT</h2>
-      <p>Developing a tactile aerial tool for non-destructive thickness inspection.</p>
-      <span class="text-link">Explore the project <span aria-hidden="true">→</span></span>
-    </div>
-  </a>
+{% include research-projects.html standalone=true %} {% assign research_projects = site.projects |
+where_exp: 'project', 'project.papers' | sort: 'home_order' %} {% for project in research_projects
+%}
+<section class="publications" aria-labelledby="{{ project.home.name | slugify }}-publications">
+  <div class="section-label">
+    <h2 id="{{ project.home.name | slugify }}-publications" tabindex="-1">
+      {{ project.home.name }} papers
+    </h2>
+  </div>
+  <div class="publication-list">
+    {% for paper in project.papers %}
+    <article class="publication{% unless paper.url %} publication-pending{% endunless %}">
+      <p class="eyebrow">{{ paper.status }}</p>
+      <h3>{{ paper.title }}</h3>
+      <p>{{ paper.scope }}</p>
+      {% if paper.url %}<a class="text-link" href="{{ paper.url }}"
+        >Read the preprint <span aria-hidden="true">↗</span></a
+      >{% endif %}
+    </article>
+    {% endfor %}
+  </div>
 </section>
+{% endfor %}
 <nav class="route-path" aria-label="Continue exploring">
   <a href="{{ '/technology/' | relative_url }}">← Technology</a
   ><a href="{{ '/company/' | relative_url }}"

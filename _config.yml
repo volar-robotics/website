@@ -26,7 +26,7 @@ plugins:
 
 collections:
   projects:
-    output: true
+    output: false
     permalink: /:name/
 
 exclude:
