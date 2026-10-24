@@ -1,3 +1,7 @@
+---
+date: 2026-10-24
+---
+
 # volar-robotics.github.io
 
 Source for the [Volar Robotics](https://volar-robotics.github.io) website.
@@ -37,5 +41,6 @@ Use “Enabling tactile interaction in the sky” as the company tagline.
 The two technology pillars are friction-anchor interaction and soft-optical tactile sensing.
 Keep laboratory demonstrations and development goals distinct; inspection is an application.
 The purpose article cites primary sources; check dated statistics before updating it.
-Design sources, motion rules, asset provenance and interaction checks are documented in `DESIGN.md`.
+The website component mapping, content rules and checks are in [DESIGN.md](DESIGN.md),
+which links the shared visual-system contract in the design repository.
 The site needs no JavaScript build step. Engineering meshes and the engineering viewer are excluded from the public build.

@@ -34,6 +34,7 @@ exclude:
   - Gemfile.lock
   - README.md
   - DESIGN.md
+  - AGENTS.md
   - assets/brand/README.md
   - assets/models
   - assets/js/product-viewer.js

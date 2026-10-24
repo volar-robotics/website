@@ -1,16 +1,58 @@
+---
+date: 2026-10-24
+---
+
 # Website design
 
 ## Sources
 
-The identity comes from `volar-robotics/design`: palette tokens, official lockups,
-`geometry/carves.json`, and the field-carving, motion, pattern and typography guidelines.
+The identity comes from [`volar-robotics/design`](https://github.com/volar-robotics/design): palette tokens,
+official lockups, `geometry/carves.json`, and its identity guidelines. Geometry belongs
+in [field carving](https://github.com/volar-robotics/design/blob/main/guidelines/field-carving.md), deformation behavior in
+[motion](https://github.com/volar-robotics/design/blob/main/guidelines/motion.md), and repeat construction in
+[pattern](https://github.com/volar-robotics/design/blob/main/guidelines/pattern.md). Those files remain authoritative.
 The designer's `_Volar Template.key` and September 2026 RoboPitch and Technital decks
 supply the sand/aqua fields, capsule framing and italic headline treatment.
 
 `assets/brand/` contains unmodified generated outputs from the design repository.
-Refresh those outputs there. `volar-pattern-tile.svg` repeats at its native aspect ratio
-through the full footer field; the square preview is not a repeat tile. The field fades
-as a whole to preserve text contrast. It represents the identity, not sensing data.
+Generate changes there and copy the outputs here. Website composition and component
+behavior belong in this file; do not copy geometry tables into it.
+
+## Component contract
+
+The [visual system](https://github.com/volar-robotics/design/blob/main/guidelines/visual-system.md) in the design repository
+owns the adopted definitions and shared behavior for capsules, Volar fields, carves,
+capsule windows, panels, panel pairs, bands and connectors. Follow that contract for
+website changes. When the sibling design checkout exists, read the same source at
+`../design/guidelines/visual-system.md`. A standalone website checkout needs access to
+the linked design source; its rules are not duplicated here. This file specializes
+its website application.
+
+Before changing a composition, identify its content question, component roles and
+intended next and return routes. Reuse the current implementation where its role
+matches. New conventions extend the shared contract in design; website-specific
+behavior stays here.
+
+| Role | Website implementation and use |
+|---|---|
+| Animated field | `CarvedMark` in `assets/js/experience.js`, canonical data in `assets/brand/carves.json`; integrated into Home, navigation and page illustrations. |
+| Field pattern | Backgrounds in `assets/css/main.scss`; shared `--pattern-size` controls density. |
+| Contained window | `.portrait-hole`; founder-specific crops preserve optical centering. |
+| Emerging window | `_includes/platform-stage.html`, `.stage-capsule`, `.platform-window`, `.platform-foreground`; miniThex on Technology. |
+| Panel pair | `.technology-explorer`, with `.explorer-stage` and `.pillar-panel`; platform and both pillar explanations. |
+| Band | `.evidence-note` for the Technology evidence scope; `.route-path` for navigation. |
+| Connector | Labeled links inside `.route-path` and `.breadcrumbs`; these already express the page relationships without requiring additional drawn lines. |
+
+Both technology pillars remain inline. Longer research methods and sources use native
+inline disclosures. The contact dialog handles the focused contact task.
+
+Shared presentation belongs in `assets/css/main.scss`; repeated markup with meaningful
+structure belongs in a Jekyll include, as the product stage already does. Keep interaction
+state in `assets/js/experience.js`. Existing selectors do not need renaming to match the
+vocabulary. Extract shared behavior when a real second use needs it; the site needs no
+general component framework or JavaScript build step.
+
+## Palette and type
 
 Montserrat is self-hosted under the bundled SIL Open Font License. The main ground is
 Sand. Deep Blue carries body text and dark bands; Aqua carries navigation bands and
@@ -62,10 +104,8 @@ keeps the capsule proportions fixed. The rear image is clipped to the opening; a
 foreground layer extends beyond its edge. Engineering meshes and the engineering viewer are excluded
 from the public build.
 
-The canvas mark interpolates only the original bars' y and height. Anchors, outer ends,
-pitch, width and corner radius stay fixed, with one fill per frame. The eye is excluded
-because its free-standing bar cannot follow this model. Automatic sequences return to
-rest between figures and stop offscreen or when the document is hidden.
+The canvas mark follows the design repository's motion rules. Automatic sequences stop
+offscreen or when the document is hidden.
 
 The navigation uses the animated mark beside the original outlined wordmark.
 Reduced motion has a still equivalent. The footer offers a persistent pause control.
@@ -79,3 +119,6 @@ Check mobile and desktop widths, inline pillar explanations and their anchors, e
 stages, publication links, source disclosures, mobile navigation and motion controls. Verify
 internal links, image loading, overflow and the absence of engineering assets in `_site/`.
 The design repository's build and checks govern its generated pattern assets.
+
+Apply the visual system's component checks to changed compositions. For this website,
+include disabled JavaScript and verify that essential content and navigation remain usable.
