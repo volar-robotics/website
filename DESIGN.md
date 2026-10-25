@@ -131,13 +131,11 @@ preprint has a clearly labeled, non-clickable placeholder.
 ## Media and motion
 
 Research photographs and tactile images come from `soar-touch-report/assets/img/`.
-Simone’s full square portrait comes from
-[his personal website](https://r-orelli.eu/assets/profile.jpg) at its original
-1066 × 1066 resolution. Antonio’s transparent portrait comes
-from [his personal website](https://r-rapuano.com/assets/images/propic.png), encoded
-as WebP at its original 1314 × 1203 resolution. Both are centered in capsule masks.
-Both portraits retain their natural image proportions. Founder-specific horizontal
-face anchors keep the faces centered as capsule dimensions change.
+Both founder portraits are the supplied original photographs, retained without
+pixel edits. Their shared white photographic ground sits inside equal capsule
+windows. Founder-specific scale and face anchors align the eyes and chin while
+preserving each image's proportions, expression and hair. The capsule applies the
+crop in CSS so source pixels remain available as its dimensions change.
 The Sapienza logo uses the existing university artwork in `assets/img/Uniroma1.svg`. Product illustrations
 use the supplied transparent PNGs at two resolutions. A square, bounded composition
 keeps the capsule proportions fixed. The rear image is clipped to the opening; a matching

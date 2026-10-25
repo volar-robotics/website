@@ -3,12 +3,12 @@ founders:
   - id: simone
     name: Simone Orelli
     portrait: /assets/img/team/simone.jpg
-    portrait_width: 1066
-    portrait_height: 1066
+    portrait_width: 1169
+    portrait_height: 1280
     website: https://r-orelli.eu
   - id: antonio
     name: Antonio Rapuano
-    portrait: /assets/img/team/antonio.webp
-    portrait_width: 1314
-    portrait_height: 1203
+    portrait: /assets/img/team/antonio.jpg
+    portrait_width: 993
+    portrait_height: 1280
     website: https://r-rapuano.com
