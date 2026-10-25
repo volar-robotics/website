@@ -137,6 +137,8 @@ from [his personal website](https://r-rapuano.com/assets/images/propic.png), enc
 as WebP at its original 1314 × 1203 resolution. Both are centered in capsule masks.
 Both portraits retain their natural image proportions. Founder-specific horizontal
 face anchors keep the faces centered as capsule dimensions change.
+Simone's flattened slide border is masked inside the image before the outer capsule
+clips it, keeping the original Sand edge out of the portrait window.
 The Sapienza logo uses the existing university artwork in `assets/img/Uniroma1.svg`. Product illustrations
 use the supplied transparent PNGs at two resolutions. A square, bounded composition
 keeps the capsule proportions fixed. The rear image is clipped to the opening; a matching
@@ -200,6 +202,11 @@ scope, project link and papers in the same panel. SOAR-NDT pairs its static carv
 with its heading. Its Deep Blue background carries a continuous pattern across the
 full research viewport, including the space above and below the project panel. The
 same field remains behind the company scene during its content transition.
+Compact SOAR-Touch places its photograph alongside the heading, summary and evidence
+scope, with the project link and a two-column paper inset below. This keeps the
+project's explanation and resources in one compact reading area. The pinned stage fills
+the dynamic viewport as browser controls retract; reading areas and scroll timing
+retain the small viewport height so toolbar changes do not advance the scene.
 
 `_includes/research-projects.html` reads `_data/projects.yml` in list order. Each entry
 owns its slug, name, program, status, summary, evidence scope, external destination,

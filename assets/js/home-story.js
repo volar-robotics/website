@@ -152,7 +152,9 @@ export class HomeStory {
     }
     const stage = this.stage.getBoundingClientRect();
     const source = this.source.getBoundingClientRect();
-    this.height = stage.height;
+    // Safari's toolbar changes the painted viewport, but must not retime the story.
+    this.height = this.compact ? this.root.querySelector('.story-intro').offsetHeight : stage.height;
+    this.viewportHeight = stage.height;
     this.width = stage.width;
     this.start = this.root.getBoundingClientRect().top + scrollY;
     this.sourceBounds = {
@@ -183,7 +185,8 @@ export class HomeStory {
     this.companySourceBounds = relativeBounds(this.companySource);
     if (this.compact) {
       const copy = this.copy.getBoundingClientRect();
-      this.introOverflow = Math.max(0, copy.bottom - stage.bottom + 28, source.bottom - stage.bottom + 28);
+      const readingBottom = stage.top + this.height;
+      this.introOverflow = Math.max(0, copy.bottom - readingBottom + 28, source.bottom - readingBottom + 28);
       this.introHold = this.introOverflow / this.height;
       this.clearance = document.querySelector('.brand').getBoundingClientRect().bottom + 8;
       this.sections.forEach((section) => {
@@ -255,8 +258,8 @@ export class HomeStory {
     if (focused && scene.overflow) {
       const bounds = focused.getBoundingClientRect();
       const stage = this.stage.getBoundingClientRect();
-      if (reading && bounds.top >= stage.top + scene.top && bounds.bottom <= stage.bottom - 28) return;
-      const pan = Math.min(scene.overflow, Math.max(0, bounds.bottom + scene.pan - stage.bottom + 28));
+      if (reading && bounds.top >= stage.top + scene.top && bounds.bottom <= stage.top + this.height - 28) return;
+      const pan = Math.min(scene.overflow, Math.max(0, bounds.bottom + scene.pan - stage.top - this.height + 28));
       destination += (pan / scene.overflow) * (scene.hold - 0.15);
     } else if (reading) return;
     scrollTo({ top: this.start + this.height * destination, behavior: 'instant' });
@@ -319,7 +322,7 @@ export class HomeStory {
     const people = clamp((travel - company.stop + company.transition) / company.transition);
     const leaving = interval(people, 0, 0.5);
     const arriving = interval(people, 0.5, 1);
-    const positions = [-lab * this.height, (1 - lab) * this.height - leaving * 48, (1 - arriving) * 48];
+    const positions = [-lab * this.viewportHeight, (1 - lab) * this.viewportHeight - leaving * 48, (1 - arriving) * 48];
     this.sections.forEach((section, i) => {
       const y = positions[i];
       section.element.style.transform = `translate3d(0,${y}px,0)`;
@@ -338,7 +341,7 @@ export class HomeStory {
     this.root.style.setProperty('--company-opacity', arriving);
     this.root.style.setProperty('--company-heading-opacity', 1);
     this.root.style.setProperty('--company-clip', 'none');
-    this.companyWipe = { left: 0, top: positions[2], right: this.width, bottom: positions[2] + this.height };
+    this.companyWipe = { left: 0, top: positions[2], right: this.width, bottom: positions[2] + this.viewportHeight };
     this.root.classList.toggle('story-reading', p > 0.75);
     this.root.classList.toggle('story-research-reading', lab > 0.95);
     this.root.classList.toggle('story-company-opening', people > 0.01);
