@@ -22,12 +22,13 @@ function updateHomeBrand() {
   const x = brand.left + brand.width / 2;
   const y = brand.top + brand.height / 2;
   const dark = [
-    ...document.querySelectorAll('.story-product-window, .research-project-development, .story-company, .site-footer'),
+    ...document.querySelectorAll('.story-product-window, .story-research, .research-project-development, .story-company, .site-footer'),
   ].some((surface) => {
     const bounds = surface.getBoundingClientRect();
     const research = surface.closest('.story-research');
     const company = surface.matches('.story-company');
     const product = surface.matches('.story-product-window');
+    const compactResearch = surface.matches('.story-research');
     const radius = Math.min(bounds.width, bounds.height) / 2;
     const centerY = Math.max(bounds.top + radius, Math.min(y, bounds.bottom - radius));
     const insideCapsule = Math.hypot(x - (bounds.left + bounds.right) / 2, y - centerY) <= radius;
@@ -38,6 +39,7 @@ function updateHomeBrand() {
       y >= bounds.top &&
       y <= bounds.bottom &&
       Number(getComputedStyle(surface).opacity) > 0.5 &&
+      (!compactResearch || (homeStory?.compact && homeStory?.enhanced && homeStory.compactDark > 0.5)) &&
       (!product || (insideCapsule && Number(getComputedStyle(surface.closest('.story-windows')).opacity) > 0.5)) &&
       (!research || !homeStory?.enhanced || Number(getComputedStyle(research).opacity) > 0.5) &&
       (!company ||
@@ -347,11 +349,12 @@ function revealHash() {
         .scrollIntoView({ behavior: paused ? 'instant' : 'smooth', block: 'start' });
     return;
   }
+  if (id.startsWith('project-') && !document.getElementById(id)) return;
   if (
     (id === 'research' || id.startsWith('project-')) &&
     document.querySelector('[data-home-story]')
   ) {
-    if (homeStory?.enhanced) homeStory.revealResearch();
+    if (homeStory?.enhanced) homeStory.revealResearch(id);
     else
       document
         .getElementById(id)

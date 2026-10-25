@@ -80,7 +80,9 @@ the sitemap. All internal links use the canonical destinations directly. The rou
 inventory and build checks are in [README.md](README.md).
 Persistent navigation and contact are utilities. The opening “Scroll to explore” link
 starts the homepage journey and uses the same `.text-link` treatment as “Meet the
-projects.” There is no technology-only progress bar. Each project has one main external link; paper resources sit beneath SOAR-Touch. Both pillar explanations are visible inline beside miniThex.
+projects.” There is no technology-only progress bar. Each project has one main external
+link; paper resources sit beneath SOAR-Touch. Both pillar explanations remain inline,
+beside miniThex on desktop and in successive pinned capsule scenes on compact screens.
 
 On Home, the brand stays fixed as a return-to-start link. Over the first 160 pixels of
 scrolling, its wordmark recedes. The resting logomark remains visible and carves into
@@ -140,20 +142,26 @@ use the supplied transparent PNGs at two resolutions. A square, bounded composit
 keeps the capsule proportions fixed. The rear image is clipped to the opening; a matching
 foreground layer extends beyond its edge.
 
-The homepage uses a pinned scene on viewports at least 1000 pixels wide and 700 pixels
-high when motion is enabled. It first zooms the whole resting mark uniformly, then hands
+The homepage uses a pinned viewport when motion is enabled. Viewports at least
+1000 pixels wide and 700 pixels high use the full composition. It first zooms the whole
+resting mark uniformly, then hands
 three bars over to independently sized content windows. This handover is a page transition;
 it does not define a new carve or change the canonical mark. The heading appears during
 the transition and the content arrives as the windows open. Scrolling backward reverses
-the sequence. Narrow screens and short viewports use normal document flow with reversible
-scroll-driven motion: the mark zooms into stacked capsule windows, research panels
-reveal in reading order, and the company field opens before its directory band.
-Paused motion and reduced motion show the complete content without transitions.
+the sequence. Narrow screens and short viewports keep the stage pinned while scroll
+advances successive reading stops: miniThex, each pillar, research media and briefs,
+then the company portraits and contact band. Capsules and panels enter and leave
+horizontally within the viewport. The mark zooms into the first capsule. Each stop
+includes a reading interval; content taller than the available region pans within
+that region before the next transition. Scroll length follows measured content
+height. Paused motion and reduced motion show the complete content in document flow.
 Essential content also remains visible without JavaScript.
 In document flow, scene headings leave clearance for the fixed return mark when
 opened directly through a fragment URL.
 
-The technology composition uses three aligned, equally tall capsule windows. miniThex has
+The desktop technology composition uses three aligned, equally tall capsule windows.
+Compact screens present those windows successively in the same viewport region.
+miniThex has
 a Deep Blue opening and an internal miniThex / Research platform caption; the two
 pillar windows use Sand with Deep Blue text. Their surfaces change during the handover
 from the mark. The two pillars retain equal visual weight. The platform uses matched
@@ -178,17 +186,19 @@ SOAR-Touch paper entries in a labeled, lightly tinted block with an Orange edge 
 underlined links. The available preprint links directly to arXiv; its full title,
 publication status and evidence scope remain in project metadata and its accessible
 link label. Forthcoming work stays muted and non-clickable.
-The photograph's caption sits below the capsule, on the page background. There are no project tabs, overlays or separate project scroll stops. Narrow
-screens preserve this sequence vertically, and the connector points downward.
+The photograph's caption sits below the capsule, on the page background. Desktop
+keeps the projects in one composition without tabs or separate project stops.
+Compact screens give the photograph and each project brief separate reading stops;
+the background turns Deep Blue as the development brief arrives.
 
 `_includes/research-projects.html` reads `_data/projects.yml` in list order. Each entry
 owns its slug, name, program, status, summary, evidence scope, external destination,
 media and paper metadata. Use `media: photograph` with a real image and alt text, or
 `media: field` for a branded development visual. The order is editorial and carries
 no implied completion date or validation milestone. The current pair occupies one
-scene; adding projects requires reviewing its composition. Scroll length does not
-grow with the project count. Without motion or JavaScript, all projects remain in
-normal document order.
+desktop scene; adding projects requires reviewing its composition. Desktop scroll length
+does not grow with the project count; compact reading stops follow project order.
+Without motion or JavaScript, all projects remain in normal document order.
 
 Company continues the homepage sequence in `_includes/home-company.html`. Its
 Deep Blue field distinguishes the people scene from Sand research. During the
@@ -209,8 +219,10 @@ dialog through `_includes/office-address.html`. `_includes/contact-button.html`
 provides the same Contact action and styling in the header and Company band; text
 links lead to destinations. The purpose article and LinkedIn page are secondary
 routes. The company LinkedIn URL lives in `_data/company.yml` and also appears in
-the footer. Mobile and short screens reveal the scene in normal reading order as the user
-scrolls. Paused motion and unavailable JavaScript show the final content directly.
+the footer. Mobile and short screens reveal the portraits in a pinned scene, then
+slide to the affiliation, office and Contact band while retaining the company heading
+and secondary routes. Paused motion and unavailable JavaScript show the final content
+in document flow.
 Orange `.accent-dot` elements sit at the portrait rims, alternating between upper right and lower left, outside the image
 masks and clear of faces and names. Portraits do not have an automatic animation.
 
