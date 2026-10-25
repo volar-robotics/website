@@ -6,11 +6,18 @@ export class HomeStory {
     this.copy = root.querySelector('.story-intro-copy');
     this.source = root.querySelector('.story-mark-source');
     this.technology = root.querySelector('.story-technology');
+    this.research = root.querySelector('.story-research');
+    this.barLayer = root.querySelector('.story-bars');
     this.targets = [...root.querySelectorAll('[data-story-window]')];
     this.curtains = [...root.querySelectorAll('.story-windows > *')];
     this.projects = [...root.querySelectorAll('[data-project-panel]')];
     this.company = root.querySelector('.story-company');
     this.companySource = root.querySelector('.research-project-development');
+    this.sections = [this.technology, this.research, this.company].map((element) => ({
+      element,
+      heading: element.querySelector('header'),
+      content: element.querySelector('.story-windows, .research-panels, .company-directory'),
+    }));
     this.compactScenes = [
       ...this.curtains.map((element) => ({ element, section: 'technology' })),
       ...this.projects.flatMap((project) => [
@@ -91,7 +98,7 @@ export class HomeStory {
       if (this.compact && this.enhanced && !event.target.closest('.compact-scene')) {
         const first = this.compactScenes[0];
         const research = this.compactScenes.find((item) => item.section === 'research');
-        if (this.travel < first.stop || this.travel >= research.stop - 0.7) this.revealCompactScene(first);
+        if (this.travel < first.stop || this.travel >= research.stop - research.transition) this.revealCompactScene(first);
       }
       if (this.enhanced && !this.compact && (this.progress < 1 || this.travel > this.researchStart))
         this.revealTechnology();
@@ -120,6 +127,8 @@ export class HomeStory {
     this.compact = !this.screen.matches;
     this.root.classList.toggle('story-enhanced', this.enhanced);
     this.root.classList.toggle('story-compact', this.compact && this.enhanced);
+    this.sections.forEach(({ element }) => element.style.removeProperty('transform'));
+    this.barLayer.style.removeProperty('transform');
     this.compactScenes.forEach(({ element }) => {
       element.style.removeProperty('transform');
       element.style.removeProperty('pointer-events');
@@ -142,7 +151,11 @@ export class HomeStory {
   }
   measure() {
     if (!this.enhanced) return;
-    if (this.compact) this.copy.style.removeProperty('transform');
+    if (this.compact) {
+      this.copy.style.removeProperty('transform');
+      this.sections.forEach(({ element }) => element.style.removeProperty('transform'));
+      this.barLayer.style.removeProperty('transform');
+    }
     const stage = this.stage.getBoundingClientRect();
     const source = this.source.getBoundingClientRect();
     this.height = stage.height;
@@ -178,16 +191,24 @@ export class HomeStory {
       const copy = this.copy.getBoundingClientRect();
       this.introOverflow = Math.max(0, copy.bottom - stage.bottom + 28, source.bottom - stage.bottom + 28);
       this.introHold = this.introOverflow / this.height;
+      this.clearance = document.querySelector('.brand').getBoundingClientRect().bottom + 8;
+      this.sections.forEach((section) => {
+        section.headingTop = section.heading.offsetTop;
+        section.contentTop = section.content.offsetTop;
+      });
       let stop = this.introHold + 1.35;
-      this.compactScenes.forEach((scene) => {
+      this.compactScenes.forEach((scene, i) => {
+        const previous = this.compactScenes[i - 1];
+        scene.transition = previous && previous.section !== scene.section ? 1.1 : 0.7;
+        if (previous) stop += previous.hold + scene.transition;
         const bounds = relativeBounds(scene.element);
         scene.top = bounds.y;
         scene.overflow = Math.max(0, bounds.y + scene.element.scrollHeight - this.height + 28);
         scene.hold = 0.5 + scene.overflow / this.height;
         scene.stop = stop;
-        stop += scene.hold + 0.7;
       });
-      this.root.style.setProperty('--home-story-length', `${(stop + 1) * this.height}px`);
+      const last = this.compactScenes[this.compactScenes.length - 1];
+      this.root.style.setProperty('--home-story-length', `${(last.stop + last.hold + 1.5) * this.height}px`);
     }
     this.schedule();
   }
@@ -258,11 +279,16 @@ export class HomeStory {
     this.copy.style.transform = `translate3d(0,${-introPan}px,0)`;
     this.progress = p;
     this.compactScenes.forEach((scene, i) => {
+      const previous = this.compactScenes[i - 1];
       const next = this.compactScenes[i + 1];
-      const enter = interval(travel, i ? scene.stop - 0.7 : this.introHold + 0.95, scene.stop);
-      const leave = next ? interval(travel, next.stop - 0.7, next.stop) : 0;
+      const samePrevious = previous?.section === scene.section;
+      const sameNext = next?.section === scene.section;
+      const enter = i
+        ? (samePrevious ? interval(travel, scene.stop - scene.transition, scene.stop) : 1)
+        : interval(travel, this.introHold + 0.95, scene.stop);
+      const leave = sameNext ? interval(travel, next.stop - next.transition, next.stop) : 0;
       scene.opacity = enter * (1 - leave);
-      scene.x = ((i ? 1 - enter : 0) - leave) * this.width * 1.1;
+      scene.x = ((samePrevious ? 1 - enter : 0) - leave) * this.width * 1.1;
       scene.pan = scene.overflow * clamp((travel - scene.stop) / (scene.hold - 0.15));
       scene.element.style.setProperty('--scene-opacity', scene.opacity);
       scene.element.style.transform = `translate3d(${scene.x}px,${-scene.pan}px,0)`;
@@ -295,22 +321,32 @@ export class HomeStory {
     const research = this.compactScenes.find((scene) => scene.section === 'research');
     const company = this.compactScenes.find((scene) => scene.section === 'company');
     const development = this.compactScenes.find((scene) => scene.project === this.companySource);
-    const lab = interval(travel, research.stop - 0.7, research.stop);
-    const people = interval(travel, company.stop - 0.7, company.stop);
+    const lab = clamp((travel - research.stop + research.transition) / research.transition);
+    const people = clamp((travel - company.stop + company.transition) / company.transition);
+    const positions = [-lab * this.height, (1 - lab - people) * this.height, (1 - people) * (this.height + 16)];
+    this.sections.forEach((section, i) => {
+      const y = positions[i];
+      section.element.style.transform = `translate3d(0,${y}px,0)`;
+      section.element.style.setProperty('--chapter-heading-clip', `${Math.max(0, this.clearance - y - section.headingTop)}px`);
+      section.element.style.setProperty('--chapter-content-clip', `${Math.max(0, this.clearance - y - section.contentTop)}px`);
+    });
+    this.barLayer.style.transform = `translate3d(0,${positions[0]}px,0)`;
     this.compactDark = interval(travel, development.stop - 0.7, development.stop);
     this.root.style.setProperty('--intro-opacity', 1 - interval(p, 0.02, 0.27));
     this.root.style.setProperty('--ground-opacity', interval(p, 0.32, 0.78));
-    this.root.style.setProperty('--content-opacity', interval(p, 0.7, 0.96) * (1 - lab));
-    this.root.style.setProperty('--heading-opacity', interval(p, 0.4, 0.64) * (1 - lab));
-    this.root.style.setProperty('--research-opacity', lab * (1 - people));
+    this.root.style.setProperty('--content-opacity', interval(p, 0.7, 0.96));
+    this.root.style.setProperty('--heading-opacity', interval(p, 0.4, 0.64));
+    this.root.style.setProperty('--research-opacity', 1);
     this.root.style.setProperty('--compact-dark', this.compactDark);
     this.root.style.setProperty('--compact-bars-clip', p >= 1 ? 'inset(220px 0 64px)' : 'inset(0)');
-    this.root.style.setProperty('--company-opacity', people);
-    this.root.style.setProperty('--company-heading-opacity', people);
-    this.root.style.setProperty('--company-clip', `inset(0 ${(1 - people) * 100}% 0 0)`);
-    this.companyWipe = { left: 0, top: 0, right: this.width * people, bottom: this.height };
+    this.root.style.setProperty('--company-opacity', 1);
+    this.root.style.setProperty('--company-heading-opacity', 1);
+    this.root.style.setProperty('--company-clip', 'none');
+    this.companyWipe = { left: 0, top: positions[2], right: this.width, bottom: positions[2] + this.height };
     this.root.classList.toggle('story-reading', p > 0.75);
     this.root.classList.toggle('story-research-reading', lab > 0.95);
+    this.root.classList.toggle('story-company-opening', people > 0.01);
+    this.root.classList.toggle('story-company-heading-reading', people > 0.95);
     this.root.classList.toggle('story-company-reading', people > 0.95);
     this.onSurfaceChange();
   }

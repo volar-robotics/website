@@ -140,7 +140,8 @@ image proportions while preserving equal capsule dimensions.
 The Sapienza logo uses the existing university artwork in `assets/img/Uniroma1.svg`. Product illustrations
 use the supplied transparent PNGs at two resolutions. A square, bounded composition
 keeps the capsule proportions fixed. The rear image is clipped to the opening; a matching
-foreground layer extends beyond its edge.
+foreground layer extends beyond its edge. Compact screens bound both image layers
+within the viewport so the emerging arm remains visible.
 
 The homepage uses a pinned viewport when motion is enabled. Viewports at least
 1000 pixels wide and 700 pixels high use the full composition. It first zooms the whole
@@ -150,9 +151,12 @@ it does not define a new carve or change the canonical mark. The heading appears
 the transition and the content arrives as the windows open. Scrolling backward reverses
 the sequence. Narrow screens and short viewports keep the stage pinned while scroll
 advances successive reading stops: miniThex, each pillar, research media and briefs,
-then the company portraits and contact band. Capsules and panels enter and leave
-horizontally within the viewport. The mark zooms into the first capsule. Each stop
-includes a reading interval; content taller than the available region pans within
+then the company portraits and contact band. Cards within each chapter enter and
+leave horizontally. Technology, Research and Company move as full-height pages at
+chapter boundaries, with their headings and backgrounds traveling vertically with
+the content. Scroll maps directly to that vertical travel, and reversing scroll
+retraces it. A brief Aqua edge separates the two Deep Blue chapters. The mark zooms
+into the first capsule. Each stop includes a reading interval; content taller than the available region pans within
 that region before the next transition. Scroll length follows measured content
 height. Paused motion and reduced motion show the complete content in document flow.
 Essential content also remains visible without JavaScript.
@@ -221,7 +225,8 @@ links lead to destinations. The purpose article and LinkedIn page are secondary
 routes. The company LinkedIn URL lives in `_data/company.yml` and also appears in
 the footer. Mobile and short screens reveal the portraits in a pinned scene, then
 slide to the affiliation, office and Contact band while retaining the company heading
-and secondary routes. Paused motion and unavailable JavaScript show the final content
+and secondary routes. The Sand surface belongs to each moving panel and ends at its
+content boundary. Paused motion and unavailable JavaScript show the final content
 in document flow.
 Orange `.accent-dot` elements sit at the portrait rims, alternating between upper right and lower left, outside the image
 masks and clear of faces and names. Portraits do not have an automatic animation.

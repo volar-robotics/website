@@ -2064,6 +2064,7 @@ canvas.has-geometry {
 .story-compact .story-technology-heading,
 .story-compact .research-heading,
 .story-compact .company-scene-heading {
+  clip-path: inset(var(--chapter-heading-clip, 0px) 0 0);
   position: absolute;
   top: 100px;
   left: var(--gutter);
@@ -2087,6 +2088,7 @@ canvas.has-geometry {
 .story-compact .company-directory {
   inset: 220px 0 64px;
   overflow: clip;
+  clip-path: inset(var(--chapter-content-clip, 0px) 0 0);
 }
 .story-compact .compact-scene {
   position: absolute;
@@ -2123,6 +2125,11 @@ canvas.has-geometry {
   width: 84px;
   height: 84px;
   margin-top: 20px;
+}
+.story-compact .story-product-rear img,
+.story-compact .story-product-front img {
+  width: 120%;
+  left: -12%;
 }
 .story-compact .platform-drift {
   animation-play-state: var(--compact-platform-motion, paused);
@@ -2196,6 +2203,7 @@ canvas.has-geometry {
 }
 .story-compact .story-company {
   z-index: 4;
+  box-shadow: 0 -16px 0 var(--aqua);
 }
 .story-compact .company-scene-heading {
   display: block;
@@ -2211,17 +2219,24 @@ canvas.has-geometry {
 }
 .story-compact .company-directory {
   inset: 282px 0 24px;
-  clip-path: none;
+  clip-path: inset(var(--chapter-content-clip, 0px) 0 0);
 }
 .story-compact .company-directory::before {
-  inset: 64px var(--gutter) auto;
-  height: clamp(285px, calc(30svh + 100px), 340px);
+  display: none;
 }
 .story-compact .company-people {
+  isolation: isolate;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   padding: 0 16px 24px;
+}
+.story-compact .company-people::before {
+  content: '';
+  position: absolute;
+  inset: 64px 0 0;
+  z-index: -1;
+  background: var(--sand);
 }
 .story-compact .company-founder {
   display: block;
