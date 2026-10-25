@@ -84,9 +84,11 @@ projects.” There is no technology-only progress bar. Each project has one main
 
 On Home, the brand stays fixed as a return-to-start link. Over the first 160 pixels of
 scrolling, its wordmark recedes. The resting logomark remains visible and carves into
-the canonical upward arrow over 500 ms on hover or keyboard focus, returning to
-rest on departure. It has no background plate; its single fill
-changes to Sand where a dark research panel or footer passes beneath it. Paused or reduced motion uses the still state.
+the canonical upward arrow over 500 ms on hover or keyboard focus after leaving the
+top of the page, returning to rest on departure. Touch devices hold the arrow after
+scrolling more than eight pixels and restore the resting mark at the top. It has no
+background plate; its single fill changes to Sand where the dark product window,
+research panel, company field or footer passes beneath it. Paused or reduced motion uses the still state.
 The link returns without reloading the page and has an explicit accessible label.
 
 Underlined links share `--link-line`: 40% of the text color at rest, full contrast
@@ -131,8 +133,8 @@ Simone’s portrait is a crop from the flattened September RoboPitch slide; its 
 resolution limits sharpness on dense displays. Antonio’s transparent portrait comes
 from [his personal website](https://r-rapuano.com/assets/images/propic.png), encoded
 as WebP at its original 1314 × 1203 resolution. Both are centered in capsule masks.
-Mobile crops use a smaller image scale and individual horizontal face anchors while
-preserving the capsule dimensions.
+Mobile crops center Simone within a bounded image box and Antonio at his natural
+image proportions while preserving equal capsule dimensions.
 The Sapienza logo uses the existing university artwork in `assets/img/Uniroma1.svg`. Product illustrations
 use the supplied transparent PNGs at two resolutions. A square, bounded composition
 keeps the capsule proportions fixed. The rear image is clipped to the opening; a matching
@@ -143,8 +145,11 @@ high when motion is enabled. It first zooms the whole resting mark uniformly, th
 three bars over to independently sized content windows. This handover is a page transition;
 it does not define a new carve or change the canonical mark. The heading appears during
 the transition and the content arrives as the windows open. Scrolling backward reverses
-the sequence. Narrow screens, short viewports, paused motion and reduced motion use a
-normal document flow. Essential content also remains visible without JavaScript.
+the sequence. Narrow screens and short viewports use normal document flow with reversible
+scroll-driven motion: the mark zooms into stacked capsule windows, research panels
+reveal in reading order, and the company field opens before its directory band.
+Paused motion and reduced motion show the complete content without transitions.
+Essential content also remains visible without JavaScript.
 In document flow, scene headings leave clearance for the fixed return mark when
 opened directly through a fragment URL.
 
@@ -204,9 +209,9 @@ dialog through `_includes/office-address.html`. `_includes/contact-button.html`
 provides the same Contact action and styling in the header and Company band; text
 links lead to destinations. The purpose article and LinkedIn page are secondary
 routes. The company LinkedIn URL lives in `_data/company.yml` and also appears in
-the footer. Mobile, short screens, paused motion and unavailable JavaScript show the
-final content in normal reading order. Orange `.accent-dot` elements sit at the
-portrait rims, alternating between upper right and lower left, outside the image
+the footer. Mobile and short screens reveal the scene in normal reading order as the user
+scrolls. Paused motion and unavailable JavaScript show the final content directly.
+Orange `.accent-dot` elements sit at the portrait rims, alternating between upper right and lower left, outside the image
 masks and clear of faces and names. Portraits do not have an automatic animation.
 
 The canvas mark follows the design repository's motion rules. Automatic sequences stop

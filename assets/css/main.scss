@@ -1959,14 +1959,15 @@ canvas.has-geometry {
     height: clamp(220px, 40vw, 300px);
   }
   .company-portrait-window > img {
-    width: auto;
+    width: 100%;
     height: 104%;
-    left: 50%;
+    left: 0;
     top: -2%;
-    transform: translateX(-43%);
+    object-position: center;
     border-radius: 0;
   }
   .company-portrait-window.portrait-antonio > img {
+    width: auto;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -2010,4 +2011,44 @@ canvas.has-geometry {
     display: grid;
     gap: 8px;
   }
+}
+
+/* Flow scenes retain the mark handover without pinning stacked content. */
+.story-flow .story-bars {
+  display: block;
+  z-index: 1;
+}
+.story-flow .story-mark-source img {
+  opacity: 0;
+}
+.story-flow .story-window {
+  background: transparent;
+}
+.story-flow .story-technology-heading,
+.story-flow .story-windows,
+.story-flow .story-technology-foot {
+  position: relative;
+  z-index: 2;
+}
+.story-flow .story-windows {
+  opacity: var(--content-opacity);
+}
+.story-flow .story-technology:focus-within .story-windows {
+  opacity: 1;
+}
+.story-flow .research-project {
+  opacity: var(--flow-reveal, 1);
+  clip-path: inset(0 0 calc((1 - var(--flow-reveal, 1)) * 20%) 0);
+}
+.story-flow .story-company {
+  clip-path: inset(0 var(--flow-company-inset, 0%) 0 var(--flow-company-inset, 0%));
+}
+.story-flow .company-directory {
+  clip-path: inset(0 var(--company-band-reveal, 0%) 0 0);
+}
+.story-flow .research-project:focus-within,
+.story-flow .story-company:focus-within,
+.story-flow .company-directory:focus-within {
+  opacity: 1;
+  clip-path: none;
 }

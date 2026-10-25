@@ -7,6 +7,7 @@ let paused = mediaPreference.matches || localStorage.getItem('volar-motion') ===
 const marks = new Set();
 let homeStory;
 const homeBrand = document.querySelector('.home-route .brand');
+const hoverPointer = matchMedia('(hover: hover) and (pointer: fine)');
 const homeReturnProgress = () => {
   const progress = Math.min(Math.max(scrollY / 160, 0), 1);
   return paused ? Number(progress > 0) : progress;
@@ -14,15 +15,22 @@ const homeReturnProgress = () => {
 function updateHomeBrand() {
   if (!homeBrand) return;
   document.body.style.setProperty('--home-departure', homeReturnProgress());
+  marks.forEach((mark) => {
+    if (mark.canvas.closest('.brand') === homeBrand) mark.updateInteraction();
+  });
   const brand = homeBrand.getBoundingClientRect();
   const x = brand.left + brand.width / 2;
   const y = brand.top + brand.height / 2;
   const dark = [
-    ...document.querySelectorAll('.research-project-development, .story-company, .site-footer'),
+    ...document.querySelectorAll('.story-product-window, .research-project-development, .story-company, .site-footer'),
   ].some((surface) => {
     const bounds = surface.getBoundingClientRect();
     const research = surface.closest('.story-research');
     const company = surface.matches('.story-company');
+    const product = surface.matches('.story-product-window');
+    const radius = Math.min(bounds.width, bounds.height) / 2;
+    const centerY = Math.max(bounds.top + radius, Math.min(y, bounds.bottom - radius));
+    const insideCapsule = Math.hypot(x - (bounds.left + bounds.right) / 2, y - centerY) <= radius;
     const wipe = homeStory?.companyWipe;
     return (
       x >= bounds.left &&
@@ -30,6 +38,7 @@ function updateHomeBrand() {
       y >= bounds.top &&
       y <= bounds.bottom &&
       Number(getComputedStyle(surface).opacity) > 0.5 &&
+      (!product || (insideCapsule && Number(getComputedStyle(surface.closest('.story-windows')).opacity) > 0.5)) &&
       (!research || !homeStory?.enhanced || Number(getComputedStyle(research).opacity) > 0.5) &&
       (!company ||
         !homeStory?.enhanced ||
@@ -54,8 +63,8 @@ function setPaused(value) {
   motionButton.textContent = paused ? 'Resume motion' : 'Pause motion';
   motionButton.setAttribute('aria-pressed', String(paused));
   homeStory?.refresh();
-  updateHomeBrand();
   marks.forEach((mark) => mark.setPaused(paused));
+  updateHomeBrand();
 }
 motionButton.addEventListener('click', () => {
   setPaused(!paused);
@@ -144,10 +153,19 @@ class CarvedMark {
     const hover = canvas.dataset.hoverCarve;
     if (hover) {
       const parent = canvas.closest('a') || canvas;
-      parent.addEventListener('mouseenter', () => this.to(hover));
-      parent.addEventListener('mouseleave', () => this.to(this.rest));
-      parent.addEventListener('focus', () => this.to(hover));
-      parent.addEventListener('blur', () => this.to(this.rest));
+      this.interactionParent = parent;
+      parent.addEventListener('mouseenter', () => {
+        this.hovered = true;
+        this.updateInteraction();
+      });
+      parent.addEventListener('mouseleave', () => {
+        this.hovered = false;
+        this.updateInteraction();
+      });
+      parent.addEventListener('focus', () => this.updateInteraction());
+      parent.addEventListener('blur', () => this.updateInteraction());
+      hoverPointer.addEventListener('change', () => this.updateInteraction());
+      this.updateInteraction();
     }
     this.draw();
     this.scheduleCycle();
@@ -177,7 +195,20 @@ class CarvedMark {
     });
     ctx.restore();
   }
+  updateInteraction() {
+    if (!this.interactionParent) return;
+    const isHomeReturn = this.interactionParent === homeBrand;
+    const departed = scrollY > 8;
+    const active = isHomeReturn && !hoverPointer.matches
+      ? departed
+      : this.hovered || document.activeElement === this.interactionParent;
+    const carve = active && (!isHomeReturn || departed)
+      ? this.canvas.dataset.hoverCarve
+      : this.rest;
+    if (carve !== this.targetName) this.to(carve);
+  }
   to(name) {
+    this.targetName = name;
     const target = this.data.carves[name];
     if (!target || name === 'eye') return;
     cancelAnimationFrame(this.frame);
@@ -230,6 +261,7 @@ carvesReady.then((data) => {
 document.addEventListener('visibilitychange', () =>
   marks.forEach((mark) => {
     if (document.hidden) mark.to(mark.rest);
+    else mark.updateInteraction();
     mark.scheduleCycle();
   }),
 );

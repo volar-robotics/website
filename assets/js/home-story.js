@@ -91,7 +91,9 @@ export class HomeStory {
   }
   refresh() {
     this.enhanced = this.screen.matches && !this.motionPaused();
+    this.flowAnimated = !this.screen.matches && !this.motionPaused();
     this.root.classList.toggle('story-enhanced', this.enhanced);
+    this.root.classList.toggle('story-flow', this.flowAnimated);
     this.root.style.setProperty(
       '--home-story-length',
       `${Math.round((this.companyReady + 1.5) * 100)}svh`,
@@ -104,12 +106,13 @@ export class HomeStory {
       this.root.style.removeProperty('--ground-opacity');
       this.copy.style.removeProperty('transform');
       this.curtains.forEach((card) => card.style.removeProperty('transform'));
+      if (this.flowAnimated) this.measure();
       return;
     }
     this.measure();
   }
   measure() {
-    if (!this.enhanced) return;
+    if (!this.enhanced && !this.flowAnimated) return;
     const stage = this.stage.getBoundingClientRect();
     const source = this.source.getBoundingClientRect();
     this.height = stage.height;
@@ -140,13 +143,16 @@ export class HomeStory {
       };
     };
     this.companySourceBounds = relativeBounds(this.companySource);
+    this.projectBounds = this.projects.map(relativeBounds);
+    this.companyBounds = relativeBounds(this.company);
     this.schedule();
   }
   schedule() {
-    if (!this.enhanced || this.frame) return;
+    if ((!this.enhanced && !this.flowAnimated) || this.frame) return;
     this.frame = requestAnimationFrame(() => {
       this.frame = 0;
-      this.draw();
+      if (this.flowAnimated) this.drawFlow();
+      else this.draw();
     });
   }
   revealTechnology() {
@@ -178,6 +184,52 @@ export class HomeStory {
       top: this.start + this.height * this.companyReady,
       behavior: 'smooth',
     });
+  }
+  drawFlow() {
+    const clamp = (n) => Math.min(1, Math.max(0, n));
+    const ease = (n) => n * n * (3 - 2 * n);
+    const mix = (a, b, t) => a + (b - a) * t;
+    const viewport = document.documentElement.clientHeight;
+    const offset = scrollY - this.start;
+    const source = this.sourceBounds;
+    const opening = ease(clamp((offset + viewport * 0.55 - source.y) / (viewport * 0.65)));
+    const scale = source.size / this.data.mark_size;
+    const zoom = 1 + Math.sin(opening * Math.PI) * 0.7;
+    const parting = ease(clamp((offset + viewport - this.projectBounds[0].y) / (viewport * 0.6)));
+    this.bars.forEach((element, i) => {
+      const [x, y, width, height] = this.data.carves.rest[i];
+      const index = this.selected.indexOf(i);
+      const from = {
+        x: source.x + source.size / 2 + (x - this.data.mark_size / 2) * scale * zoom,
+        y: source.y + source.size / 2 + (y - this.data.mark_size / 2) * scale * zoom,
+        width: width * scale * zoom,
+        height: height * scale * zoom,
+      };
+      const end = index < 0 ? from : this.destination[index];
+      const bounds = Object.fromEntries(
+        Object.keys(from).map((key) => [key, mix(from[key], end[key], opening)]),
+      );
+      if (index >= 0) {
+        const shift = (index % 2 ? 1 : -1) * this.width * parting;
+        bounds.x += shift;
+        this.curtains[index].style.transform = `translate3d(${shift}px,0,0)`;
+      }
+      const surface = index > 0
+        ? `color-mix(in srgb,var(--deep),var(--sand) ${opening * 100}%)`
+        : 'var(--deep)';
+      element.style.cssText = `left:${bounds.x}px;top:${bounds.y}px;width:${bounds.width}px;height:${bounds.height}px;border-radius:${Math.min(bounds.width, bounds.height) / 2}px;opacity:${index < 0 ? 1 - opening : 1};background:${surface}`;
+    });
+    this.root.style.setProperty('--content-opacity', opening);
+    this.projectBounds.forEach((bounds, i) => {
+      const progress = ease(clamp((offset + viewport * 0.95 - bounds.y) / (viewport * 0.4)));
+      this.projects[i].style.setProperty('--flow-reveal', progress);
+    });
+    const company = ease(clamp((offset + viewport - this.companyBounds.y) / (viewport * 0.45)));
+    this.root.style.setProperty('--flow-company-inset', `${(1 - company) * 35}%`);
+    const directory = this.company.querySelector('.company-directory').getBoundingClientRect();
+    const band = ease(clamp((viewport * 0.95 - directory.top) / (viewport * 0.3)));
+    this.root.style.setProperty('--company-band-reveal', `${(1 - band) * 100}%`);
+    this.onSurfaceChange();
   }
   draw() {
     const clamp = (n) => Math.min(1, Math.max(0, n));
