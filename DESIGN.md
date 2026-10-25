@@ -205,8 +205,9 @@ provides the same Contact action and styling in the header and Company band; tex
 links lead to destinations. The purpose article and LinkedIn page are secondary
 routes. The company LinkedIn URL lives in `_data/company.yml` and also appears in
 the footer. Mobile, short screens, paused motion and unavailable JavaScript show the
-final content in normal reading order. An Orange `.accent-dot` sits at the first portrait rim, outside the image mask and
-clear of the face and names. Portraits do not have an automatic animation.
+final content in normal reading order. Orange `.accent-dot` elements sit at the
+portrait rims, alternating between upper right and lower left, outside the image
+masks and clear of faces and names. Portraits do not have an automatic animation.
 
 The canvas mark follows the design repository's motion rules. Automatic sequences stop
 offscreen or when the document is hidden.

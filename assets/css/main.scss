@@ -2389,6 +2389,12 @@ canvas.has-geometry {
   top: 25%;
   right: -6px;
 }
+.company-founder:nth-child(even) .company-dot {
+  top: auto;
+  right: auto;
+  bottom: 15%;
+  left: -6px;
+}
 .company-portrait-window {
   position: relative;
   width: 100%;
