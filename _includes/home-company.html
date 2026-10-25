@@ -13,44 +13,46 @@
       </div>
     </header>
     <div class="company-directory">
-      <div class="company-people" aria-label="Co-founders">
-        {% for founder in site.data.company.founders %}
-        <figure class="company-founder">
-          <div class="company-portrait">
-            <div class="company-portrait-window portrait-{{ founder.id }}">
-              <img
-                src="{{ founder.portrait | relative_url }}"
-                width="{{ founder.portrait_width }}"
-                height="{{ founder.portrait_height }}"
-                alt="{{ founder.name }}"
-                loading="lazy"
-              />
+      <div class="company-directory-content">
+        <div class="company-people" aria-label="Co-founders">
+          {% for founder in site.data.company.founders %}
+          <figure class="company-founder">
+            <div class="company-portrait">
+              <div class="company-portrait-window portrait-{{ founder.id }}">
+                <img
+                  src="{{ founder.portrait | relative_url }}"
+                  width="{{ founder.portrait_width }}"
+                  height="{{ founder.portrait_height }}"
+                  alt="{{ founder.name }}"
+                  loading="lazy"
+                />
+              </div>
+              <span class="accent-dot company-dot" aria-hidden="true"></span>
             </div>
-            <span class="accent-dot company-dot" aria-hidden="true"></span>
-          </div>
-          <figcaption>
-            <h3>
-              <a href="{{ founder.website }}"
-                >{{ founder.name }}<span class="link-arrow" aria-hidden="true">↗</span></a
-              >
-            </h3>
-            <p>Co-founder</p>
-          </figcaption>
-        </figure>
-        {% endfor %}
-      </div>
-      <div class="company-scene-band">
-        <a class="company-origin" href="https://www.uniroma1.it/it/pagina/vetrina-spin-e-start">
-          <img
-            src="{{ '/assets/img/Uniroma1.svg' | relative_url }}"
-            width="354"
-            height="106"
-            alt="Sapienza Università di Roma"
-            loading="lazy"
-          />
-          <span>Recognized university start-up</span>
-        </a>
-        {% include office-address.html %} {% include contact-button.html %}
+            <figcaption>
+              <h3>
+                <a href="{{ founder.website }}"
+                  >{{ founder.name }}<span class="link-arrow" aria-hidden="true">↗</span></a
+                >
+              </h3>
+              <p>Co-founder</p>
+            </figcaption>
+          </figure>
+          {% endfor %}
+        </div>
+        <div class="company-scene-band">
+          <a class="company-origin" href="https://www.uniroma1.it/it/pagina/vetrina-spin-e-start">
+            <img
+              src="{{ '/assets/img/Uniroma1.svg' | relative_url }}"
+              width="354"
+              height="106"
+              alt="Sapienza Università di Roma"
+              loading="lazy"
+            />
+            <span>Recognized university start-up</span>
+          </a>
+          {% include office-address.html %} {% include contact-button.html %}
+        </div>
       </div>
     </div>
   </div>

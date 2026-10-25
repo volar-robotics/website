@@ -150,9 +150,9 @@ three bars over to independently sized content windows. This handover is a page 
 it does not define a new carve or change the canonical mark. The heading appears during
 the transition and the content arrives as the windows open. Scrolling backward reverses
 the sequence. Narrow screens and short viewports keep the stage pinned while scroll
-advances successive reading stops: miniThex, each pillar, research media and briefs,
-then the company portraits and contact band. Cards within each chapter enter and
-leave horizontally. Technology, Research and Company move as full-height pages at
+advances successive reading stops: miniThex, each pillar, one complete panel per
+research project, then one company directory with portraits, affiliation and Contact.
+Cards within each chapter enter and leave horizontally. Technology, Research and Company move as full-height pages at
 chapter boundaries, with their headings and backgrounds traveling vertically with
 the content. Scroll maps directly to that vertical travel, and reversing scroll
 retraces it. A brief Aqua edge separates the two Deep Blue chapters. The mark zooms
@@ -192,8 +192,11 @@ publication status and evidence scope remain in project metadata and its accessi
 link label. Forthcoming work stays muted and non-clickable.
 The photograph's caption sits below the capsule, on the page background. Desktop
 keeps the projects in one composition without tabs or separate project stops.
-Compact screens give the photograph and each project brief separate reading stops;
-the background turns Deep Blue as the development brief arrives.
+Compact screens show each project in one reading stop. SOAR-Touch pairs its capsule
+photograph and caption with the project heading, then keeps its summary, evidence
+scope, project link and papers in the same panel. SOAR-NDT pairs its static carve
+with its heading. Its Deep Blue background carries a continuous pattern across the
+full research viewport, including the space above and below the project panel.
 
 `_includes/research-projects.html` reads `_data/projects.yml` in list order. Each entry
 owns its slug, name, program, status, summary, evidence scope, external destination,
@@ -223,11 +226,12 @@ dialog through `_includes/office-address.html`. `_includes/contact-button.html`
 provides the same Contact action and styling in the header and Company band; text
 links lead to destinations. The purpose article and LinkedIn page are secondary
 routes. The company LinkedIn URL lives in `_data/company.yml` and also appears in
-the footer. Mobile and short screens reveal the portraits in a pinned scene, then
-slide to the affiliation, office and Contact band while retaining the company heading
-and secondary routes. The Sand surface belongs to each moving panel and ends at its
-content boundary. Paused motion and unavailable JavaScript show the final content
-in document flow.
+the footer. Mobile and short screens keep the portraits, affiliation, office and
+Contact together in one pinned directory, with the company heading and secondary
+routes above it. A compact band places affiliation and office side by side, with
+Contact spanning both columns. The Sand surface belongs to the complete directory
+and ends at its content boundary. Paused motion and unavailable JavaScript show the
+final content in document flow.
 Orange `.accent-dot` elements sit at the portrait rims, alternating between upper right and lower left, outside the image
 masks and clear of faces and names. Portraits do not have an automatic animation.
 

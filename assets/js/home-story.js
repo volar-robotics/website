@@ -20,14 +20,8 @@ export class HomeStory {
     }));
     this.compactScenes = [
       ...this.curtains.map((element) => ({ element, section: 'technology' })),
-      ...this.projects.flatMap((project) => [
-        ...(!project.classList.contains('research-project-development')
-          ? [{ element: project.querySelector('.research-media'), section: 'research', project }]
-          : []),
-        { element: project.querySelector('.research-brief'), section: 'research', project },
-      ]),
-      { element: root.querySelector('.company-people'), section: 'company' },
-      { element: root.querySelector('.company-scene-band'), section: 'company' },
+      ...this.projects.map((project) => ({ element: project, section: 'research', project })),
+      { element: root.querySelector('.company-directory-content'), section: 'company' },
     ];
     this.compactScenes.forEach((scene) => {
       scene.element.classList.add('compact-scene');
@@ -242,7 +236,7 @@ export class HomeStory {
     scrollTo({
       top: this.start + this.height * (this.compact
         ? this.compactScenes.find((scene) => scene.section === 'research' &&
-          (!id || id === 'research' || (scene.project.id === id && scene.element.matches('.research-brief')))).stop
+          (!id || id === 'research' || scene.project.id === id)).stop
         : this.researchReady),
       behavior: 'smooth',
     });
