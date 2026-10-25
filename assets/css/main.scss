@@ -2064,6 +2064,11 @@ canvas.has-geometry {
   flex: none;
   transform: none;
 }
+.story-compact .story-accent {
+  left: 100%;
+  right: auto;
+  top: 64%;
+}
 .story-compact .story-technology,
 .story-compact .story-windows,
 .story-compact .story-research,
