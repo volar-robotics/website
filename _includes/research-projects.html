@@ -59,16 +59,16 @@
         <p class="research-scope">{{ project.home.scope }}</p>
         <div class="research-project-foot">
           <a class="text-link" href="{{ project.project_url }}"
-            >{{ project.home.action }} <span aria-hidden="true">↗</span></a
+            >{{ project.home.action }}<span class="link-arrow" aria-hidden="true">↗</span></a
           >
           <p class="research-program">{{ project.home.program }}</p>
         </div>
         {% if project.papers %}
-        <div class="research-papers" aria-label="{{ project.home.name }} papers">
-          <p class="research-papers-label">Papers</p>
+        <div class="resource-inset research-papers" aria-label="{{ project.home.name }} papers">
+          <p class="resource-inset-label">Papers</p>
           {% if include.standalone %}
           <a href="#{{ project.home.name | slugify }}-publications"
-            >View papers <span aria-hidden="true">↓</span></a
+            >View papers<span class="link-arrow link-arrow-down" aria-hidden="true">↓</span></a
           >
           {% else %} {% for paper in project.papers %} {% if paper.url %}
           <a
@@ -76,7 +76,7 @@
             title="{{ paper.title }}"
             aria-label="{{ paper.title }}: arXiv preprint"
             >{{ paper.short_title }}
-            <span>arXiv preprint <span aria-hidden="true">↗</span></span></a
+            <span>arXiv preprint<span class="link-arrow" aria-hidden="true">↗</span></span></a
           >
           {% else %}
           <p>{{ paper.short_title }} <span>{{ paper.status }}</span></p>

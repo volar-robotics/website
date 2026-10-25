@@ -1,4 +1,5 @@
 ---
+date: 2026-10-25
 layout: default
 title: Privacy Policy — Volar Robotics
 permalink: /privacy-policy/
@@ -141,7 +142,7 @@ permalink: /privacy-policy/
       &nbsp;·&nbsp;
       <a href="{{ '/cookie-policy/' | relative_url }}">Cookie Policy</a>
       &nbsp;·&nbsp;
-      <a href="{{ '/' | relative_url }}">← Back to home</a>
+      <a href="{{ '/' | relative_url }}"><span class="link-arrow link-arrow-back" aria-hidden="true">←</span>Back to home</a>
     </p>
   </div>
 </section>

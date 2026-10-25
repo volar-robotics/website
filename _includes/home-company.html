@@ -1,0 +1,58 @@
+<section class="story-company" id="company" aria-labelledby="company-title">
+  <div class="company-scene-main">
+    <header class="company-scene-heading">
+      <p class="eyebrow">The company</p>
+      <h2 id="company-title">The people<br /><em>behind Volar.</em></h2>
+      <div class="company-links">
+        <a class="text-link" href="{{ '/aerial-robots-for-good/' | relative_url }}"
+          >Our purpose<span class="link-arrow" aria-hidden="true">→</span></a
+        >
+        <a class="text-link" href="{{ site.data.company.linkedin }}"
+          >Follow on LinkedIn<span class="link-arrow" aria-hidden="true">↗</span></a
+        >
+      </div>
+    </header>
+    <div class="company-directory">
+      <div class="company-people" aria-label="Co-founders">
+        {% for founder in site.data.company.founders %}
+        <figure class="company-founder">
+          <div class="company-portrait">
+            <div class="company-portrait-window portrait-{{ founder.id }}">
+              <img
+                src="{{ founder.portrait | relative_url }}"
+                width="{{ founder.portrait_width }}"
+                height="{{ founder.portrait_height }}"
+                alt="{{ founder.name }}"
+                loading="lazy"
+              />
+            </div>
+            {% if forloop.first %}<span class="accent-dot company-dot" aria-hidden="true"></span>{%
+            endif %}
+          </div>
+          <figcaption>
+            <h3>
+              <a href="{{ founder.website }}"
+                >{{ founder.name }}<span class="link-arrow" aria-hidden="true">↗</span></a
+              >
+            </h3>
+            <p>Co-founder</p>
+          </figcaption>
+        </figure>
+        {% endfor %}
+      </div>
+      <div class="company-scene-band">
+        <a class="company-origin" href="https://www.uniroma1.it/it/pagina/vetrina-spin-e-start">
+          <img
+            src="{{ '/assets/img/Uniroma1.svg' | relative_url }}"
+            width="354"
+            height="106"
+            alt="Sapienza Università di Roma"
+            loading="lazy"
+          />
+          <span>Recognized university start-up</span>
+        </a>
+        {% include office-address.html %} {% include contact-button.html %}
+      </div>
+    </div>
+  </div>
+</section>

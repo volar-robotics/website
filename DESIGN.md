@@ -22,7 +22,7 @@ behavior belong in this file; do not copy geometry tables into it.
 
 The [visual system](https://github.com/volar-robotics/design/blob/main/guidelines/visual-system.md) in the design repository
 owns the adopted definitions and shared behavior for capsules, Volar fields, carves,
-capsule windows, panels, panel pairs, bands and connectors. Follow that contract for
+capsule windows, panels, panel pairs, resource insets, bands and connectors. Follow that contract for
 website changes. When the sibling design checkout exists, read the same source at
 `../design/guidelines/visual-system.md`. A standalone website checkout needs access to
 the linked design source; its rules are not duplicated here. This file specializes
@@ -37,10 +37,11 @@ behavior stays here.
 |---|---|
 | Animated field | `CarvedMark` in `assets/js/experience.js` for carving; `HomeStory` in `assets/js/home-story.js` for the homepage scene; both read canonical `assets/brand/carves.json`. |
 | Field pattern | Backgrounds in `assets/css/main.scss`; shared `--pattern-size` controls density. |
-| Contained window | `.portrait-hole`; founder-specific crops preserve optical centering. |
+| Contained window | `.portrait-hole` and `.company-portrait-window`; founder-specific crops preserve optical centering. |
 | Emerging window | `_includes/platform-stage.html` on Technology; `.story-product-window` on Home. Both use matched rear and foreground image layers. |
 | Panel pair | `.technology-explorer` groups the platform and pillars; `.research-panels` places laboratory contact research beside inspection research in development. |
-| Band | `.evidence-note` for the Technology evidence scope; `.route-path` for navigation. |
+| Resource inset | `.resource-inset` and `.resource-inset-label`; `.research-papers` supplies its placement beneath a project. |
+| Band | `.evidence-note` for the Technology evidence scope; `.company-scene-band` for affiliation, office and Contact; `.route-path` for navigation. |
 | Connector | Labeled links inside `.route-path` and `.breadcrumbs`; these already express the page relationships without requiring additional drawn lines. |
 
 Both technology pillars remain inline. Longer evidence and source notes use native
@@ -68,9 +69,9 @@ carry no status or navigation meaning.
 
 ## Navigation
 
-Home scrolls from the identity introduction into the technology and then the research
-projects. Its Technology and Research navigation links target those scenes; the dedicated
-pages remain available. Research holds project summaries, external project links and
+Home scrolls from the identity introduction into Technology, Research and Company.
+Its corresponding navigation links target those scenes; the dedicated pages remain
+available. Research holds project summaries, external project links and
 publications. Local project pages are temporarily excluded from the build; their source
 remains in `_projects/`. Company owns the purpose article. Breadcrumbs identify each page's parent.
 The bottom navigation moves through the main path or returns from a child to its parent.
@@ -79,10 +80,18 @@ starts the homepage journey and uses the same `.text-link` treatment as “Meet 
 projects.” There is no technology-only progress bar. Each project has one main external link; paper resources sit beneath SOAR-Touch. Both pillar explanations are visible inline beside miniThex.
 
 On Home, the brand stays fixed as a return-to-start link. Over the first 160 pixels of
-scrolling, its wordmark recedes and its mark carves from rest to the canonical upward
-arrow. Scrolling back reverses the carve. It has no background plate; its single fill
+scrolling, its wordmark recedes. The resting logomark remains visible and carves into
+the canonical upward arrow over 500 ms on hover or keyboard focus, returning to
+rest on departure. It has no background plate; its single fill
 changes to Sand where a dark research panel or footer passes beneath it. Paused or reduced motion uses the still state.
 The link returns without reloading the page and has an explicit accessible label.
+
+Underlined links share `--link-line`: 40% of the text color at rest, full contrast
+on hover or keyboard focus. Text and action links use a one-pixel text underline
+with a four-pixel offset. `.link-arrow` has a four-pixel gap from its label and moves
+three pixels in the destination's direction over 200 ms;
+paused and reduced-motion states keep the arrow still. Contact buttons retain their
+separate button treatment.
 
 The technology has exactly two pillars: friction-anchor interaction and soft-optical
 tactile sensing. Inspection is an application under research. The homepage introduces
@@ -115,7 +124,12 @@ preprint has a clearly labeled, non-clickable placeholder.
 ## Media and motion
 
 Research photographs and tactile images come from `soar-touch-report/assets/img/`.
-Founder portraits come from the September RoboPitch deck and are centered in capsule masks.
+Simone’s portrait is a crop from the flattened September RoboPitch slide; its source
+resolution limits sharpness on dense displays. Antonio’s transparent portrait comes
+from [his personal website](https://r-rapuano.com/assets/images/propic.png), encoded
+as WebP at its original 1314 × 1203 resolution. Both are centered in capsule masks.
+Mobile crops use a smaller image scale and individual horizontal face anchors while
+preserving the capsule dimensions.
 The Sapienza logo uses the existing university artwork in `assets/img/Uniroma1.svg`. Product illustrations
 use the supplied transparent PNGs at two resolutions. A square, bounded composition
 keeps the capsule proportions fixed. The rear image is clipped to the opening; a matching
@@ -169,6 +183,30 @@ no implied completion date or validation milestone. The current pair occupies on
 scene; adding projects requires reviewing its composition. Scroll length does not
 grow with the project count. Without motion or JavaScript, all projects remain in
 normal document order.
+
+Company continues the homepage sequence in `_includes/home-company.html`. Its
+Deep Blue field distinguishes the people scene from Sand research. During the
+handover, the SOAR-NDT panel's measured bounds expand to fill the viewport. A
+horizontal reveal then exposes one Sand directory band, with two fixed capsule
+portraits crossing its upper edge. The windows retain their size and position.
+Scrolling back reverses the reveal. The heading and secondary links become
+available as they settle; keyboard focus reveals the complete scene.
+
+The Company pattern ends at a tile boundary; the homepage footer starts at that
+same boundary. Both use the same density, opacity and horizontal fade so they read
+as one continuous Deep Blue field.
+
+Both founders have equal window sizes and the same Co-founder label. Their names,
+images and personal websites come from `_data/company.yml`, also used on the
+Company page. New team content requires reviewing the composition. The shared band
+contains affiliation, office and Contact. The office text also appears in the contact
+dialog through `_includes/office-address.html`. `_includes/contact-button.html`
+provides the same Contact action and styling in the header and Company band; text
+links lead to destinations. The purpose article and LinkedIn page are secondary
+routes. The company LinkedIn URL lives in `_data/company.yml` and also appears in
+the footer. Mobile, short screens, paused motion and unavailable JavaScript show the
+final content in normal reading order. An Orange `.accent-dot` sits at the first portrait rim, outside the image mask and
+clear of the face and names. Portraits do not have an automatic animation.
 
 The canvas mark follows the design repository's motion rules. Automatic sequences stop
 offscreen or when the document is hidden.

@@ -17,24 +17,29 @@ function updateHomeBrand() {
   const brand = homeBrand.getBoundingClientRect();
   const x = brand.left + brand.width / 2;
   const y = brand.top + brand.height / 2;
-  const dark = [...document.querySelectorAll('.research-project-development, .site-footer')].some(
-    (surface) => {
-      const bounds = surface.getBoundingClientRect();
-      const research = surface.closest('.story-research');
-      return (
-        x >= bounds.left &&
-        x <= bounds.right &&
-        y >= bounds.top &&
-        y <= bounds.bottom &&
-        Number(getComputedStyle(surface).opacity) > 0.5 &&
-        (!research || !homeStory?.enhanced || Number(getComputedStyle(research).opacity) > 0.5)
-      );
-    },
-  );
+  const dark = [
+    ...document.querySelectorAll('.research-project-development, .story-company, .site-footer'),
+  ].some((surface) => {
+    const bounds = surface.getBoundingClientRect();
+    const research = surface.closest('.story-research');
+    const company = surface.matches('.story-company');
+    const wipe = homeStory?.companyWipe;
+    return (
+      x >= bounds.left &&
+      x <= bounds.right &&
+      y >= bounds.top &&
+      y <= bounds.bottom &&
+      Number(getComputedStyle(surface).opacity) > 0.5 &&
+      (!research || !homeStory?.enhanced || Number(getComputedStyle(research).opacity) > 0.5) &&
+      (!company ||
+        !homeStory?.enhanced ||
+        (wipe && x >= wipe.left && y >= wipe.top && x <= wipe.right && y <= wipe.bottom))
+    );
+  });
   if (document.body.classList.contains('home-on-dark') !== dark) {
     document.body.classList.toggle('home-on-dark', dark);
     marks.forEach((mark) => {
-      if (mark.scrollCarve) mark.draw();
+      if (mark.canvas.closest('.brand') === homeBrand) mark.draw();
     });
   }
 }
@@ -121,7 +126,6 @@ class CarvedMark {
     this.ctx = canvas.getContext('2d');
     this.data = data;
     this.rest = canvas.dataset.brandMark || 'rest';
-    this.scrollCarve = canvas.dataset.scrollCarve;
     this.current = data.carves[this.rest].map((bar) => [...bar]);
     this.visible = true;
     this.frame = 0;
@@ -152,35 +156,8 @@ class CarvedMark {
       parent.addEventListener('blur', () => this.to(this.rest));
     }
     canvas._volarMark = this;
-    if (this.scrollCarve) {
-      addEventListener(
-        'scroll',
-        () => {
-          if (this.frame) return;
-          this.frame = requestAnimationFrame(() => {
-            this.frame = 0;
-            this.drawScrollCarve();
-          });
-        },
-        { passive: true },
-      );
-      this.drawScrollCarve();
-    } else {
-      this.draw();
-      this.scheduleCycle();
-    }
-  }
-  drawScrollCarve() {
-    const progress = homeReturnProgress();
-    const t = progress * progress * (3 - 2 * progress);
-    const target = this.data.carves[this.scrollCarve];
-    this.current = this.data.carves[this.rest].map((bar, i) => [
-      bar[0],
-      bar[1] + (target[i][1] - bar[1]) * t,
-      bar[2],
-      bar[3] + (target[i][3] - bar[3]) * t,
-    ]);
     this.draw();
+    this.scheduleCycle();
   }
   draw() {
     const { canvas, ctx } = this;
@@ -218,8 +195,9 @@ class CarvedMark {
     }
     const from = this.current.map((b) => [...b]);
     const start = performance.now();
+    const duration = this.canvas.dataset.hoverCarve === 'arrow-up' ? 500 : 850;
     const tick = (now) => {
-      const t = Math.min((now - start) / 850, 1);
+      const t = Math.min((now - start) / duration, 1);
       const eased = t * t * (3 - 2 * t);
       this.current = from.map((bar, i) => [
         bar[0],
@@ -243,10 +221,6 @@ class CarvedMark {
   setPaused(value) {
     cancelAnimationFrame(this.frame);
     this.frame = 0;
-    if (this.scrollCarve) {
-      this.drawScrollCarve();
-      return;
-    }
     if (value) this.to(this.rest);
     this.scheduleCycle();
   }
@@ -262,10 +236,6 @@ carvesReady.then((data) => {
 });
 document.addEventListener('visibilitychange', () =>
   marks.forEach((mark) => {
-    if (mark.scrollCarve) {
-      mark.drawScrollCarve();
-      return;
-    }
     if (document.hidden) mark.to(mark.rest);
     mark.scheduleCycle();
   }),
@@ -377,6 +347,14 @@ function revealHash() {
   }
   if (id === 'technology' && document.querySelector('[data-home-story]')) {
     if (homeStory?.enhanced) homeStory.revealTechnology();
+    else
+      document
+        .getElementById(id)
+        .scrollIntoView({ behavior: paused ? 'instant' : 'smooth', block: 'start' });
+    return;
+  }
+  if (id === 'company' && document.querySelector('[data-home-story]')) {
+    if (homeStory?.enhanced) homeStory.revealCompany();
     else
       document
         .getElementById(id)

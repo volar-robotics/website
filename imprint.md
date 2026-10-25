@@ -1,4 +1,5 @@
 ---
+date: 2026-10-25
 layout: default
 title: Imprint — Volar Robotics
 permalink: /imprint/
@@ -38,6 +39,6 @@ permalink: /imprint/
     informational purposes only. Laboratory demonstrations, development work and
     longer-term research goals are identified separately on the relevant pages.</p>
 
-    <p style="margin-top:2rem;"><a href="{{ '/' | relative_url }}">← Back to home</a></p>
+    <p style="margin-top:2rem;"><a href="{{ '/' | relative_url }}"><span class="link-arrow link-arrow-back" aria-hidden="true">←</span>Back to home</a></p>
   </div>
 </section>

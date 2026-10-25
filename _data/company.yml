@@ -1,0 +1,14 @@
+linkedin: https://www.linkedin.com/company/volar-robotics/
+founders:
+  - id: simone
+    name: Simone Orelli
+    portrait: /assets/img/team/simone.webp
+    portrait_width: 439
+    portrait_height: 585
+    website: https://r-orelli.eu
+  - id: antonio
+    name: Antonio Rapuano
+    portrait: /assets/img/team/antonio.webp
+    portrait_width: 1314
+    portrait_height: 1203
+    website: https://r-rapuano.com

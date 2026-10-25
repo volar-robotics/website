@@ -1,4 +1,5 @@
 ---
+date: 2026-10-25
 layout: default
 title: Full Legal Notice — Volar Robotics
 permalink: /legal/
@@ -81,6 +82,6 @@ permalink: /legal/
       strictly at the visitor's own risk.
     </p>
 
-    <p style="margin-top:2.5rem;"><a href="{{ '/' | relative_url }}">← Back to home</a></p>
+    <p style="margin-top:2.5rem;"><a href="{{ '/' | relative_url }}"><span class="link-arrow link-arrow-back" aria-hidden="true">←</span>Back to home</a></p>
   </div>
 </section>

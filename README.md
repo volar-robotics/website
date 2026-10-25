@@ -25,10 +25,12 @@ Push to `main`. GitHub Pages builds and publishes automatically
 
 ## Structure
 
-- `index.html`: company introduction, technology and one shared research scene.
+- `index.html`: company introduction, technology, one shared research scene and the company scene.
 - `technology.html`: miniThex with both technology pillars explained inline.
 - `work.html`: the research sequence, external project sites and full publication entries.
 - `company.html`: founders and company background.
+- `_data/company.yml`: founder metadata and the company LinkedIn destination.
+- `_includes/home-company.html`: the homepage Company field, founder portraits and shared directory band.
 - `aerial-robots-for-good.html`: the purpose article, reached from Company, with evidence and sources.
 - `_projects/`: project and publication metadata plus retained draft pages; collection output is disabled.
 - `_includes/research-projects.html`: shared research composition from project `home_order` and `home` metadata.

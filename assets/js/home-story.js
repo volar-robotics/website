@@ -1,4 +1,4 @@
-// The mark is zoomed as a scene before three bars become application windows.
+// Scroll-driven handovers connect the identity, technology, research and company scenes.
 export class HomeStory {
   constructor(root, data, motionPaused, onSurfaceChange) {
     this.root = root;
@@ -9,8 +9,12 @@ export class HomeStory {
     this.targets = [...root.querySelectorAll('[data-story-window]')];
     this.curtains = [...root.querySelectorAll('.story-windows > *')];
     this.projects = [...root.querySelectorAll('[data-project-panel]')];
+    this.company = root.querySelector('.story-company');
+    this.companySource = root.querySelector('.research-project-development');
     this.researchStart = 1.85;
     this.researchReady = 2.6;
+    this.companyStart = 3.25;
+    this.companyReady = 4.35;
     this.onSurfaceChange = onSurfaceChange;
     this.data = data;
     this.motionPaused = motionPaused;
@@ -51,23 +55,38 @@ export class HomeStory {
         this.revealResearch();
       }),
     );
+    document.querySelectorAll('a[href="#company"]').forEach((link) =>
+      link.addEventListener('click', (event) => {
+        if (!this.enhanced) return;
+        event.preventDefault();
+        history.replaceState(null, '', '#company');
+        this.revealCompany();
+      }),
+    );
+    this.company.addEventListener('focusin', () => {
+      if (this.enhanced && this.travel < this.companyReady) this.revealCompany();
+    });
     this.technology.addEventListener('focusin', () => {
       if (this.enhanced && (this.progress < 1 || this.travel > this.researchStart))
         this.revealTechnology();
     });
     this.projects.forEach((project) =>
       project.addEventListener('focusin', () => {
-        if (this.enhanced && this.travel < this.researchReady) this.revealResearch();
+        if (this.enhanced && (this.travel < this.researchReady || this.travel > this.companyStart))
+          this.revealResearch();
       }),
     );
     this.copy.addEventListener('focusin', () => {
       if (this.enhanced && this.progress > 0.1) scrollTo({ top: this.start, behavior: 'smooth' });
     });
-    document.fonts.ready.then(() => this.measure());
+    document.fonts.ready.then(() => {
+      this.measure();
+      this.followHash();
+    });
     this.refresh();
     this.followHash();
     addEventListener('pageshow', (event) => {
-      if (!event.persisted) this.followHash();
+      if (!event.persisted) requestAnimationFrame(() => this.followHash());
     });
   }
   refresh() {
@@ -75,7 +94,7 @@ export class HomeStory {
     this.root.classList.toggle('story-enhanced', this.enhanced);
     this.root.style.setProperty(
       '--home-story-length',
-      `${Math.round((this.researchReady + 1.5) * 100)}svh`,
+      `${Math.round((this.companyReady + 1.5) * 100)}svh`,
     );
     if (!this.enhanced) {
       cancelAnimationFrame(this.frame);
@@ -111,6 +130,16 @@ export class HomeStory {
         height: rect.height,
       };
     });
+    const relativeBounds = (element) => {
+      const rect = element.getBoundingClientRect();
+      return {
+        x: rect.left - stage.left,
+        y: rect.top - stage.top,
+        width: rect.width,
+        height: rect.height,
+      };
+    };
+    this.companySourceBounds = relativeBounds(this.companySource);
     this.schedule();
   }
   schedule() {
@@ -124,8 +153,14 @@ export class HomeStory {
     scrollTo({ top: this.start + this.height * 1.35, behavior: 'smooth' });
   }
   followHash() {
-    if (!this.enhanced) return;
+    if (!this.enhanced) {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target && this.root.contains(target))
+        target.scrollIntoView({ behavior: 'instant', block: 'start' });
+      return;
+    }
     if (location.hash === '#technology') this.revealTechnology();
+    else if (location.hash === '#company') this.revealCompany();
     else if (
       location.hash === '#research' ||
       this.projects.some((project) => `#${project.id}` === location.hash)
@@ -138,6 +173,12 @@ export class HomeStory {
       behavior: 'smooth',
     });
   }
+  revealCompany() {
+    scrollTo({
+      top: this.start + this.height * this.companyReady,
+      behavior: 'smooth',
+    });
+  }
   draw() {
     const clamp = (n) => Math.min(1, Math.max(0, n));
     const ease = (n) => n * n * (3 - 2 * n);
@@ -147,6 +188,8 @@ export class HomeStory {
     this.travel = travel;
     const p = clamp(travel / 1.35);
     const labOpening = interval(travel, this.researchStart, this.researchReady);
+    const companyOpening = interval(travel, this.companyStart, this.companyReady);
+    const researchLeaving = interval(companyOpening, 0.55, 0.7);
     const technologyOpacity = 1 - interval(labOpening, 0, 0.4);
     this.progress = p;
     const zoom = interval(p, 0.06, 0.56);
@@ -186,10 +229,33 @@ export class HomeStory {
       '--ground-opacity',
       interval(p, 0.32, 0.78) * (1 - interval(labOpening, 0, 0.5)),
     );
-    this.root.style.setProperty('--research-opacity', interval(labOpening, 0, 0.5));
+    this.root.style.setProperty(
+      '--research-opacity',
+      interval(labOpening, 0, 0.5) * (1 - researchLeaving),
+    );
     this.root.style.setProperty('--research-first-opacity', interval(labOpening, 0.1, 0.6));
     this.root.style.setProperty('--research-next-opacity', interval(labOpening, 0.55, 1));
     this.root.style.setProperty('--research-copy-opacity', interval(labOpening, 0.1, 0.5));
+    const spread = interval(companyOpening, 0, 0.55);
+    const source = this.companySourceBounds;
+    const left = mix(source.x, 0, spread);
+    const top = mix(source.y, 0, spread);
+    const right = mix(this.width - source.x - source.width, 0, spread);
+    const bottom = mix(this.height - source.y - source.height, 0, spread);
+    this.companyWipe = { left, top, right: this.width - right, bottom: this.height - bottom };
+    this.root.style.setProperty(
+      '--company-clip',
+      `inset(${top}px ${right}px ${bottom}px ${left}px)`,
+    );
+    this.root.style.setProperty('--company-opacity', interval(companyOpening, 0, 0.08));
+    this.root.style.setProperty('--company-heading-opacity', interval(companyOpening, 0.3, 0.6));
+    this.root.style.setProperty(
+      '--company-band-reveal',
+      `${(1 - interval(companyOpening, 0.45, 0.95)) * 100}%`,
+    );
+    this.root.classList.toggle('story-company-opening', companyOpening > 0.01);
+    this.root.classList.toggle('story-company-heading-reading', companyOpening > 0.6);
+    this.root.classList.toggle('story-company-reading', companyOpening > 0.98);
     this.copy.style.transform = `translate3d(${-zoom * 100}px,0,0)`;
     this.root.classList.toggle('story-reading', p > 0.75);
     this.root.classList.toggle('story-research-reading', labOpening > 0.85);

@@ -24,7 +24,7 @@ where_exp: 'project', 'project.papers' | sort: 'home_order' %} {% for project in
       <h3>{{ paper.title }}</h3>
       <p>{{ paper.scope }}</p>
       {% if paper.url %}<a class="text-link" href="{{ paper.url }}"
-        >Read the preprint <span aria-hidden="true">↗</span></a
+        >Read the preprint<span class="link-arrow" aria-hidden="true">↗</span></a
       >{% endif %}
     </article>
     {% endfor %}
@@ -32,8 +32,9 @@ where_exp: 'project', 'project.papers' | sort: 'home_order' %} {% for project in
 </section>
 {% endfor %}
 <nav class="route-path" aria-label="Continue exploring">
-  <a href="{{ '/technology/' | relative_url }}">← Technology</a
+  <a href="{{ '/technology/' | relative_url }}"
+    ><span class="link-arrow link-arrow-back" aria-hidden="true">←</span>Technology</a
   ><a href="{{ '/company/' | relative_url }}"
-    ><span>Next</span> Company <b aria-hidden="true">→</b></a
+    ><span>Next</span> Company<b class="link-arrow" aria-hidden="true">→</b></a
   >
 </nav>

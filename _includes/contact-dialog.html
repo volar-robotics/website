@@ -1,5 +1,5 @@
 <dialog id="contact-dialog" class="contact-dialog" aria-labelledby="contact-title">
-  <button class="dialog-close" data-close aria-label="Close contact">×</button>
+  <button class="dialog-close" data-close aria-label="Close contact"></button>
   <p class="eyebrow">Start a conversation</p>
   <h2 id="contact-title">What are you<br /><em>working on?</em></h2>
   <p>A difficult inspection point. A new control problem. A useful partnership.</p>
@@ -13,7 +13,8 @@
   <a
     class="button button-dark contact-email"
     href="mailto:hello@volar-robotics.com?subject=Inspection%20use%20case"
-    >Write to Volar <span aria-hidden="true">↗</span></a
+    >Write to Volar<span class="link-arrow" aria-hidden="true">↗</span></a
   >
-  <p class="contact-address">hello@volar-robotics.com<br />Rome, Italy</p>
+  <p class="contact-address">hello@volar-robotics.com</p>
+  {% include office-address.html %}
 </dialog>
