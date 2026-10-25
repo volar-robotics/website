@@ -185,7 +185,6 @@ export class HomeStory {
         height: rect.height,
       };
     };
-    this.companySourceBounds = relativeBounds(this.companySource);
     if (this.compact) {
       const copy = this.copy.getBoundingClientRect();
       const readingBottom = stage.top + this.height;
@@ -442,11 +441,10 @@ export class HomeStory {
     this.companySource.style.setProperty('--field-offset-x', `${(this.width - panel.width) / 2 - panel.left + stage.left}px`);
     this.companySource.style.setProperty('--field-offset-y', `${this.height - panel.height - panel.top + stage.top}px`);
     const spread = interval(companyOpening, 0, 0.55);
-    const source = this.companySourceBounds;
-    const left = mix(source.x, 0, spread);
-    const top = mix(source.y, 0, spread);
-    const right = mix(this.width - source.x - source.width, 0, spread);
-    const bottom = mix(this.height - source.y - source.height, 0, spread);
+    const left = mix(panel.left - stage.left, 0, spread);
+    const top = mix(panel.top - stage.top, 0, spread);
+    const right = mix(stage.right - panel.right, 0, spread);
+    const bottom = mix(stage.bottom - panel.bottom, 0, spread);
     this.companyWipe = { left, top, right: this.width - right, bottom: this.height - bottom };
     this.root.style.setProperty(
       '--company-clip',

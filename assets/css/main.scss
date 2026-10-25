@@ -1834,34 +1834,24 @@ canvas.has-geometry {
   left: -6px;
 }
 .company-portrait-window {
-  --portrait-anchor: 50%;
   position: relative;
   width: 100%;
   height: clamp(250px, 33svh, 310px);
   border-radius: 999px;
   overflow: hidden;
-  background: #fff;
+  background: var(--aqua);
 }
 .company-portrait-window > img {
   position: absolute;
   width: auto;
-  height: 100%;
+  height: 102%;
   max-width: none;
   left: 50%;
-  top: 0;
-  transform: translateX(calc(0% - var(--portrait-anchor)));
-  object-fit: cover;
-}
-.company-portrait-window.portrait-simone {
-  --portrait-anchor: 48.6%;
-}
-.company-portrait-window.portrait-simone > img {
-  height: 158%;
-  top: -25.2%;
-  filter: contrast(0.92) saturate(0.92) hue-rotate(-3deg) brightness(1.045);
+  top: -1%;
+  transform: translateX(-50%);
 }
 .company-portrait-window.portrait-antonio > img {
-  filter: saturate(0.92) brightness(1.02);
+  left: 53%;
 }
 .company-founder figcaption {
   padding-top: 64px;
@@ -1978,7 +1968,8 @@ canvas.has-geometry {
     height: clamp(220px, 40vw, 300px);
   }
   .company-portrait-window > img {
-    border-radius: 0;
+    height: 100%;
+    top: 0;
   }
   .company-founder figcaption {
     padding: 0;
