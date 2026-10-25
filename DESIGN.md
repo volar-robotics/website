@@ -152,10 +152,12 @@ the transition and the content arrives as the windows open. Scrolling backward r
 the sequence. Narrow screens and short viewports keep the stage pinned while scroll
 advances successive reading stops: miniThex, each pillar, one complete panel per
 research project, then one company directory with portraits, affiliation and Contact.
-Cards within each chapter enter and leave horizontally. Technology, Research and Company move as full-height pages at
-chapter boundaries, with their headings and backgrounds traveling vertically with
-the content. Scroll maps directly to that vertical travel, and reversing scroll
-retraces it. A brief Aqua edge separates the two Deep Blue chapters. The mark zooms
+Cards within Research enter and leave horizontally. Technology hands over to Research
+as a full-height page transition, with its heading and content traveling vertically.
+SOAR-NDT and Company share one stationary Deep Blue patterned field. Their content
+exchanges through sequential fades and short vertical movement while that field stays
+fixed. The outgoing content clears before the incoming content appears.
+Reversing scroll retraces both transitions. The mark zooms
 into the first capsule. Each stop includes a reading interval; content taller than the available region pans within
 that region before the next transition. Scroll length follows measured content
 height. Paused motion and reduced motion show the complete content in document flow.
@@ -196,7 +198,8 @@ Compact screens show each project in one reading stop. SOAR-Touch pairs its caps
 photograph and caption with the project heading, then keeps its summary, evidence
 scope, project link and papers in the same panel. SOAR-NDT pairs its static carve
 with its heading. Its Deep Blue background carries a continuous pattern across the
-full research viewport, including the space above and below the project panel.
+full research viewport, including the space above and below the project panel. The
+same field remains behind the company scene during its content transition.
 
 `_includes/research-projects.html` reads `_data/projects.yml` in list order. Each entry
 owns its slug, name, program, status, summary, evidence scope, external destination,
@@ -215,9 +218,11 @@ portraits crossing its upper edge. The windows retain their size and position.
 Scrolling back reverses the reveal. The heading and secondary links become
 available as they settle; keyboard focus reveals the complete scene.
 
-The Company pattern ends at a tile boundary; the homepage footer starts at that
-same boundary. Both use the same density, opacity and horizontal fade so they read
-as one continuous Deep Blue field.
+SOAR-NDT, Company and the homepage footer use the complete pattern at the same
+density and opacity, without spatial fades. The desktop development panel aligns its
+pattern to the company field's viewport coordinates, preserving the texture as the
+field expands. The Company pattern ends at a tile boundary; the homepage footer
+starts at that same boundary.
 
 Both founders have equal window sizes and the same Co-founder label. Their names,
 images and personal websites come from `_data/company.yml`. New team content requires reviewing the composition. The shared band

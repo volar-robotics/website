@@ -22,7 +22,7 @@ function updateHomeBrand() {
   const x = brand.left + brand.width / 2;
   const y = brand.top + brand.height / 2;
   const dark = [
-    ...document.querySelectorAll('.story-product-window, .story-research, .research-project-development, .story-company, .site-footer'),
+    ...document.querySelectorAll('.story-dark-ground, .story-product-window, .story-research, .research-project-development, .story-company, .site-footer'),
   ].some((surface) => {
     const bounds = surface.getBoundingClientRect();
     const research = surface.closest('.story-research');

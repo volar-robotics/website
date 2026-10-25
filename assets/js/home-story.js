@@ -317,7 +317,9 @@ export class HomeStory {
     const development = this.compactScenes.find((scene) => scene.project === this.companySource);
     const lab = clamp((travel - research.stop + research.transition) / research.transition);
     const people = clamp((travel - company.stop + company.transition) / company.transition);
-    const positions = [-lab * this.height, (1 - lab - people) * this.height, (1 - people) * (this.height + 16)];
+    const leaving = interval(people, 0, 0.5);
+    const arriving = interval(people, 0.5, 1);
+    const positions = [-lab * this.height, (1 - lab) * this.height - leaving * 48, (1 - arriving) * 48];
     this.sections.forEach((section, i) => {
       const y = positions[i];
       section.element.style.transform = `translate3d(0,${y}px,0)`;
@@ -330,10 +332,10 @@ export class HomeStory {
     this.root.style.setProperty('--ground-opacity', interval(p, 0.32, 0.78));
     this.root.style.setProperty('--content-opacity', interval(p, 0.7, 0.96));
     this.root.style.setProperty('--heading-opacity', interval(p, 0.4, 0.64));
-    this.root.style.setProperty('--research-opacity', 1);
+    this.root.style.setProperty('--research-opacity', 1 - leaving);
     this.root.style.setProperty('--compact-dark', this.compactDark);
     this.root.style.setProperty('--compact-bars-clip', p >= 1 ? 'inset(220px 0 64px)' : 'inset(0)');
-    this.root.style.setProperty('--company-opacity', 1);
+    this.root.style.setProperty('--company-opacity', arriving);
     this.root.style.setProperty('--company-heading-opacity', 1);
     this.root.style.setProperty('--company-clip', 'none');
     this.companyWipe = { left: 0, top: positions[2], right: this.width, bottom: positions[2] + this.height };
@@ -401,6 +403,10 @@ export class HomeStory {
     this.root.style.setProperty('--research-first-opacity', interval(labOpening, 0.1, 0.6));
     this.root.style.setProperty('--research-next-opacity', interval(labOpening, 0.55, 1));
     this.root.style.setProperty('--research-copy-opacity', interval(labOpening, 0.1, 0.5));
+    const stage = this.stage.getBoundingClientRect();
+    const panel = this.companySource.querySelector('.research-visual').getBoundingClientRect();
+    this.companySource.style.setProperty('--field-offset-x', `${(this.width - panel.width) / 2 - panel.left + stage.left}px`);
+    this.companySource.style.setProperty('--field-offset-y', `${this.height - panel.height - panel.top + stage.top}px`);
     const spread = interval(companyOpening, 0, 0.55);
     const source = this.companySourceBounds;
     const left = mix(source.x, 0, spread);

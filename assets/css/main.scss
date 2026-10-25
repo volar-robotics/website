@@ -591,9 +591,8 @@ a:is(:hover, :focus-visible) .link-arrow {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.3;
+  opacity: 0.08;
   background: url('../brand/volar-pattern-tile.svg') left top / var(--pattern-size) repeat;
-  mask-image: linear-gradient(#000, transparent 85%);
   pointer-events: none;
   z-index: -1;
 }
@@ -1005,6 +1004,9 @@ canvas.has-geometry {
   position: relative;
   overflow: clip;
   isolation: isolate;
+}
+.story-dark-ground {
+  display: none;
 }
 .story-ground {
   position: absolute;
@@ -1476,6 +1478,7 @@ canvas.has-geometry {
   isolation: isolate;
 }
 .research-project-development .research-media {
+  display: block;
   position: absolute;
   inset: 0;
   height: 100%;
@@ -1491,8 +1494,8 @@ canvas.has-geometry {
   position: absolute;
   inset: 0;
   background: url('../brand/volar-pattern-tile.svg') center / var(--pattern-size) repeat;
-  opacity: 0.13;
-  mask-image: linear-gradient(#000, transparent 65%);
+  opacity: 0.08;
+  background-position: calc(50% + var(--field-offset-x, 0px)) calc(100% + var(--field-offset-y, 0px));
 }
 .research-field-mark {
   position: absolute;
@@ -1751,7 +1754,7 @@ canvas.has-geometry {
 .story-company::before,
 .home-route .site-footer::before {
   opacity: 0.08;
-  mask-image: linear-gradient(90deg, #000, transparent 28%, transparent 72%, #000);
+  mask-image: none;
 }
 .home-route .site-footer::before {
   background-position: center top;
@@ -2155,18 +2158,25 @@ canvas.has-geometry {
   flex: none;
   font-size: 12px;
 }
-.story-compact .story-research {
-  isolation: isolate;
-  background: color-mix(in srgb, var(--sand), var(--deep) calc(var(--compact-dark, 0) * 100%));
+.story-compact .story-dark-ground {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--deep);
+  opacity: var(--compact-dark, 0);
 }
-.story-compact .story-research::before {
+.story-compact .story-dark-ground::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: url('../brand/volar-pattern-tile.svg') center / var(--pattern-size) repeat;
-  opacity: calc(var(--compact-dark, 0) * 0.08);
+  background: url('../brand/volar-pattern-tile.svg') center bottom / var(--pattern-size) repeat;
+  opacity: 0.08;
+}
+.story-compact .story-research {
+  background: color-mix(in srgb, var(--sand), transparent calc(var(--compact-dark, 0) * 100%));
 }
 .story-compact .research-heading {
   opacity: 1;
@@ -2269,7 +2279,10 @@ canvas.has-geometry {
 }
 .story-compact .story-company {
   z-index: 4;
-  box-shadow: 0 -16px 0 var(--aqua);
+  background: transparent;
+}
+.story-compact .story-company::before {
+  display: none;
 }
 .story-compact .company-scene-heading {
   display: block;
