@@ -283,6 +283,18 @@ export class HomeStory {
     const travel = Math.max(0, (scrollY - this.start) / this.height);
     this.travel = travel;
     const p = clamp((travel - this.introHold) / 1.35);
+    const research = this.compactScenes.find((scene) => scene.section === 'research');
+    const company = this.compactScenes.find((scene) => scene.section === 'company');
+    const development = this.compactScenes.find((scene) => scene.project === this.companySource);
+    const lab = clamp((travel - research.stop + research.transition) / research.transition);
+    const people = clamp((travel - company.stop + company.transition) / company.transition);
+    const leaving = interval(people, 0, 0.5);
+    const arriving = interval(people, 0.5, 1);
+    const interactive = {
+      technology: p > 0.75 && lab < 0.05,
+      research: lab > 0.95 && leaving < 0.05,
+      company: arriving > 0.95,
+    };
     const introPan = this.introHold ? this.introOverflow * clamp(travel / this.introHold) : 0;
     this.copy.style.transform = `translate3d(0,${-introPan}px,0)`;
     this.progress = p;
@@ -300,7 +312,7 @@ export class HomeStory {
       scene.pan = scene.overflow * clamp((travel - scene.stop) / (scene.hold - 0.15));
       scene.element.style.setProperty('--scene-opacity', scene.opacity);
       scene.element.style.transform = `translate3d(${scene.x}px,${-scene.pan}px,0)`;
-      scene.element.style.pointerEvents = scene.opacity > 0.95 ? 'auto' : 'none';
+      scene.element.style.pointerEvents = scene.opacity > 0.95 && interactive[scene.section] ? 'auto' : 'none';
     });
     this.root.style.setProperty('--compact-platform-motion', this.compactScenes[0].opacity > 0.95 ? 'running' : 'paused');
     const zoom = interval(p, 0.06, 0.56);
@@ -326,13 +338,6 @@ export class HomeStory {
         ? `color-mix(in srgb,var(--deep),var(--sand) ${opening * 100}%)` : 'var(--deep)';
       element.style.cssText = `left:${bounds.x}px;top:${bounds.y}px;width:${bounds.width}px;height:${bounds.height}px;border-radius:${Math.min(bounds.width, bounds.height) / 2}px;opacity:${index < 0 ? 1 - interval(p, 0.38, 0.67) : 1};background:${surface}`;
     });
-    const research = this.compactScenes.find((scene) => scene.section === 'research');
-    const company = this.compactScenes.find((scene) => scene.section === 'company');
-    const development = this.compactScenes.find((scene) => scene.project === this.companySource);
-    const lab = clamp((travel - research.stop + research.transition) / research.transition);
-    const people = clamp((travel - company.stop + company.transition) / company.transition);
-    const leaving = interval(people, 0, 0.5);
-    const arriving = interval(people, 0.5, 1);
     const positions = [-lab * this.viewportHeight, (1 - lab) * this.viewportHeight - leaving * 48, (1 - arriving) * 48];
     this.sections.forEach((section, i) => {
       const y = positions[i];

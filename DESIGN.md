@@ -163,6 +163,9 @@ into the first capsule. Each stop includes a reading interval; content taller th
 that region before the next transition. Scroll length follows measured content
 height. Paused motion and reduced motion show the complete content in document flow.
 Essential content also remains visible without JavaScript.
+Compact cards accept pointer input only when both their own content and their
+chapter are visible. Transparent chapters cannot intercept another scene's links;
+keyboard focus continues to reveal the destination scene.
 In document flow, scene headings leave clearance for the fixed return mark when
 opened directly through a fragment URL.
 
