@@ -131,14 +131,10 @@ preprint has a clearly labeled, non-clickable placeholder.
 ## Media and motion
 
 Research photographs and tactile images come from `soar-touch-report/assets/img/`.
-Simone’s portrait is a crop from the flattened September RoboPitch slide; its source
-resolution limits sharpness on dense displays. Antonio’s transparent portrait comes
-from [his personal website](https://r-rapuano.com/assets/images/propic.png), encoded
-as WebP at its original 1314 × 1203 resolution. Both are centered in capsule masks.
-Both portraits retain their natural image proportions. Founder-specific horizontal
-face anchors keep the faces centered as capsule dimensions change.
-Simone's flattened slide border is masked inside the image before the outer capsule
-clips it, keeping the original Sand edge out of the portrait window.
+Both founder portraits use the supplied headshots, encoded as transparent WebP.
+Simone’s background removal and subtle lighting adjustment match Antonio’s supplied
+cutout. Their matched portrait framing uses shared optical centering in capsule masks.
+Mobile crops use a smaller image scale while preserving the capsule dimensions.
 The Sapienza logo uses the existing university artwork in `assets/img/Uniroma1.svg`. Product illustrations
 use the supplied transparent PNGs at two resolutions. A square, bounded composition
 keeps the capsule proportions fixed. The rear image is clipped to the opening; a matching
