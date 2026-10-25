@@ -1841,10 +1841,10 @@ canvas.has-geometry {
 .company-portrait-window > img {
   position: absolute;
   width: auto;
-  height: 110%;
+  height: 102%;
   max-width: none;
   left: 50%;
-  top: -5%;
+  top: -1%;
   transform: translateX(-50%);
 }
 .company-portrait-window.portrait-antonio > img {
@@ -1965,8 +1965,8 @@ canvas.has-geometry {
     height: clamp(220px, 40vw, 300px);
   }
   .company-portrait-window > img {
-    height: 104%;
-    top: -2%;
+    height: 100%;
+    top: 0;
   }
   .company-founder figcaption {
     padding: 0;
