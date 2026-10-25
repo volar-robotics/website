@@ -2,9 +2,9 @@
   <a class="brand" href="{% if page.body_class == 'home-route' %}#page-top{% else %}{{ '/' | relative_url }}{% endif %}" aria-label="{% if page.body_class == 'home-route' %}Volar Robotics — back to top{% else %}Volar Robotics — home{% endif %}"{% if page.body_class == 'home-route' %} title="Back to top"{% endif %}><canvas class="brand-symbol" data-brand-mark="rest" {% if page.body_class == 'home-route' %}data-hover-carve="arrow-up"{% else %}data-cycle-marks="heart,tilde" data-hover-carve="heart"{% endif %} width="62" height="62" aria-hidden="true"></canvas><span class="brand-wordmark" aria-hidden="true"><img src="{{ '/assets/brand/volar-horizontal-lockup-color.svg' | relative_url }}" width="180" height="62" alt="" /></span></a>
   <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav"><span>Menu</span><span class="menu-glyph" aria-hidden="true"></span></button>
   <nav id="primary-nav" class="nav-links" aria-label="Main navigation">
-    <a href="{% if page.body_class == 'home-route' %}#technology{% else %}{{ '/technology/' | relative_url }}{% endif %}"{% if page.nav == 'technology' %} aria-current="page"{% endif %}>Technology</a>
-    <a href="{% if page.body_class == 'home-route' %}#research{% else %}{{ '/work/' | relative_url }}{% endif %}"{% if page.nav == 'work' %} aria-current="page"{% endif %}>Research</a>
-    <a href="{% if page.body_class == 'home-route' %}#company{% else %}{{ '/company/' | relative_url }}{% endif %}"{% if page.nav == 'company' %} aria-current="page"{% endif %}>Company</a>
+    <a href="{% if page.body_class == 'home-route' %}#technology{% else %}{{ '/#technology' | relative_url }}{% endif %}">Technology</a>
+    <a href="{% if page.body_class == 'home-route' %}#research{% else %}{{ '/#research' | relative_url }}{% endif %}">Research</a>
+    <a href="{% if page.body_class == 'home-route' %}#company{% else %}{{ '/#company' | relative_url }}{% endif %}">Company</a>
     {% include contact-button.html %}
   </nav>
 </header>

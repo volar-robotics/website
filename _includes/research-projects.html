@@ -1,46 +1,36 @@
-{% assign home_projects = site.projects | where_exp: 'project', 'project.home_order' | sort:
-'home_order' %}
-<section
-  class="story-research{% if include.standalone %} research-page{% endif %}"
-  id="research"
-  aria-labelledby="research-title"
->
+<section class="story-research" id="research" aria-labelledby="research-title">
   <header class="research-heading">
     <p class="eyebrow">The research</p>
-    {% if include.standalone %}
-    <h1 id="research-title">From contact flight <em>to inspection.</em></h1>
-    {% else %}
     <h2 id="research-title">From contact flight <em>to inspection.</em></h2>
-    {% endif %}
   </header>
   <div class="research-panels">
-    {% for project in home_projects %}
+    {% for project in site.data.projects %}
     <article
-      class="research-project{% if project.home.media == 'field' %} research-project-development{% endif %}"
-      id="project-{{ project.home.name | slugify }}"
+      class="research-project{% if project.media == 'field' %} research-project-development{% endif %}"
+      id="project-{{ project.slug }}"
       data-project-panel
-      aria-labelledby="{{ project.home.name | slugify }}-title"
+      aria-labelledby="{{ project.slug }}-title"
     >
       {% unless forloop.first %}<span class="research-connector" aria-hidden="true">→</span>{%
       endunless %}
       <figure class="research-media">
         <div class="research-visual">
-          {% if project.home.media == 'photograph' %}
+          {% if project.media == 'photograph' %}
           <img
             class="research-photo"
-            src="{{ project.home.image | relative_url }}"
+            src="{{ project.image | relative_url }}"
             width="1200"
             height="900"
-            alt="{{ project.home.image_alt }}"
+            alt="{{ project.image_alt }}"
             loading="lazy"
           />
           {% else %}
           <canvas class="research-field-mark" data-brand-mark="hexagon" aria-hidden="true"></canvas>
           {% endif %}
         </div>
-        {% if project.home.media == 'photograph' %}
+        {% if project.media == 'photograph' %}
         <span class="accent-dot research-dot" aria-hidden="true"></span>
-        <figcaption class="research-credit">{{ project.home.caption }}</figcaption>
+        <figcaption class="research-credit">{{ project.caption }}</figcaption>
         {% endif %}
       </figure>
       <div class="research-brief">
@@ -48,39 +38,31 @@
         <p class="research-step">Next application</p>
         {% endunless %}
         <div class="research-project-heading">
-          {% if include.standalone %}
-          <h2 id="{{ project.home.name | slugify }}-title">{{ project.home.name }}</h2>
-          {% else %}
-          <h3 id="{{ project.home.name | slugify }}-title">{{ project.home.name }}</h3>
-          {% endif %}
-          <p class="research-status">{{ project.home.status }}</p>
+          <h3 id="{{ project.slug }}-title">{{ project.name }}</h3>
+          <p class="research-status">{{ project.status }}</p>
         </div>
-        <p class="research-summary">{{ project.home.summary }}</p>
-        <p class="research-scope">{{ project.home.scope }}</p>
+        <p class="research-summary">{{ project.summary }}</p>
+        <p class="research-scope">{{ project.scope }}</p>
         <div class="research-project-foot">
-          <a class="text-link" href="{{ project.project_url }}"
-            >{{ project.home.action }}<span class="link-arrow" aria-hidden="true">↗</span></a
+          <a class="text-link" href="{{ project.url }}"
+            >Explore {{ project.name }}<span class="link-arrow" aria-hidden="true">↗</span></a
           >
-          <p class="research-program">{{ project.home.program }}</p>
+          <p class="research-program">{{ project.program }}</p>
         </div>
         {% if project.papers %}
-        <div class="resource-inset research-papers" aria-label="{{ project.home.name }} papers">
+        <div class="resource-inset research-papers" aria-label="{{ project.name }} papers">
           <p class="resource-inset-label">Papers</p>
-          {% if include.standalone %}
-          <a href="#{{ project.home.name | slugify }}-publications"
-            >View papers<span class="link-arrow link-arrow-down" aria-hidden="true">↓</span></a
-          >
-          {% else %} {% for paper in project.papers %} {% if paper.url %}
+          {% for paper in project.papers %} {% if paper.url %}
           <a
             href="{{ paper.url }}"
-            title="{{ paper.title }}"
-            aria-label="{{ paper.title }}: arXiv preprint"
+            title="{{ paper.title }}. {{ paper.scope }}"
+            aria-label="{{ paper.title }}: {{ paper.status }}. {{ paper.scope }}"
             >{{ paper.short_title }}
             <span>arXiv preprint<span class="link-arrow" aria-hidden="true">↗</span></span></a
           >
           {% else %}
           <p>{{ paper.short_title }} <span>{{ paper.status }}</span></p>
-          {% endif %} {% endfor %} {% endif %}
+          {% endif %} {% endfor %}
         </div>
         {% endif %}
       </div>

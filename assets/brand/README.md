@@ -1,3 +1,7 @@
+---
+date: 2026-10-25
+---
+
 # Volar identity snapshot
 
 Unmodified outputs copied from `volar-robotics/design` on 2026-10-23.
@@ -9,7 +13,7 @@ Do not edit their geometry here. Refresh the snapshot from the design repository
 excluded from animation because of its free-standing bar.
 
 `volar-pattern-tile.svg` is the repeatable cell. Follow `guidelines/pattern.md` in
-the design repository; use the square preview only as a single crop.
+the design repository.
 
 Typography: self-hosted Montserrat, under the SIL Open Font License in
 `assets/fonts/Montserrat-OFL.txt`. No trial display fonts are used.

@@ -102,22 +102,16 @@ const revealObserver = new IntersectionObserver(
   { threshold: 0.1 },
 );
 if (!mediaPreference.matches) document.documentElement.classList.add('js-motion');
-document
-  .querySelectorAll(
-    '.work-entry,.person,.company-facts>div,.purpose-story>div,.purpose-story>figure,.project-content>h2',
-  )
-  .forEach((element) => {
-    element.classList.add('reveal');
-    revealObserver.observe(element);
-  });
+document.querySelectorAll('.purpose-story>div,.purpose-story>figure').forEach((element) => {
+  element.classList.add('reveal');
+  revealObserver.observe(element);
+});
 
-let carveData;
 const carvesReady = fetch(asset('/assets/brand/carves.json'))
   .then((r) => {
     if (!r.ok) throw new Error('Brand geometry unavailable');
     return r.json();
   })
-  .then((data) => (carveData = data))
   .catch(() => null);
 class CarvedMark {
   constructor(canvas, data) {
@@ -155,7 +149,6 @@ class CarvedMark {
       parent.addEventListener('focus', () => this.to(hover));
       parent.addEventListener('blur', () => this.to(this.rest));
     }
-    canvas._volarMark = this;
     this.draw();
     this.scheduleCycle();
   }
@@ -287,45 +280,6 @@ document.querySelectorAll('[data-product-stage]').forEach((stage) => {
   });
 });
 
-const timeline = [
-  {
-    title: 'Read the contact.',
-    text: 'Compare tactile estimates with reference force measurements on the sensor bench.',
-    image: 'tactile-input.webp',
-    alt: 'The camera image inside the tactile sensor',
-  },
-  {
-    title: 'Close the loop.',
-    text: 'Test tactile-driven force and orientation control on manipulators, before taking the complete perception and control stack into flight.',
-    image: 'sensor-validation.webp',
-    alt: 'A robot manipulator used for tactile sensor validation',
-  },
-  {
-    title: 'Take the feedback into flight.',
-    text: 'Use tactile estimates to align the sensor with a surface and regulate contact force on the miniThex, with flat and tilted sensor mounts.',
-    image: 'contact-flight.webp',
-    alt: 'The miniThex in laboratory contact flight',
-  },
-  {
-    title: 'Use the surface reaction.',
-    text: 'Test the combined interaction and sensing system against vertical and tilted laboratory surfaces.',
-    image: 'inclined-contact.webp',
-    alt: 'Laboratory flight against an inclined surface',
-  },
-];
-document.querySelectorAll('[data-timeline-step]').forEach((button) =>
-  button.addEventListener('click', () => {
-    const data = timeline[Number(button.dataset.timelineStep)];
-    document
-      .querySelectorAll('[data-timeline-step]')
-      .forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
-    const image = document.querySelector('[data-timeline-image]');
-    image.src = asset('/assets/img/research/' + data.image);
-    image.alt = data.alt;
-    document.querySelector('[data-timeline-title]').textContent = data.title;
-    document.querySelector('[data-timeline-text]').textContent = data.text;
-  }),
-);
 const dots = document.querySelector('[data-data-dots]');
 if (dots)
   for (let i = 0; i < Number(dots.dataset.total); i++) {
@@ -378,7 +332,7 @@ function revealHash() {
   requestAnimationFrame(() =>
     target.scrollIntoView({
       behavior: paused ? 'instant' : 'smooth',
-      block: target.closest('.publications') ? 'start' : 'center',
+      block: 'center',
     }),
   );
 }

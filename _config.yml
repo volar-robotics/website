@@ -23,11 +23,10 @@ sass:
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-redirect-from
 
-collections:
-  projects:
-    output: false
-    permalink: /:name/
+redirect_from:
+  json: false
 
 exclude:
   - Gemfile
@@ -36,9 +35,6 @@ exclude:
   - DESIGN.md
   - AGENTS.md
   - assets/brand/README.md
-  - assets/models
-  - assets/js/product-viewer.js
-  - assets/vendor/three
   - vendor
   - .bundle
   - test
@@ -49,8 +45,3 @@ defaults:
     values:
       layout: default
       image: /assets/img/og-image.svg
-  - scope:
-      path: ""
-      type: projects
-    values:
-      layout: default

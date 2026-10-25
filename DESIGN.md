@@ -37,19 +37,19 @@ behavior stays here.
 |---|---|
 | Animated field | `CarvedMark` in `assets/js/experience.js` for carving; `HomeStory` in `assets/js/home-story.js` for the homepage scene; both read canonical `assets/brand/carves.json`. |
 | Field pattern | Backgrounds in `assets/css/main.scss`; shared `--pattern-size` controls density. |
-| Contained window | `.portrait-hole` and `.company-portrait-window`; founder-specific crops preserve optical centering. |
-| Emerging window | `_includes/platform-stage.html` on Technology; `.story-product-window` on Home. Both use matched rear and foreground image layers. |
-| Panel pair | `.technology-explorer` groups the platform and pillars; `.research-panels` places laboratory contact research beside inspection research in development. |
+| Contained window | `.company-portrait-window`; founder-specific crops preserve optical centering. |
+| Emerging window | `.story-product-window` uses matched rear and foreground image layers. |
+| Panel pair | `.research-panels` places laboratory contact research beside inspection research in development. |
 | Resource inset | `.resource-inset` and `.resource-inset-label`; `.research-papers` supplies its placement beneath a project. |
-| Band | `.evidence-note` for the Technology evidence scope; `.company-scene-band` for affiliation, office and Contact; `.route-path` for navigation. |
+| Band | `.company-scene-band` for affiliation, office and Contact; `.route-path` for navigation. |
 | Connector | Labeled links inside `.route-path` and `.breadcrumbs`; these already express the page relationships without requiring additional drawn lines. |
 
 Both technology pillars remain inline. Longer evidence and source notes use native
 inline disclosures. The contact dialog handles the focused contact task.
 
 Shared presentation belongs in `assets/css/main.scss`; repeated markup with meaningful
-structure belongs in a Jekyll include, as the product stage already does. Keep interaction
-state in `assets/js/experience.js`. Existing selectors do not need renaming to match the
+structure belongs in a Jekyll include. Shared interaction state belongs in
+`assets/js/experience.js`; homepage scene transitions belong in `assets/js/home-story.js`. Existing selectors do not need renaming to match the
 vocabulary. Extract shared behavior when a real second use needs it; the site needs no
 general component framework or JavaScript build step.
 
@@ -70,11 +70,14 @@ carry no status or navigation meaning.
 ## Navigation
 
 Home scrolls from the identity introduction into Technology, Research and Company.
-Its corresponding navigation links target those scenes; the dedicated pages remain
-available. Research holds project summaries, external project links and
-publications. Local project pages are temporarily excluded from the build; their source
-remains in `_projects/`. Company owns the purpose article. Breadcrumbs identify each page's parent.
-The bottom navigation moves through the main path or returns from a child to its parent.
+Their canonical URLs are `/#technology`, `/#research` and `/#company` on
+`https://volar-robotics.com`. Research holds project summaries, external project links
+and publications. `/#project-soar-touch` and `/#project-soar-ndt` target the projects
+within that scene. Company owns the separate purpose article, whose breadcrumb and
+return link target `/#company`. The legal pages retain their own URLs.
+Legacy URLs are compatibility redirects, defined in `redirects/` and excluded from
+the sitemap. All internal links use the canonical destinations directly. The route
+inventory and build checks are in [README.md](README.md).
 Persistent navigation and contact are utilities. The opening “Scroll to explore” link
 starts the homepage journey and uses the same `.text-link` treatment as “Meet the
 projects.” There is no technology-only progress bar. Each project has one main external link; paper resources sit beneath SOAR-Touch. Both pillar explanations are visible inline beside miniThex.
@@ -133,8 +136,7 @@ preserving the capsule dimensions.
 The Sapienza logo uses the existing university artwork in `assets/img/Uniroma1.svg`. Product illustrations
 use the supplied transparent PNGs at two resolutions. A square, bounded composition
 keeps the capsule proportions fixed. The rear image is clipped to the opening; a matching
-foreground layer extends beyond its edge. Engineering meshes and the engineering viewer are excluded
-from the public build.
+foreground layer extends beyond its edge.
 
 The homepage uses a pinned scene on viewports at least 1000 pixels wide and 700 pixels
 high when motion is enabled. It first zooms the whole resting mark uniformly, then hands
@@ -143,12 +145,14 @@ it does not define a new carve or change the canonical mark. The heading appears
 the transition and the content arrives as the windows open. Scrolling backward reverses
 the sequence. Narrow screens, short viewports, paused motion and reduced motion use a
 normal document flow. Essential content also remains visible without JavaScript.
+In document flow, scene headings leave clearance for the fixed return mark when
+opened directly through a fragment URL.
 
 The technology composition uses three aligned, equally tall capsule windows. miniThex has
 a Deep Blue opening and an internal miniThex / Research platform caption; the two
 pillar windows use Sand with Deep Blue text. Their surfaces change during the handover
-from the mark. The two pillars retain equal visual weight. The platform reuses the Technology page's
-matched `.platform-drift` layers for hovering and pointer response, plus its Sand and
+from the mark. The two pillars retain equal visual weight. The platform uses matched
+`.platform-drift` layers for hovering and pointer response, plus its Sand and
 Orange dot accents. The two image layers move together while their clipping planes
 stay fixed. Homepage hovering pauses outside the technology reading state; the shared
 pause and reduced-motion controls still apply.
@@ -166,18 +170,15 @@ describes a research direction without implying validated inspection capability.
 Each project shows its name, status, summary, evidence scope, program and one external
 project link, labeled “Explore SOAR-Touch” or “Explore SOAR-NDT.” Home shows compact
 SOAR-Touch paper entries in a labeled, lightly tinted block with an Orange edge and
-underlined links. The Research page uses that block to jump to the full paper entries,
-whose available preprint has the same Orange accent. The jump places and focuses the
-paper heading at the top of the viewport. Forthcoming work stays muted
-and non-clickable.
+underlined links. The available preprint links directly to arXiv; its full title,
+publication status and evidence scope remain in project metadata and its accessible
+link label. Forthcoming work stays muted and non-clickable.
 The photograph's caption sits below the capsule, on the page background. There are no project tabs, overlays or separate project scroll stops. Narrow
 screens preserve this sequence vertically, and the connector points downward.
 
-`_includes/research-projects.html` reads projects with `home_order`, sorted by that value.
-Their `home` frontmatter owns the name, program, status, summary, scope, media,
-caption and action label. Top-level `project_url` and `papers` own the external project
-destination and publication entries. The projects collection has `output: false`; its
-metadata remains available to both Home and Research. Use `media: photograph` with a real image and alt text, or
+`_includes/research-projects.html` reads `_data/projects.yml` in list order. Each entry
+owns its slug, name, program, status, summary, evidence scope, external destination,
+media and paper metadata. Use `media: photograph` with a real image and alt text, or
 `media: field` for a branded development visual. The order is editorial and carries
 no implied completion date or validation milestone. The current pair occupies one
 scene; adding projects requires reviewing its composition. Scroll length does not
@@ -197,8 +198,7 @@ same boundary. Both use the same density, opacity and horizontal fade so they re
 as one continuous Deep Blue field.
 
 Both founders have equal window sizes and the same Co-founder label. Their names,
-images and personal websites come from `_data/company.yml`, also used on the
-Company page. New team content requires reviewing the composition. The shared band
+images and personal websites come from `_data/company.yml`. New team content requires reviewing the composition. The shared band
 contains affiliation, office and Contact. The office text also appears in the contact
 dialog through `_includes/office-address.html`. `_includes/contact-button.html`
 provides the same Contact action and styling in the header and Company band; text
@@ -222,7 +222,8 @@ an email link and submits nothing.
 Build with `bundle exec jekyll build --strict_front_matter` and run `bundle exec jekyll doctor`.
 Check mobile and desktop widths, inline pillar explanations and their anchors, external project
 destinations, publication links, source disclosures, mobile navigation and motion controls. Verify
-internal links, image loading, overflow and the absence of engineering assets in `_site/`.
+internal links, image loading and overflow. Run the built-site route checks in
+[README.md](README.md).
 The design repository's build and checks govern its generated pattern assets.
 
 Apply the visual system's component checks to changed compositions. For this website,

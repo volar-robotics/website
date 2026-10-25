@@ -1,0 +1,29 @@
+- slug: soar-touch
+  name: SOAR-Touch
+  url: https://sites.google.com/diag.uniroma1.it/soar-touch-website
+  program: euROBIN · Sapienza & University of Twente
+  status: Laboratory experiments
+  summary: Combining friction-anchor interaction and soft-optical tactile sensing in contact-flight experiments.
+  scope: Demonstrated in controlled laboratory conditions.
+  media: photograph
+  image: /assets/img/research/contact-flight.webp
+  image_alt: The miniThex in contact flight against a laboratory wall at the University of Twente
+  caption: Laboratory contact flight · University of Twente
+  papers:
+    - title: Tactile Reconstruction of Contact Task Frames and Forces for Hybrid Force/Motion Control
+      short_title: Tactile reconstruction
+      url: https://arxiv.org/abs/2610.10020
+      status: arXiv preprint · 7 October 2026
+      scope: Tactile sensing and manipulator experiments.
+    - title: Second SOAR-Touch preprint
+      short_title: Second preprint
+      status: Forthcoming
+      scope: Link will be added when available.
+- slug: soar-ndt
+  name: SOAR-NDT
+  url: https://autoassess.eu/open-calls-winners/soar-ndt/
+  program: AUTOASSESS
+  status: In development
+  summary: Developing a tactile aerial tool for non-destructive thickness inspection of steel.
+  scope: Integrated tool and measurement quality still to be validated.
+  media: field
