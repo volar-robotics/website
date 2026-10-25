@@ -1855,6 +1855,10 @@ canvas.has-geometry {
 .company-portrait-window.portrait-simone > img {
   height: 158%;
   top: -25.2%;
+  filter: contrast(0.92) saturate(0.92) hue-rotate(-3deg) brightness(1.045);
+}
+.company-portrait-window.portrait-antonio > img {
+  filter: saturate(0.92) brightness(1.02);
 }
 .company-founder figcaption {
   padding-top: 64px;

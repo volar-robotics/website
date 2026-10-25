@@ -136,6 +136,8 @@ pixel edits. Their shared white photographic ground sits inside equal capsule
 windows. Founder-specific scale and face anchors align the eyes and chin while
 preserving each image's proportions, expression and hair. The capsule applies the
 crop in CSS so source pixels remain available as its dimensions change.
+CSS tonal adjustments lift Simone's shadows and soften saturation in both portraits
+to balance their lighting while leaving the source photographs intact.
 The Sapienza logo uses the existing university artwork in `assets/img/Uniroma1.svg`. Product illustrations
 use the supplied transparent PNGs at two resolutions. A square, bounded composition
 keeps the capsule proportions fixed. The rear image is clipped to the opening; a matching
