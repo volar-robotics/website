@@ -3,6 +3,7 @@ export class HomeStory {
   constructor(root, data, motionPaused, onSurfaceChange) {
     this.root = root;
     this.stage = root.querySelector('.home-story-stage');
+    this.intro = root.querySelector('.story-intro');
     this.copy = root.querySelector('.story-intro-copy');
     this.source = root.querySelector('.story-mark-source');
     this.technology = root.querySelector('.story-technology');
@@ -151,11 +152,13 @@ export class HomeStory {
       this.barLayer.style.removeProperty('transform');
     }
     const stage = this.stage.getBoundingClientRect();
-    const source = this.source.getBoundingClientRect();
     // Safari's toolbar changes the painted viewport, but must not retime the story.
-    this.height = this.compact ? this.root.querySelector('.story-intro').offsetHeight : stage.height;
+    this.height = this.compact ? parseFloat(getComputedStyle(this.intro).minHeight) : stage.height;
     this.viewportHeight = stage.height;
     this.width = stage.width;
+    // Measure reading stops at the small viewport; paint the composition at its visible height.
+    if (this.compact) this.root.style.setProperty('--scene-height', `${this.height}px`);
+    const source = this.source.getBoundingClientRect();
     this.start = this.root.getBoundingClientRect().top + scrollY;
     this.sourceBounds = {
       x: source.left - stage.left,
@@ -206,6 +209,14 @@ export class HomeStory {
       });
       const last = this.compactScenes[this.compactScenes.length - 1];
       this.root.style.setProperty('--home-story-length', `${(last.stop + last.hold + 1.5) * this.height}px`);
+      this.root.style.removeProperty('--scene-height');
+      this.destination = this.targets.map(relativeBounds);
+      const visibleSource = this.source.getBoundingClientRect();
+      this.sourceBounds = {
+        x: visibleSource.left - stage.left,
+        y: visibleSource.top - stage.top,
+        size: visibleSource.width,
+      };
     }
     this.schedule();
   }
