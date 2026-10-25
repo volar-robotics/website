@@ -1831,6 +1831,7 @@ canvas.has-geometry {
   left: -6px;
 }
 .company-portrait-window {
+  --portrait-anchor: 50%;
   position: relative;
   width: 100%;
   height: clamp(250px, 33svh, 310px);
@@ -1840,15 +1841,19 @@ canvas.has-geometry {
 }
 .company-portrait-window > img {
   position: absolute;
-  width: 115%;
+  width: auto;
   height: 115%;
   max-width: none;
-  left: 0;
+  left: 50%;
   top: -7.5%;
+  transform: translateX(calc(0% - var(--portrait-anchor)));
   object-fit: cover;
 }
-.company-portrait-window.portrait-antonio > img {
-  left: -6%;
+.company-portrait-window.portrait-simone {
+  --portrait-anchor: 44%;
+}
+.company-portrait-window.portrait-antonio {
+  --portrait-anchor: 49%;
 }
 .company-founder figcaption {
   padding-top: 64px;
@@ -1965,17 +1970,9 @@ canvas.has-geometry {
     height: clamp(220px, 40vw, 300px);
   }
   .company-portrait-window > img {
-    width: 100%;
     height: 104%;
-    left: 0;
     top: -2%;
-    object-position: center;
     border-radius: 0;
-  }
-  .company-portrait-window.portrait-antonio > img {
-    width: auto;
-    left: 50%;
-    transform: translateX(-50%);
   }
   .company-founder figcaption {
     padding: 0;

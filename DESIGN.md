@@ -135,8 +135,8 @@ Simone’s portrait is a crop from the flattened September RoboPitch slide; its 
 resolution limits sharpness on dense displays. Antonio’s transparent portrait comes
 from [his personal website](https://r-rapuano.com/assets/images/propic.png), encoded
 as WebP at its original 1314 × 1203 resolution. Both are centered in capsule masks.
-Mobile crops center Simone within a bounded image box and Antonio at his natural
-image proportions while preserving equal capsule dimensions.
+Both portraits retain their natural image proportions. Founder-specific horizontal
+face anchors keep the faces centered as capsule dimensions change.
 The Sapienza logo uses the existing university artwork in `assets/img/Uniroma1.svg`. Product illustrations
 use the supplied transparent PNGs at two resolutions. A square, bounded composition
 keeps the capsule proportions fixed. The rear image is clipped to the opening; a matching
