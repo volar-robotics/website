@@ -1055,6 +1055,9 @@ canvas.has-geometry {
 .story-origin img {
   width: 148px;
 }
+.story-mark-stage {
+  display: contents;
+}
 .story-mark-source {
   position: absolute;
   width: min(38vw, 530px);
@@ -2038,7 +2041,7 @@ canvas.has-geometry {
   min-height: 100svh;
   height: var(--scene-height);
   padding-top: 108px;
-  padding-bottom: 48px;
+  padding-bottom: 28px;
 }
 .story-compact .story-intro h1 {
   font-size: clamp(30px, 8.8vw, 54px);
@@ -2054,9 +2057,17 @@ canvas.has-geometry {
 .story-compact .story-origin {
   margin-top: 20px;
 }
+.story-compact .story-mark-stage {
+  display: flex;
+  flex: 1;
+  min-height: 120px;
+  align-items: flex-end;
+  justify-content: center;
+  container-type: size;
+}
 .story-compact .story-mark-source {
   position: relative;
-  width: min(44vw, 23svh, 220px);
+  width: min(62vw, 100cqh, 300px);
   left: auto;
   top: auto;
   margin: 0 auto;
@@ -2183,6 +2194,8 @@ canvas.has-geometry {
   position: absolute;
   inset: 0;
   z-index: -1;
+  pointer-events: none;
+  clip-path: var(--compact-field-clip, inset(100%));
   background: var(--deep);
   opacity: var(--compact-dark, 0);
 }
@@ -2195,12 +2208,18 @@ canvas.has-geometry {
   background: url('../brand/volar-pattern-tile.svg') center bottom / var(--pattern-size) repeat;
   opacity: 0.08;
 }
+.story-compact.story-company-opening .story-ground {
+  background: var(--sand);
+}
 .story-compact .story-research {
-  background: color-mix(in srgb, var(--sand), transparent calc(var(--compact-dark, 0) * 100%));
+  background: var(--sand);
+}
+.story-compact.story-company-opening .story-research {
+  background: transparent;
 }
 .story-compact .research-heading {
-  opacity: 1;
-  color: color-mix(in srgb, var(--deep), var(--sand) calc(var(--compact-dark, 0) * 100%));
+  opacity: var(--compact-research-heading-opacity, 1);
+  color: var(--deep);
 }
 .story-compact .research-heading em {
   white-space: normal;
@@ -2230,6 +2249,7 @@ canvas.has-geometry {
   margin-inline: auto;
   padding: 0;
   opacity: var(--scene-opacity, 0);
+  transform: none;
 }
 .story-compact .research-connector {
   display: none;
@@ -2299,9 +2319,20 @@ canvas.has-geometry {
 .story-compact .research-project-development.compact-scene {
   --research-image-width: clamp(96px, calc(var(--scene-height) * 0.18), 160px);
   --research-image-limit: 40%;
-  background: transparent;
+  background: var(--deep);
+  padding: clamp(16px, 4vw, 24px);
   grid-template-rows: auto minmax(120px, 1fr) auto auto auto;
   align-content: stretch;
+}
+.story-compact .research-project-development::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url('../brand/volar-pattern-tile.svg') center bottom / var(--pattern-size) repeat;
+  background-position: calc(50% + var(--field-offset-x, 0px)) calc(100% + var(--field-offset-y, 0px));
+  opacity: 0.08;
 }
 .story-compact .research-project-development .research-step {
   grid-row: 1;
@@ -2448,6 +2479,10 @@ canvas.has-geometry {
   padding-block: 10px;
 }
 @media (min-width: 761px) {
+  .story-compact .story-mark-stage {
+    display: contents;
+    container-type: normal;
+  }
   .story-compact .story-intro-copy {
     width: 65%;
   }

@@ -155,10 +155,13 @@ advances successive reading stops: miniThex, each pillar, one complete panel per
 research project, then one company directory with portraits, affiliation and Contact.
 Cards within Research enter and leave horizontally. Technology hands over to Research
 as a full-height page transition, with its heading and content traveling vertically.
-SOAR-NDT and Company share one stationary Deep Blue patterned field. Their content
-exchanges through sequential fades and short vertical movement while that field stays
-fixed. The outgoing content clears before the incoming content appears.
-Reversing scroll retraces both transitions. The mark zooms
+SOAR-NDT slides in from the right as an inset Deep Blue patterned panel over the Sand
+research scene. Scrolling onward expands that panel's bounds to the full viewport,
+revealing Company after the research content clears. The complete pattern aligns
+with viewport coordinates during expansion and remains fixed behind Company.
+Reversing scroll retraces both transitions. On phones, the opening mark occupies
+the remaining space below the introduction, bounded by the available height and
+width, with its base near the viewport's lower edge. The mark zooms
 into the first capsule. Each stop includes a reading interval; content taller than the available region pans within
 that region before the next transition. Scroll length follows measured content
 height. Paused motion and reduced motion show the complete content in document flow.
@@ -201,9 +204,9 @@ keeps the projects in one composition without tabs or separate project stops.
 Compact screens show each project in one reading stop. SOAR-Touch pairs its capsule
 photograph and caption with the project heading, then keeps its summary, evidence
 scope, project link and papers in the same panel. SOAR-NDT pairs its static carve
-with its heading. Its Deep Blue background carries a continuous pattern across the
-full research viewport, including the space above and below the project panel. The
-same field remains behind the company scene during its content transition.
+with its heading inside the inset Deep Blue panel. Sand remains visible around the
+panel and behind the research heading. Its complete pattern continues into the
+expanding field that becomes the company background.
 Compact SOAR-Touch places its photograph alongside the heading, summary and evidence
 scope, with the project link and a two-column paper inset below. This keeps the
 project's explanation and resources in one compact reading area. The pinned stage fills

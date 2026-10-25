@@ -211,6 +211,8 @@ export class HomeStory {
       this.root.style.setProperty('--home-story-length', `${(last.stop + last.hold + 1.5) * this.height}px`);
       this.root.style.removeProperty('--scene-height');
       this.destination = this.targets.map(relativeBounds);
+      this.companySourceBounds = relativeBounds(this.companySource);
+      this.compactResearchBounds = relativeBounds(this.sections[1].content);
       const visibleSource = this.source.getBoundingClientRect();
       this.sourceBounds = {
         x: visibleSource.left - stage.left,
@@ -288,8 +290,8 @@ export class HomeStory {
     const development = this.compactScenes.find((scene) => scene.project === this.companySource);
     const lab = clamp((travel - research.stop + research.transition) / research.transition);
     const people = clamp((travel - company.stop + company.transition) / company.transition);
-    const leaving = interval(people, 0, 0.5);
-    const arriving = interval(people, 0.5, 1);
+    const leaving = interval(people, 0.45, 0.7);
+    const arriving = interval(people, 0.7, 1);
     const interactive = {
       technology: p > 0.75 && lab < 0.05,
       research: lab > 0.95 && leaving < 0.05,
@@ -307,12 +309,12 @@ export class HomeStory {
         ? (samePrevious ? interval(travel, scene.stop - scene.transition, scene.stop) : 1)
         : interval(travel, this.introHold + 0.95, scene.stop);
       const leave = sameNext ? interval(travel, next.stop - next.transition, next.stop) : 0;
-      scene.opacity = enter * (1 - leave);
+      scene.opacity = scene.section === 'research' ? 1 : enter * (1 - leave);
       scene.x = ((samePrevious ? 1 - enter : 0) - leave) * this.width * 1.1;
       scene.pan = scene.overflow * clamp((travel - scene.stop) / (scene.hold - 0.15));
       scene.element.style.setProperty('--scene-opacity', scene.opacity);
       scene.element.style.transform = `translate3d(${scene.x}px,${-scene.pan}px,0)`;
-      scene.element.style.pointerEvents = scene.opacity > 0.95 && interactive[scene.section] ? 'auto' : 'none';
+      scene.element.style.pointerEvents = enter > 0.95 && leave < 0.05 && interactive[scene.section] ? 'auto' : 'none';
     });
     this.root.style.setProperty('--compact-platform-motion', this.compactScenes[0].opacity > 0.95 ? 'running' : 'paused');
     const zoom = interval(p, 0.06, 0.56);
@@ -338,7 +340,7 @@ export class HomeStory {
         ? `color-mix(in srgb,var(--deep),var(--sand) ${opening * 100}%)` : 'var(--deep)';
       element.style.cssText = `left:${bounds.x}px;top:${bounds.y}px;width:${bounds.width}px;height:${bounds.height}px;border-radius:${Math.min(bounds.width, bounds.height) / 2}px;opacity:${index < 0 ? 1 - interval(p, 0.38, 0.67) : 1};background:${surface}`;
     });
-    const positions = [-lab * this.viewportHeight, (1 - lab) * this.viewportHeight - leaving * 48, (1 - arriving) * 48];
+    const positions = [-lab * this.viewportHeight, (1 - lab) * this.viewportHeight, (1 - arriving) * 48];
     this.sections.forEach((section, i) => {
       const y = positions[i];
       section.element.style.transform = `translate3d(0,${y}px,0)`;
@@ -346,18 +348,31 @@ export class HomeStory {
       section.element.style.setProperty('--chapter-content-clip', `${Math.max(0, this.clearance - y - section.contentTop)}px`);
     });
     this.barLayer.style.transform = `translate3d(0,${positions[0]}px,0)`;
-    this.compactDark = interval(travel, development.stop - 0.7, development.stop);
+    const source = this.companySourceBounds;
+    const visibleTop = Math.max(source.y - development.pan, this.compactResearchBounds.y);
+    const visibleBottom = Math.min(source.y - development.pan + source.height,
+      this.compactResearchBounds.y + this.compactResearchBounds.height);
+    const spread = interval(people, 0.08, 0.7);
+    const left = mix(source.x, 0, spread);
+    const top = mix(visibleTop, 0, spread);
+    const right = mix(this.width - source.x - source.width, 0, spread);
+    const bottom = mix(this.viewportHeight - visibleBottom, 0, spread);
+    this.companySource.style.setProperty('--field-offset-x', `${(this.width - source.width) / 2 - source.x}px`);
+    this.companySource.style.setProperty('--field-offset-y', `${this.viewportHeight - source.height - source.y + development.pan}px`);
+    this.compactDark = interval(people, 0, 0.08);
+    this.root.style.setProperty('--compact-field-clip', `inset(${top}px ${right}px ${bottom}px ${left}px)`);
     this.root.style.setProperty('--intro-opacity', 1 - interval(p, 0.02, 0.27));
     this.root.style.setProperty('--ground-opacity', interval(p, 0.32, 0.78));
     this.root.style.setProperty('--content-opacity', interval(p, 0.7, 0.96));
     this.root.style.setProperty('--heading-opacity', interval(p, 0.4, 0.64));
     this.root.style.setProperty('--research-opacity', 1 - leaving);
+    this.root.style.setProperty('--compact-research-heading-opacity', 1 - interval(people, 0, 0.25));
     this.root.style.setProperty('--compact-dark', this.compactDark);
     this.root.style.setProperty('--compact-bars-clip', p >= 1 ? 'inset(220px 0 64px)' : 'inset(0)');
     this.root.style.setProperty('--company-opacity', arriving);
     this.root.style.setProperty('--company-heading-opacity', 1);
     this.root.style.setProperty('--company-clip', 'none');
-    this.companyWipe = { left: 0, top: positions[2], right: this.width, bottom: positions[2] + this.viewportHeight };
+    this.companyWipe = { left, top, right: this.width - right, bottom: this.viewportHeight - bottom };
     this.root.classList.toggle('story-reading', p > 0.75);
     this.root.classList.toggle('story-research-reading', lab > 0.95);
     this.root.classList.toggle('story-company-opening', people > 0.01);
