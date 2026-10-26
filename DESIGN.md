@@ -181,7 +181,8 @@ Reversing scroll retraces both transitions. On phones, the opening mark occupies
 the remaining space below the introduction, bounded by the available height and
 width, with its base near the viewport's lower edge. The mark zooms
 into the first capsule. Each stop includes a reading interval; content taller than the available region pans within
-that region before the next transition. Scroll length follows measured content
+that region before the next transition. The final compact scene releases after its
+own reading interval, with trailing space accounting only for the visible pinned stage. Scroll length follows measured content
 height. Paused motion and reduced motion show the complete content in document flow.
 Essential content also remains visible without JavaScript.
 Compact cards accept pointer input only when both their own content and their

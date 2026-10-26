@@ -213,7 +213,7 @@ export class HomeStory {
         scene.stop = stop;
       });
       const last = this.compactScenes[this.compactScenes.length - 1];
-      this.root.style.setProperty('--home-story-length', `${(last.stop + last.hold + 1.5) * this.height}px`);
+      this.root.style.setProperty('--home-story-length', `${(last.stop + last.hold) * this.height + this.viewportHeight}px`);
       this.root.style.removeProperty('--scene-height');
       this.intro.style.removeProperty('min-height');
       this.destination = this.targets.map(relativeBounds);
