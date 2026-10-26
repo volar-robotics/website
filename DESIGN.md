@@ -1,5 +1,5 @@
 ---
-date: 2026-10-25
+date: 2026-10-26
 ---
 
 # Website design
@@ -123,6 +123,15 @@ et al.'s 2023 observational study. HSE counts describe all-industry hazards, not
 preventable by drones. AED results describe a separate system and selected operations;
 the dispatch and delivery denominators accompany the comparison. Neither source is
 presented as evidence of Volar's impact.
+Its reading sequence moves from the association of drones with war to AED delivery,
+workplace falls, AUTOASSESS's confined-space inspection goal and Volar's commitment
+to supporting human expertise. AUTOASSESS's About page supplies the inspection
+context; the human role is expressed as Volar's purpose. The article uses a bounded
+reading column on Sand, unboxed evidence figures and a patterned Deep Blue outlook
+panel. An Orange heart carve sits in a patterned capsule beside the title. It uses
+brand geometry rather than a reused laboratory photograph or white statistic cards.
+On this route the fixed header mark shares Home's arrow behavior: Home at the top,
+return to the article's top after departure, with the same hover and touch states.
 
 SOAR-Touch links to the Sapienza project website and the published arXiv preprint
 `2610.10020`, which covers tactile sensing and manipulator experiments. The second

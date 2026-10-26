@@ -6,23 +6,29 @@ const mediaPreference = matchMedia('(prefers-reduced-motion: reduce)');
 let paused = mediaPreference.matches || localStorage.getItem('volar-motion') === 'paused';
 const marks = new Set();
 let homeStory;
-const homeBrand = document.querySelector('.home-route .brand');
+const returnBrand = document.querySelector('.home-route .brand, .purpose-route .brand');
 const hoverPointer = matchMedia('(hover: hover) and (pointer: fine)');
-const homeReturnProgress = () => {
+const returnProgress = () => {
   const progress = Math.min(Math.max(scrollY / 160, 0), 1);
   return paused ? Number(progress > 0) : progress;
 };
-function updateHomeBrand() {
-  if (!homeBrand) return;
-  document.body.style.setProperty('--home-departure', homeReturnProgress());
+function updateReturnBrand() {
+  if (!returnBrand) return;
+  document.body.style.setProperty('--home-departure', returnProgress());
+  if (document.body.classList.contains('purpose-route')) {
+    const departed = scrollY > 8;
+    returnBrand.setAttribute('href', departed ? '#page-top' : asset('/'));
+    returnBrand.setAttribute('aria-label', departed ? 'Volar Robotics, back to top' : 'Volar Robotics, home');
+    returnBrand.setAttribute('title', departed ? 'Back to top' : 'Home');
+  }
   marks.forEach((mark) => {
-    if (mark.canvas.closest('.brand') === homeBrand) mark.updateInteraction();
+    if (mark.canvas.closest('.brand') === returnBrand) mark.updateInteraction();
   });
-  const brand = homeBrand.getBoundingClientRect();
+  const brand = returnBrand.getBoundingClientRect();
   const x = brand.left + brand.width / 2;
   const y = brand.top + brand.height / 2;
   const dark = [
-    ...document.querySelectorAll('.story-dark-ground, .story-product-window, .research-project-development, .story-company, .site-footer'),
+    ...document.querySelectorAll('.story-dark-ground, .story-product-window, .research-project-development, .story-company, .purpose-outlook, .site-footer'),
   ].some((surface) => {
     const bounds = surface.getBoundingClientRect();
     const research = surface.closest('.story-research');
@@ -48,7 +54,7 @@ function updateHomeBrand() {
   if (document.body.classList.contains('home-on-dark') !== dark) {
     document.body.classList.toggle('home-on-dark', dark);
     marks.forEach((mark) => {
-      if (mark.canvas.closest('.brand') === homeBrand) mark.draw();
+      if (mark.canvas.closest('.brand') === returnBrand) mark.draw();
     });
   }
 }
@@ -64,7 +70,7 @@ function setPaused(value) {
   motionButton.setAttribute('aria-pressed', String(paused));
   homeStory?.refresh();
   marks.forEach((mark) => mark.setPaused(paused));
-  updateHomeBrand();
+  updateReturnBrand();
 }
 motionButton.addEventListener('click', () => {
   setPaused(!paused);
@@ -73,10 +79,11 @@ motionButton.addEventListener('click', () => {
 mediaPreference.addEventListener('change', (event) => setPaused(event.matches));
 setPaused(paused);
 
-if (homeBrand) {
-  addEventListener('scroll', updateHomeBrand, { passive: true });
-  updateHomeBrand();
-  homeBrand.addEventListener('click', (event) => {
+if (returnBrand) {
+  addEventListener('scroll', updateReturnBrand, { passive: true });
+  updateReturnBrand();
+  returnBrand.addEventListener('click', (event) => {
+    if (document.body.classList.contains('purpose-route') && scrollY <= 8) return;
     event.preventDefault();
     history.replaceState(null, '', location.pathname + location.search);
     scrollTo({ top: 0, behavior: paused ? 'instant' : 'smooth' });
@@ -99,22 +106,6 @@ document.addEventListener('keydown', (event) => {
 });
 nav?.querySelectorAll('a,button').forEach((link) => link.addEventListener('click', closeMenu));
 matchMedia('(min-width:821px)').addEventListener('change', closeMenu);
-
-const revealObserver = new IntersectionObserver(
-  (entries) =>
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
-      }
-    }),
-  { threshold: 0.1 },
-);
-if (!mediaPreference.matches) document.documentElement.classList.add('js-motion');
-document.querySelectorAll('.purpose-story>div,.purpose-story>figure').forEach((element) => {
-  element.classList.add('reveal');
-  revealObserver.observe(element);
-});
 
 const carvesReady = fetch(asset('/assets/brand/carves.json'))
   .then((r) => {
@@ -197,12 +188,12 @@ class CarvedMark {
   }
   updateInteraction() {
     if (!this.interactionParent) return;
-    const isHomeReturn = this.interactionParent === homeBrand;
+    const isScrollReturn = this.interactionParent === returnBrand;
     const departed = scrollY > 8;
-    const active = isHomeReturn && !hoverPointer.matches
+    const active = isScrollReturn && !hoverPointer.matches
       ? departed
       : this.hovered || document.activeElement === this.interactionParent;
-    const carve = active && (!isHomeReturn || departed)
+    const carve = active && (!isScrollReturn || departed)
       ? this.canvas.dataset.hoverCarve
       : this.rest;
     if (carve !== this.targetName) this.to(carve);
@@ -255,7 +246,7 @@ carvesReady.then((data) => {
       .querySelectorAll('[data-brand-mark]')
       .forEach((canvas) => marks.add(new CarvedMark(canvas, data)));
     const story = document.querySelector('[data-home-story]');
-    if (story) homeStory = new HomeStory(story, data, () => paused, updateHomeBrand);
+    if (story) homeStory = new HomeStory(story, data, () => paused, updateReturnBrand);
   }
 });
 document.addEventListener('visibilitychange', () =>

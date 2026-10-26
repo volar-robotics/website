@@ -17,6 +17,6 @@
   </main>
   {% include footer.html %}
   {% include contact-dialog.html %}
-  <script src="{{ '/assets/js/experience.js' | relative_url }}" type="module"></script>
+  <script src="{{ '/assets/js/experience.js' | relative_url }}?v={{ site.time | date: '%s' }}" type="module"></script>
 </body>
 </html>

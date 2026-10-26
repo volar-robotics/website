@@ -1,159 +1,186 @@
 ---
 layout: default
 title: "Built to care — A different future for aerial robots"
-description: Aerial robots can help people inspect and care for essential infrastructure. The evidence, the possibilities and Volar's contribution.
+description: From delivering defibrillators to inspecting hazardous spaces, aerial robots can help protect people. This is the future Volar wants to build.
 permalink: /aerial-robots-for-good/
+body_class: purpose-route
 hse_total: 126
 hse_falls: 31
-image: /assets/img/research/contact-flight.webp
 ---
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   <a href="{{ '/#company' | relative_url }}">Company</a><span aria-hidden="true">/</span
   ><span aria-current="page">Purpose</span>
 </nav>
-<article>
+<article class="purpose-article">
   <header class="purpose-hero">
-    <div>
-      <p class="eyebrow">Purpose · 23 October 2026</p>
-      <h1>Built<br /><em>to care.</em></h1>
-      <p>
-        Aerial robots can help protect people and the structures we depend on. That is the work we
-        choose to pursue.
-      </p>
+    <p class="eyebrow purpose-meta">Our purpose <span aria-hidden="true">·</span> <time datetime="2026-10-26">26 October 2026</time></p>
+    <h1>Built<br /><em>to care.</em></h1>
+    <div class="purpose-heart-field">
+      <canvas
+        class="purpose-mark"
+        data-brand-mark="heart"
+        data-cycle-marks="heart,rest"
+        role="img"
+        aria-label="Volar Robotics: built to care"
+      ></canvas>
     </div>
-    <canvas
-      class="purpose-mark"
-      data-brand-mark="rest"
-      data-cycle-marks="heart,rest"
-      role="img"
-      aria-label="Volar's mark opening into a heart, using its original carved geometry"
-    ></canvas>
-  </header>
-  <div class="purpose-lead">
-    <h2>A different future<br /><em>for aerial robots.</em></h2>
-    <p>
-      The destructive use of drones in war is one reason to ask what these machines should be built
-      for. Civilian applications give us a clear direction: deliver help, inspect structures, and
-      reduce the need for people to enter hazardous places.
+    <p class="purpose-standfirst">
+      Aerial robots can bring help to an emergency and take tools into hazardous places.
+      We want to build a future in which they help protect people.
     </p>
-  </div>
-  <section class="purpose-story">
-    <div>
-      <p class="eyebrow">People</p>
-      <h2>Send the tool.<br /><em>Keep the expertise.</em></h2>
+  </header>
+  <div class="purpose-body">
+    <section class="purpose-story" aria-labelledby="purpose-future">
+      <h2 id="purpose-future">A different future <em>for aerial robots.</em></h2>
       <p>
-        Inspectors sometimes need ropes, scaffolding or elevated platforms to reach a measurement
-        point. An aerial robot could reduce the need for direct access to some of those places.
+        Think of a drone, and an image of war may come to mind. The association with destruction
+        is understandable. It also gives the people building these machines a responsibility to
+        choose what they are for.
       </p>
       <p>
-        People still choose the task, supervise the operation and interpret the readings. The goal
-        is a useful tool and a safer position from which to work.
+        Civilian applications offer another direction: delivering help, inspecting structures and
+        reducing the need for people to enter hazardous places. There are already examples of what
+        that can mean in practice.
       </p>
-    </div>
-    <figure class="data-visual">
-      <div class="data-number">{{ page.hse_falls }}<small> / {{ page.hse_total }}</small></div>
-      <p>Worker deaths in Great Britain in 2025/26 were caused by falls from height.</p>
-      <div
-        class="data-dots"
-        data-data-dots
-        data-total="{{ page.hse_total }}"
-        data-highlight="{{ page.hse_falls }}"
-        aria-hidden="true"
-      ></div>
-      <figcaption class="source-note">
-        HSE provisional counts, all industries. This describes the hazard, not deaths preventable by
-        drones. <a href="#source-hse">Source [1]</a>
-      </figcaption>
-    </figure>
-  </section>
-  <section class="purpose-story sand-section">
-    <img
-      src="{{ '/assets/img/research/contact-flight.webp' | relative_url }}"
-      width="1200"
-      height="900"
-      loading="lazy"
-      alt="A miniThex research robot holding its tactile sensor against a laboratory wall"
-    />
-    <div>
-      <p class="eyebrow">Infrastructure</p>
-      <h2>Care begins<br /><em>with knowing.</em></h2>
+    </section>
+    <section class="purpose-story" aria-labelledby="purpose-help">
+      <p class="eyebrow">Emergency care</p>
+      <h2 id="purpose-help">Help can arrive <em>through the air.</em></h2>
       <p>
-        Bridges, ships, dams and wind towers all need inspection. Knowing where steel has lost
-        thickness helps engineers decide what needs attention.
+        In a Swedish study of suspected cardiac arrests, drones delivered an automated external
+        defibrillator (AED) ahead of an ambulance in <strong>37 of 55 cases with comparable arrival
+        times</strong>. <a href="#source-aed" aria-label="Source 1: Swedish AED study">[1]</a>
       </p>
       <p>
-        Volar is developing tactile contact and PEC thickness sensing to bring a measurement tool to
-        hard-to-reach steel. Useful inspection will depend on validating the full workflow against
-        real requirements. <a href="#source-autoassess">[4]</a>
+        Two patients received a shock from a drone-delivered AED before the ambulance arrived;
+        one survived to 30 days. The aircraft brought the equipment, and people on the ground
+        used it to provide care.
       </p>
-    </div>
-  </section>
-  <section class="purpose-story">
-    <div>
-      <p class="eyebrow">Evidence from another application</p>
-      <h2>Help can arrive<br /><em>through the air.</em></h2>
+      <figure class="data-visual" aria-labelledby="aed-figure-caption">
+        <div class="data-number" aria-hidden="true">37<small> / 55</small></div>
+        <p>Comparable arrivals where the drone delivered the defibrillator first.</p>
+        <figcaption class="source-note" id="aed-figure-caption">
+          The study recorded 211 alerts, 72 drone dispatches and 58 completed deliveries.
+          Weather, airspace and other exclusions applied. This was a different system from Volar's;
+          the study does not establish a population-wide survival benefit.
+          <a href="#source-aed">Source [1]</a>
+        </figcaption>
+      </figure>
+    </section>
+    <section class="purpose-story" aria-labelledby="purpose-work">
+      <p class="eyebrow">A safer place to work</p>
+      <h2 id="purpose-work">Care belongs <em>at work, too.</em></h2>
       <p>
-        In a Swedish observational study, drones delivered defibrillators before ambulances in
-        <strong>37 of 55 cases with comparable arrival times</strong>. Drones were dispatched for 72
-        of 211 alerts, and completed 58 deliveries. <a href="#source-aed">[2]</a>
+        Protecting people also means caring about the risks they face at work.
+        Inspectors may need ropes, scaffolding or elevated platforms to reach a measurement point.
+        We want a useful inspection to demand less exposure to danger.
       </p>
       <p>
-        This was a different system, not a Volar project. It demonstrates a practical civilian use
-        of aerial robotics; it does not establish a population-wide survival benefit.
+        HSE's provisional figures for Great Britain in 2025/26 record <strong>{{ page.hse_falls }}
+        worker deaths from falls from height</strong>, out of {{ page.hse_total }} work-related
+        worker fatalities across all industries.
+        <a href="#source-hse" aria-label="Source 2: HSE fatal injury statistics">[2]</a>
       </p>
-    </div>
-    <figure class="data-visual">
-      <div class="data-number">37<small> / 55</small></div>
-      <p>Comparable arrivals where a drone delivered the defibrillator first.</p>
-      <figcaption class="source-note">
-        Schierbeck et al., 2023. Selected operations in Sweden; weather, airspace and other
-        exclusions applied.
-        <a href="#source-aed">Source [2]</a>
-      </figcaption>
-    </figure>
-  </section>
-  <div class="purpose-footnotes">
-    <details class="disclosure" id="sources">
-      <summary>Sources &amp; visual credits</summary>
-      <div class="disclosure-body">
+      <figure class="data-visual" aria-labelledby="hse-figure-caption">
+        <div class="data-number" aria-hidden="true">{{ page.hse_falls }}<small> / {{ page.hse_total }}</small></div>
+        <p>Worker fatalities caused by falls from height, Great Britain, 2025/26.</p>
+        <div
+          class="data-dots"
+          data-data-dots
+          data-total="{{ page.hse_total }}"
+          data-highlight="{{ page.hse_falls }}"
+          aria-hidden="true"
+        ></div>
+        <figcaption class="source-note" id="hse-figure-caption">
+          Each dot represents one worker fatality; Orange marks falls from height. These provisional,
+          all-industry counts describe the hazard. They are not a count of deaths preventable by drones.
+          <a href="#source-hse">Source [2]</a>
+        </figcaption>
+      </figure>
+      <p>
+        If a robot can take a measurement at an exposed location, an inspector may be able to do
+        that part of the job from a safer position. That is a purpose worth working toward.
+      </p>
+    </section>
+    <section class="purpose-story" aria-labelledby="purpose-inspection">
+      <p class="eyebrow">An ambition for inspection</p>
+      <h2 id="purpose-inspection">Bring the tool <em>to the hard-to-reach place.</em></h2>
+      <p>
+        That ambition extends to confined spaces. AUTOASSESS describes surveyors entering ships'
+        ballast tanks and cargo holds to inspect their structures. Difficult access, darkness,
+        slippery surfaces and hazardous atmospheres can make this demanding work dangerous.
+        <a href="#source-autoassess" aria-label="Source 3: About AUTOASSESS">[3]</a>
+      </p>
+      <p>
+        The project aims to use aerial robots for inspection and keep surveyors out of harm's way.
+        It is an example of how the place where a measurement is taken could change, while people
+        still need the information that measurement provides.
+      </p>
+    </section>
+    <section class="purpose-story" aria-labelledby="purpose-people">
+      <p class="eyebrow">People at the center</p>
+      <h2 id="purpose-people">Send the tool.<br /><em>Keep the expertise.</em></h2>
+      <p>
+        For us, the purpose of an aerial robot is to support the people doing the work. Their
+        knowledge, judgment and responsibility remain essential. We want inspectors to be able
+        to apply those skills from a safer place.
+      </p>
+      <p>
+        People choose the task, supervise the operation, interpret the readings and decide what
+        needs attention. Useful autonomy should give them better access to evidence and the
+        ability to intervene.
+      </p>
+      <aside class="purpose-outlook" aria-label="Volar's contribution">
+        <p class="eyebrow">Our contribution</p>
+        <h3>A useful tool.<br /><em>A safer position.</em></h3>
         <p>
-          Sources checked on 23 October 2026. External examples describe their own systems and
-          conditions.
+          At Volar, we are developing tactile interaction for aerial robots. Through SOAR-NDT,
+          we are working toward bringing contact sensing and thickness inspection to hard-to-reach
+          steel. <a href="#source-soar-ndt" aria-label="Source 4: SOAR-NDT project description">[4]</a>
         </p>
-        <ol>
-          <li id="source-hse">
-            <a href="https://www.hse.gov.uk/statistics/fatals-overview.htm"
-              >HSE: work-related fatal injuries in Great Britain, 2025/26.</a
-            >
-            Provisional counts: {{ page.hse_total }} worker fatalities, including {{ page.hse_falls
-            }} falls from height.
-          </li>
-          <li id="source-aed">
-            <a href="https://pubmed.ncbi.nlm.nih.gov/38000871/"
-              >Schierbeck et al., The Lancet Digital Health (2023).</a
-            >
-            Drone delivery of automated external defibrillators: comparable arrival times available
-            for 55 cases, from 211 alerts, 72 drone dispatches and 58 completed deliveries.
-          </li>
-          <li id="source-soar">
-            <a href="https://doi.org/10.5281/zenodo.20271808"
-              >SOAR-Touch practical activities, Zenodo.</a
-            >
-            Tactile sensing and laboratory contact-flight research recordings.
-          </li>
-          <li id="source-autoassess">
-            <a href="https://autoassess.eu/open-calls-winners/"
-              >AUTOASSESS Open Call #2 winners: SOAR-NDT.</a
-            >
-            The tactile and PEC inspection approach.
-          </li>
-        </ol>
         <p>
-          Contact-flight photograph: SOAR-Touch research archive, supplied by Volar. The animated
-          mark uses the original Volar field-carving geometry.
+          This work is in development. Practical inspection will depend on validating the full
+          workflow against real requirements. Helping people work safely is the reason to do it.
         </p>
-      </div>
-    </details>
+        <a class="text-link" href="{{ '/#project-soar-ndt' | relative_url }}">Meet the research<span class="link-arrow" aria-hidden="true">→</span></a>
+      </aside>
+    </section>
+    <div class="purpose-footnotes">
+      <details class="disclosure" id="sources">
+        <summary>Sources &amp; visual credits</summary>
+        <div class="disclosure-body">
+          <p>
+            Sources checked on 26 October 2026. External examples describe their own systems and
+            conditions. The human role described here expresses Volar's purpose.
+          </p>
+          <ol>
+            <li id="source-aed">
+              <a href="https://pubmed.ncbi.nlm.nih.gov/38000871/">Schierbeck et al., The Lancet Digital Health (2023).</a>
+              Prospective observational study in Sweden: 37 earlier AED deliveries among 55
+              comparable arrival times. Two patients were defibrillated before ambulance arrival;
+              one achieved 30-day survival.
+            </li>
+            <li id="source-hse">
+              <a href="https://www.hse.gov.uk/statistics/fatals-overview.htm">HSE: work-related fatal injuries in Great Britain, 2025/26.</a>
+              Provisional counts: {{ page.hse_total }} worker fatalities, including {{ page.hse_falls }} falls from height.
+            </li>
+            <li id="source-autoassess">
+              <a href="https://autoassess.eu/about/">About AUTOASSESS: the problem and the project.</a>
+              Marine inspection hazards and the project's aim to keep surveyors out of dangerous spaces.
+            </li>
+            <li id="source-soar-ndt">
+              <a href="https://autoassess.eu/open-calls-winners/">AUTOASSESS Open Call #2 winners: SOAR-NDT.</a>
+              The public description of the tactile and pulsed eddy current inspection approach.
+              It describes the project direction, not completed validation.
+            </li>
+          </ol>
+          <p>
+            The animated heart uses Volar's original field-carving geometry. The background uses
+            the canonical Volar pattern. The HSE dot plot represents the counts stated above.
+          </p>
+        </div>
+      </details>
+    </div>
   </div>
 </article>
 <nav class="route-path" aria-label="Return to company">
