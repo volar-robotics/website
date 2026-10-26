@@ -133,7 +133,7 @@ dividers and justified, automatically hyphenated prose columns. The introduction
 uses the same column split and gap as the evidence row with a left capsule.
 Evidence sits in a Deep Blue
 capsule on the right, then an Aqua capsule on the left; narrow screens put each
-capsule after its text while retaining alternate alignment where space allows.
+capsule centered beneath its text.
 Editorial illustrations show AED delivery and human-supervised contact inspection,
 in their related sections, at a bounded supporting size and in the website palette,
 with captions identifying them as concepts. Dot grids stay inset from the curved

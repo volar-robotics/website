@@ -981,11 +981,8 @@ canvas.has-geometry {
     align-items: stretch;
     gap: 28px;
   }
-  .purpose-evidence-right .data-visual {
-    margin-left: auto;
-  }
-  .purpose-evidence-left .data-visual {
-    margin-right: auto;
+  .purpose-evidence .data-visual {
+    margin-inline: auto;
   }
 }
 @media (max-width: 560px) {
