@@ -2144,11 +2144,12 @@ canvas.has-geometry {
 
 /* A compact viewport gives each capsule and evidence panel its own reading stop. */
 .story-compact {
-  --scene-height: 100dvh;
+  --scroll-viewport-height: 100svh;
+  --scene-height: var(--visible-viewport-height, 100dvh);
   --scene-gap: clamp(10px, calc(10px + (var(--scene-height) - 660px) * 0.06), 24px);
 }
 .story-compact .home-story-stage {
-  height: 100dvh;
+  height: var(--visible-viewport-height, 100dvh);
 }
 .story-compact .story-bars {
   clip-path: var(--compact-bars-clip, inset(0));
@@ -2158,7 +2159,7 @@ canvas.has-geometry {
   flex-direction: column;
   justify-content: space-between;
   gap: 24px;
-  min-height: 100svh;
+  min-height: 0;
   height: var(--scene-height);
   padding-top: 108px;
   padding-bottom: 28px;

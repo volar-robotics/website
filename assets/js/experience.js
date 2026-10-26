@@ -1,4 +1,6 @@
-import { HomeStory } from './home-story.js';
+const storyModule = new URL('./home-story.js', import.meta.url);
+storyModule.search = new URL(import.meta.url).search;
+const { HomeStory } = await import(storyModule.href);
 
 const base = document.body.dataset.baseurl || '';
 const asset = (path) => `${base}${path}`;

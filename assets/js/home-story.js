@@ -58,6 +58,7 @@ export class HomeStory {
     this.frame = 0;
     addEventListener('scroll', () => this.schedule(), { passive: true });
     addEventListener('resize', () => this.measure());
+    window.visualViewport?.addEventListener('resize', () => this.measure());
     document.querySelectorAll('a[href="#technology"]').forEach((link) =>
       link.addEventListener('click', (event) => {
         if (!this.enhanced) return;
@@ -147,6 +148,11 @@ export class HomeStory {
   measure() {
     if (!this.enhanced) return;
     if (this.compact) {
+      const viewport = window.visualViewport;
+      if (!viewport || viewport.scale === 1) {
+        this.root.style.setProperty('--visible-viewport-height', `${viewport ? viewport.height : innerHeight}px`);
+      }
+      this.intro.style.minHeight = 'var(--scroll-viewport-height)';
       this.copy.style.removeProperty('transform');
       this.sections.forEach(({ element }) => element.style.removeProperty('transform'));
       this.barLayer.style.removeProperty('transform');
@@ -209,6 +215,7 @@ export class HomeStory {
       const last = this.compactScenes[this.compactScenes.length - 1];
       this.root.style.setProperty('--home-story-length', `${(last.stop + last.hold + 1.5) * this.height}px`);
       this.root.style.removeProperty('--scene-height');
+      this.intro.style.removeProperty('min-height');
       this.destination = this.targets.map(relativeBounds);
       this.companySourceBounds = relativeBounds(this.companySource);
       this.compactResearchBounds = relativeBounds(this.sections[1].content);

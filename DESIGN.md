@@ -231,9 +231,14 @@ panel and behind the research heading. Its complete pattern continues into the
 expanding field that becomes the company background.
 Compact SOAR-Touch places its photograph alongside the heading, summary and evidence
 scope, with the project link and a two-column paper inset below. This keeps the
-project's explanation and resources in one compact reading area. The pinned stage fills
-the dynamic viewport as browser controls retract. Compact panels fill that visible
-height, distributing spare space between content groups and increasing type and
+project's explanation and resources in one compact reading area. The pinned stage
+follows the unzoomed visual viewport as browser controls retract
+or expand, including browsers whose CSS viewport height includes an obscured area.
+The opening scene fits that same visible height; the small CSS viewport remains the
+separate reference for scroll timing. Pinch zoom retains the existing layout size.
+The scene module shares the entry
+script's build version so cached code and layout refresh together.
+Compact panels fill that visible height, distributing spare space between content groups and increasing type and
 portrait sizes within bounds. Reading stops are measured at the small viewport
 height before the visible composition is measured, keeping scroll timing stable
 through toolbar changes. Short screens retain compact sizes.
