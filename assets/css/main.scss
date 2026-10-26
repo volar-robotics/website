@@ -1939,7 +1939,13 @@ canvas.has-geometry {
   top: -1%;
   transform: translateX(-50%);
 }
+.company-portrait-window.portrait-simone > img {
+  height: 100%;
+  top: 3%;
+}
 .company-portrait-window.portrait-antonio > img {
+  height: 104%;
+  top: -1%;
   left: 53%;
 }
 .company-founder figcaption {

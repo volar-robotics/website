@@ -151,8 +151,9 @@ preprint has a clearly labeled, non-clickable placeholder.
 Research photographs and tactile images come from `soar-touch-report/assets/img/`.
 Both founder portraits use the supplied headshots, encoded as transparent WebP.
 Simone’s background removal and subtle lighting adjustment match Antonio’s supplied
-cutout. Their matched portrait framing uses shared optical centering in capsule masks.
-Mobile crops use a smaller image scale while preserving the capsule dimensions.
+cutout. Their portrait framing uses founder-specific uniform scales and offsets to balance
+eye spacing and eye level inside equal capsule masks. The same optical framing
+applies on mobile while the capsule dimensions adapt to the screen.
 The Sapienza logo uses the existing university artwork in `assets/img/Uniroma1.svg`. Product illustrations
 use the supplied transparent PNGs at two resolutions. A square, bounded composition
 keeps the capsule proportions fixed. The rear image is clipped to the opening; a matching
