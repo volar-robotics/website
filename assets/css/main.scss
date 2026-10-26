@@ -447,7 +447,7 @@ a:is(:hover, :focus-visible) .link-arrow {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 28px var(--gap);
-  padding: var(--section) var(--gutter);
+  padding: var(--section) clamp(24px, 4.5vw, 88px);
 }
 .purpose-meta,
 .purpose-standfirst {
@@ -497,7 +497,7 @@ a:is(:hover, :focus-visible) .link-arrow {
   --purpose-gap: clamp(32px, 5vw, 72px);
   max-width: 1240px;
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: clamp(24px, 4.5vw, 88px);
   font-size: clamp(17px, 1.4vw, 20px);
   line-height: 1.75;
 }
@@ -2026,23 +2026,95 @@ canvas.has-geometry {
 .story-enhanced.story-company-reading .story-company {
   pointer-events: auto;
 }
-@media (min-width: 1600px) and (min-height: 1000px) {
+@media (min-width: 1600px) and (min-height: 850px) {
+  .story-enhanced:not(.story-compact) {
+    --wide-inset: max(calc(var(--gutter) + 96px), calc((100vw - 1440px) / 2));
+    --wide-frame-height: min(940px, calc(100svh - 120px));
+    --wide-frame-top: calc((100svh - var(--wide-frame-height)) / 2);
+    --wide-body-height: calc(var(--wide-frame-height) - 260px);
+  }
   .story-enhanced:not(.story-compact) :is(.story-intro, .story-technology, .story-research, .story-company) {
-    padding-block: 64px;
+    padding: var(--wide-frame-top) var(--wide-inset);
+  }
+  .story-enhanced:not(.story-compact) .story-intro-copy {
+    width: 56%;
   }
   .story-enhanced:not(.story-compact) .story-mark-source {
+    left: auto;
+    right: var(--wide-inset);
+    top: 50%;
     transform: translateY(-50%);
   }
-  .story-enhanced:not(.story-compact) .story-technology {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .story-enhanced:not(.story-compact) :is(.story-technology, .story-research, .company-scene-main) {
+    display: grid;
+    grid-template-rows: 180px minmax(0, 1fr) 32px;
+    gap: 24px;
+    align-content: stretch;
+    justify-content: normal;
   }
-  .story-enhanced:not(.story-compact) :is(.story-technology-heading, .story-windows, .story-technology-foot) {
+  .story-enhanced:not(.story-compact) :is(.story-technology-heading, .research-heading, .company-scene-heading) {
     width: 100%;
+    max-width: none;
+    margin: 0;
+    align-self: start;
+    text-align: left;
+  }
+  .story-enhanced:not(.story-compact) :is(.story-technology-heading, .research-heading, .company-scene-heading) .eyebrow {
+    margin-bottom: 12px;
+  }
+  .story-enhanced:not(.story-compact) :is(.story-technology-heading, .research-heading, .company-scene-heading) h2 {
+    max-width: none;
+    font-size: clamp(48px, 3vw, 60px);
+    line-height: 1.08;
+  }
+  .story-enhanced:not(.story-compact) .research-heading h2 em {
+    display: block;
   }
   .story-enhanced:not(.story-compact) .story-windows {
-    margin-block: 0;
+    --story-window-height: min(620px, var(--wide-body-height));
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    align-self: center;
+  }
+  .story-enhanced:not(.story-compact) .story-windows > * {
+    width: min(100%, calc(var(--wide-body-height) / 1.6), 360px);
+    justify-self: center;
+  }
+  .story-enhanced:not(.story-compact) .story-pillar {
+    padding: clamp(32px, 4svh, 52px) 28px;
+  }
+  .story-enhanced:not(.story-compact) .story-technology-foot {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    align-self: end;
+  }
+  .story-enhanced:not(.story-compact) .research-panels {
+    height: min(660px, var(--wide-body-height));
+    max-height: none;
+    align-self: center;
+    flex: none;
+  }
+  .story-enhanced:not(.story-compact) .research-project:not(.research-project-development) .research-media {
+    width: min(100%, calc(var(--wide-body-height) / 1.6), 350px);
+    justify-self: center;
+  }
+  .story-enhanced:not(.story-compact) .research-project-heading h3 {
+    font-size: 40px;
+  }
+  .story-enhanced:not(.story-compact) .research-field-mark {
+    width: 100px;
+  }
+  .story-enhanced:not(.story-compact) .story-company {
+    display: block;
+  }
+  .story-enhanced:not(.story-compact) .company-scene-main {
+    max-width: none;
+    height: var(--wide-frame-height);
+  }
+  .story-enhanced:not(.story-compact) .company-directory {
+    align-self: center;
   }
 }
 @media (max-width: 1100px) {

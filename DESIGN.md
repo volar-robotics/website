@@ -129,7 +129,9 @@ to supporting human expertise. AUTOASSESS's About page supplies the inspection
 context; the human role is expressed as Volar's purpose. A full-width patterned Deep
 Blue hero holds the Sand title and standfirst, with an unframed Orange heart carve.
 The article uses one bounded frame on Sand, with consistent full-frame section
-dividers and justified, automatically hyphenated prose columns. The introduction
+dividers and justified, automatically hyphenated prose columns. The article and
+hero use bounded inner padding independent of the outer viewport gutters, keeping
+the reading columns stable on very wide or zoomed-out viewports. The introduction
 uses the same column split and gap as the evidence row with a left capsule.
 Evidence sits in a Deep Blue
 capsule on the right, then an Aqua capsule on the left; narrow screens put each
@@ -188,12 +190,15 @@ keyboard focus continues to reveal the destination scene.
 In document flow, scene headings leave clearance for the fixed return mark when
 opened directly through a fragment URL.
 
-On enhanced viewports at least 1600 pixels wide and 1000 pixels high, Intro,
-Technology, Research and Company center their complete compositions on the same
-vertical midpoint. Symmetric scene padding and a centered Technology flex stack
-keep the alignment after capsule heights reach their limits. Smaller viewports
-retain their existing layout. Capsule destinations are measured from that layout
-so the mark handover follows the windows through resizing.
+Enhanced viewports at least 1600 pixels wide and 850 pixels high use a shared
+chapter frame up to 1440 pixels wide, bounded to the available height and clear of
+the fixed return mark. Technology, Research
+and Company share a left heading anchor, headline scale, reserved heading row
+and centered content region. Capsule proportions remain vertical as the content
+region changes height. Intro shares the horizontal frame with balanced copy and
+mark columns. Laptop and compact layouts retain their existing composition.
+Capsule destinations and the research-to-company field expansion are measured
+from that layout through resizing.
 
 The desktop technology composition uses three aligned, equally tall capsule windows.
 Compact screens present those windows successively in the same viewport region.
