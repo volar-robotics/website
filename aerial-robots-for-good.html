@@ -13,21 +13,23 @@ hse_falls: 31
 </nav>
 <article class="purpose-article">
   <header class="purpose-hero">
-    <p class="eyebrow purpose-meta">Our purpose <span aria-hidden="true">·</span> <time datetime="2026-10-26">26 October 2026</time></p>
-    <h1>Built<br /><em>to care.</em></h1>
-    <div class="purpose-heart-field">
-      <canvas
-        class="purpose-mark"
-        data-brand-mark="heart"
-        data-cycle-marks="heart,rest"
-        role="img"
-        aria-label="Volar Robotics: built to care"
-      ></canvas>
+    <div class="purpose-hero-inner">
+      <p class="eyebrow purpose-meta">Our purpose <span aria-hidden="true">·</span> <time datetime="2026-10-26">26 October 2026</time></p>
+      <h1>Built<br /><em>to care.</em></h1>
+      <div class="purpose-heart">
+        <canvas
+          class="purpose-mark"
+          data-brand-mark="heart"
+          data-cycle-marks="heart,rest"
+          role="img"
+          aria-label="Volar Robotics: built to care"
+        ></canvas>
+      </div>
+      <p class="purpose-standfirst">
+        Aerial robots can bring help to an emergency and take tools into hazardous places.
+        We want to build a future in which they help protect people.
+      </p>
     </div>
-    <p class="purpose-standfirst">
-      Aerial robots can bring help to an emergency and take tools into hazardous places.
-      We want to build a future in which they help protect people.
-    </p>
   </header>
   <div class="purpose-body">
     <section class="purpose-story" aria-labelledby="purpose-future">
@@ -43,22 +45,27 @@ hse_falls: 31
         that can mean in practice.
       </p>
     </section>
-    <section class="purpose-story" aria-labelledby="purpose-help">
-      <p class="eyebrow">Emergency care</p>
-      <h2 id="purpose-help">Help can arrive <em>through the air.</em></h2>
-      <p>
-        In a Swedish study of suspected cardiac arrests, drones delivered an automated external
-        defibrillator (AED) ahead of an ambulance in <strong>37 of 55 cases with comparable arrival
-        times</strong>. <a href="#source-aed" aria-label="Source 1: Swedish AED study">[1]</a>
-      </p>
-      <p>
-        Two patients received a shock from a drone-delivered AED before the ambulance arrived;
-        one survived to 30 days. The aircraft brought the equipment, and people on the ground
-        used it to provide care.
-      </p>
+    <section class="purpose-story purpose-evidence purpose-evidence-right" aria-labelledby="purpose-help">
+      <div class="purpose-copy">
+        <p class="eyebrow">Emergency care</p>
+        <h2 id="purpose-help">Help can arrive <em>through the air.</em></h2>
+        <p>
+          In a Swedish study of suspected cardiac arrests, drones delivered an automated external
+          defibrillator (AED) ahead of an ambulance in <strong>37 of 55 cases with comparable arrival
+          times</strong>. <a href="#source-aed" aria-label="Source 1: Swedish AED study">[1]</a>
+        </p>
+        <p>
+          Two patients received a shock from a drone-delivered AED before the ambulance arrived;
+          one survived to 30 days. The aircraft brought the equipment, and people on the ground
+          used it to provide care.
+        </p>
+      </div>
       <figure class="data-visual" aria-labelledby="aed-figure-caption">
-        <div class="data-number" aria-hidden="true">37<small> / 55</small></div>
-        <p>Comparable arrivals where the drone delivered the defibrillator first.</p>
+        <div class="evidence-capsule">
+          <div class="data-number" aria-hidden="true">37<small> / 55</small></div>
+          <p>Comparable arrivals where the drone delivered the defibrillator first.</p>
+          <div class="data-dots" data-data-dots data-total="55" data-highlight="37" aria-hidden="true"></div>
+        </div>
         <figcaption class="source-note" id="aed-figure-caption">
           The study recorded 211 alerts, 72 drone dispatches and 58 completed deliveries.
           Weather, airspace and other exclusions applied. This was a different system from Volar's;
@@ -67,55 +74,69 @@ hse_falls: 31
         </figcaption>
       </figure>
     </section>
-    <section class="purpose-story" aria-labelledby="purpose-work">
-      <p class="eyebrow">A safer place to work</p>
-      <h2 id="purpose-work">Care belongs <em>at work, too.</em></h2>
-      <p>
-        Protecting people also means caring about the risks they face at work.
-        Inspectors may need ropes, scaffolding or elevated platforms to reach a measurement point.
-        We want a useful inspection to demand less exposure to danger.
-      </p>
-      <p>
-        HSE's provisional figures for Great Britain in 2025/26 record <strong>{{ page.hse_falls }}
-        worker deaths from falls from height</strong>, out of {{ page.hse_total }} work-related
-        worker fatalities across all industries.
-        <a href="#source-hse" aria-label="Source 2: HSE fatal injury statistics">[2]</a>
-      </p>
+    <figure class="purpose-illustration">
+      <img src="{{ '/assets/img/purpose/aed-delivery.webp' | relative_url }}" width="1536" height="1024" loading="lazy" alt="Concept illustration of a drone bringing a defibrillator case to people providing assistance" />
+      <figcaption>A concept illustration of equipment arriving to support people on the ground.</figcaption>
+    </figure>
+    <section class="purpose-story purpose-evidence purpose-evidence-left" aria-labelledby="purpose-work">
+      <div class="purpose-copy">
+        <p class="eyebrow">A safer place to work</p>
+        <h2 id="purpose-work">Care belongs <em>at work, too.</em></h2>
+        <p>
+          Protecting people also means caring about the risks they face at work.
+          Inspectors may need ropes, scaffolding or elevated platforms to reach a measurement point.
+          We want a useful inspection to demand less exposure to danger.
+        </p>
+        <p>
+          HSE's provisional figures for Great Britain in 2025/26 record <strong>{{ page.hse_falls }}
+          worker deaths from falls from height</strong>, out of {{ page.hse_total }} work-related
+          worker fatalities across all industries.
+          <a href="#source-hse" aria-label="Source 2: HSE fatal injury statistics">[2]</a>
+        </p>
+        <p>
+          If a robot can take a measurement at an exposed location, an inspector may be able to do
+          that part of the job from a safer position. That is a purpose worth working toward.
+        </p>
+      </div>
       <figure class="data-visual" aria-labelledby="hse-figure-caption">
-        <div class="data-number" aria-hidden="true">{{ page.hse_falls }}<small> / {{ page.hse_total }}</small></div>
-        <p>Worker fatalities caused by falls from height, Great Britain, 2025/26.</p>
-        <div
-          class="data-dots"
-          data-data-dots
-          data-total="{{ page.hse_total }}"
-          data-highlight="{{ page.hse_falls }}"
-          aria-hidden="true"
-        ></div>
+        <div class="evidence-capsule">
+          <div class="data-number" aria-hidden="true">{{ page.hse_falls }}<small> / {{ page.hse_total }}</small></div>
+          <p>Worker fatalities caused by falls from height, Great Britain, 2025/26.</p>
+          <div
+            class="data-dots"
+            data-data-dots
+            data-total="{{ page.hse_total }}"
+            data-highlight="{{ page.hse_falls }}"
+            aria-hidden="true"
+          ></div>
+        </div>
         <figcaption class="source-note" id="hse-figure-caption">
           Each dot represents one worker fatality; Orange marks falls from height. These provisional,
           all-industry counts describe the hazard. They are not a count of deaths preventable by drones.
           <a href="#source-hse">Source [2]</a>
         </figcaption>
       </figure>
-      <p>
-        If a robot can take a measurement at an exposed location, an inspector may be able to do
-        that part of the job from a safer position. That is a purpose worth working toward.
-      </p>
     </section>
-    <section class="purpose-story" aria-labelledby="purpose-inspection">
-      <p class="eyebrow">An ambition for inspection</p>
-      <h2 id="purpose-inspection">Bring the tool <em>to the hard-to-reach place.</em></h2>
-      <p>
-        That ambition extends to confined spaces. AUTOASSESS describes surveyors entering ships'
-        ballast tanks and cargo holds to inspect their structures. Difficult access, darkness,
-        slippery surfaces and hazardous atmospheres can make this demanding work dangerous.
-        <a href="#source-autoassess" aria-label="Source 3: About AUTOASSESS">[3]</a>
-      </p>
-      <p>
-        The project aims to use aerial robots for inspection and keep surveyors out of harm's way.
-        It is an example of how the place where a measurement is taken could change, while people
-        still need the information that measurement provides.
-      </p>
+    <section class="purpose-story purpose-inspection" aria-labelledby="purpose-inspection">
+      <div class="purpose-copy">
+        <p class="eyebrow">An ambition for inspection</p>
+        <h2 id="purpose-inspection">Bring the tool <em>to the hard-to-reach place.</em></h2>
+        <p>
+          That ambition extends to confined spaces. AUTOASSESS describes surveyors entering ships'
+          ballast tanks and cargo holds to inspect their structures. Difficult access, darkness,
+          slippery surfaces and hazardous atmospheres can make this demanding work dangerous.
+          <a href="#source-autoassess" aria-label="Source 3: About AUTOASSESS">[3]</a>
+        </p>
+        <p>
+          The project aims to use aerial robots for inspection and keep surveyors out of harm's way.
+          It is an example of how the place where a measurement is taken could change, while people
+          still need the information that measurement provides.
+        </p>
+      </div>
+      <figure class="purpose-illustration">
+        <img src="{{ '/assets/img/purpose/remote-inspection.webp' | relative_url }}" width="1536" height="1024" loading="lazy" alt="Concept illustration of an inspector outside a tank directing a drone with a contact probe inside" />
+        <figcaption>Concept illustration: a person directs an aerial tool from outside a confined space.</figcaption>
+      </figure>
     </section>
     <section class="purpose-story" aria-labelledby="purpose-people">
       <p class="eyebrow">People at the center</p>
@@ -147,7 +168,7 @@ hse_falls: 31
     </section>
     <div class="purpose-footnotes">
       <details class="disclosure" id="sources">
-        <summary>Sources &amp; visual credits</summary>
+        <summary>Sources</summary>
         <div class="disclosure-body">
           <p>
             Sources checked on 26 October 2026. External examples describe their own systems and
@@ -174,10 +195,6 @@ hse_falls: 31
               It describes the project direction, not completed validation.
             </li>
           </ol>
-          <p>
-            The animated heart uses Volar's original field-carving geometry. The background uses
-            the canonical Volar pattern. The HSE dot plot represents the counts stated above.
-          </p>
         </div>
       </details>
     </div>

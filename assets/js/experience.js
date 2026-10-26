@@ -28,7 +28,7 @@ function updateReturnBrand() {
   const x = brand.left + brand.width / 2;
   const y = brand.top + brand.height / 2;
   const dark = [
-    ...document.querySelectorAll('.story-dark-ground, .story-product-window, .research-project-development, .story-company, .purpose-outlook, .site-footer'),
+    ...document.querySelectorAll('.story-dark-ground, .story-product-window, .research-project-development, .story-company, .purpose-hero, .purpose-outlook, .site-footer'),
   ].some((surface) => {
     const bounds = surface.getBoundingClientRect();
     const research = surface.closest('.story-research');
@@ -303,13 +303,13 @@ document.querySelectorAll('[data-product-stage]').forEach((stage) => {
   });
 });
 
-const dots = document.querySelector('[data-data-dots]');
-if (dots)
+document.querySelectorAll('[data-data-dots]').forEach((dots) => {
   for (let i = 0; i < Number(dots.dataset.total); i++) {
     const dot = document.createElement('i');
-    if (i < Number(dots.dataset.highlight)) dot.className = 'is-height';
+    if (i < Number(dots.dataset.highlight)) dot.className = 'is-highlight';
     dots.append(dot);
   }
+});
 document.querySelectorAll('a[href^="#source-"]').forEach((link) =>
   link.addEventListener('click', () => {
     document.getElementById(link.hash.slice(1))?.closest('details')?.setAttribute('open', '');

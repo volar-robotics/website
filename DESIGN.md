@@ -126,10 +126,14 @@ presented as evidence of Volar's impact.
 Its reading sequence moves from the association of drones with war to AED delivery,
 workplace falls, AUTOASSESS's confined-space inspection goal and Volar's commitment
 to supporting human expertise. AUTOASSESS's About page supplies the inspection
-context; the human role is expressed as Volar's purpose. The article uses a bounded
-reading column on Sand, unboxed evidence figures and a patterned Deep Blue outlook
-panel. An Orange heart carve sits in a patterned capsule beside the title. It uses
-brand geometry rather than a reused laboratory photograph or white statistic cards.
+context; the human role is expressed as Volar's purpose. A full-width patterned Deep
+Blue hero holds the Sand title and standfirst, with an unframed Orange heart carve.
+The article keeps a bounded reading column on Sand. Evidence sits in a Deep Blue
+capsule on the right, then an Aqua capsule on the left; narrow screens put each
+capsule after its text while retaining alternate alignment where space allows.
+Editorial illustrations show AED delivery and human-supervised contact inspection,
+with captions identifying them as concepts. A patterned Deep Blue outlook panel
+closes the narrative. The article uses no reused laboratory photograph.
 On this route the fixed header mark shares Home's arrow behavior: Home at the top,
 return to the article's top after departure, with the same hover and touch states.
 
