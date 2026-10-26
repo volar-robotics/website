@@ -187,6 +187,13 @@ keyboard focus continues to reveal the destination scene.
 In document flow, scene headings leave clearance for the fixed return mark when
 opened directly through a fragment URL.
 
+On enhanced viewports at least 1600 pixels wide and 1000 pixels high, Intro,
+Technology, Research and Company center their complete compositions on the same
+vertical midpoint. Symmetric scene padding and a centered Technology flex stack
+keep the alignment after capsule heights reach their limits. Smaller viewports
+retain their existing layout. Capsule destinations are measured from that layout
+so the mark handover follows the windows through resizing.
+
 The desktop technology composition uses three aligned, equally tall capsule windows.
 Compact screens present those windows successively in the same viewport region.
 miniThex has

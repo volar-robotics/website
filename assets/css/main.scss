@@ -2023,6 +2023,25 @@ canvas.has-geometry {
 .story-enhanced.story-company-reading .story-company {
   pointer-events: auto;
 }
+@media (min-width: 1600px) and (min-height: 1000px) {
+  .story-enhanced:not(.story-compact) :is(.story-intro, .story-technology, .story-research, .story-company) {
+    padding-block: 64px;
+  }
+  .story-enhanced:not(.story-compact) .story-mark-source {
+    transform: translateY(-50%);
+  }
+  .story-enhanced:not(.story-compact) .story-technology {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .story-enhanced:not(.story-compact) :is(.story-technology-heading, .story-windows, .story-technology-foot) {
+    width: 100%;
+  }
+  .story-enhanced:not(.story-compact) .story-windows {
+    margin-block: 0;
+  }
+}
 @media (max-width: 1100px) {
   .company-people {
     gap: 32px;
