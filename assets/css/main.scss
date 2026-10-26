@@ -519,8 +519,6 @@ a:is(:hover, :focus-visible) .link-arrow {
 }
 
 .purpose-story {
-  max-width: 740px;
-  margin-inline: auto;
   padding-block: clamp(28px, 4vw, 48px);
 }
 .purpose-story + .purpose-story {
@@ -539,15 +537,21 @@ a:is(:hover, :focus-visible) .link-arrow {
   max-width: 66ch;
 }
 .purpose-copy {
-  max-width: 740px;
-  margin-inline: auto;
+  min-width: 0;
+}
+.purpose-introduction,
+.purpose-inspection,
+.purpose-conclusion {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: var(--gap);
 }
 .purpose-evidence {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;
   align-items: center;
   gap: clamp(32px, 5vw, 72px);
-  max-width: none;
 }
 .purpose-evidence-left {
   grid-template-columns: 300px minmax(0, 1fr);
@@ -568,8 +572,8 @@ a:is(:hover, :focus-visible) .link-arrow {
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  min-height: 420px;
-  padding: 72px 32px;
+  min-height: 440px;
+  padding: 88px 40px;
   border-radius: 999px;
   background: var(--deep);
   color: var(--sand);
@@ -601,8 +605,10 @@ a:is(:hover, :focus-visible) .link-arrow {
 .data-dots {
   display: grid;
   grid-template-columns: repeat(14, 1fr);
-  gap: 6px;
-  width: 100%;
+  gap: 6px 0;
+  justify-items: center;
+  width: min(100%, 196px);
+  margin-inline: auto;
 }
 .data-dots i {
   width: 7px;
@@ -627,7 +633,6 @@ a:is(:hover, :focus-visible) .link-arrow {
 .purpose-outlook {
   position: relative;
   isolation: isolate;
-  margin-top: 36px;
   padding: clamp(24px, 4vw, 40px);
   background: var(--deep);
   color: var(--sand);
@@ -644,35 +649,30 @@ a:is(:hover, :focus-visible) .link-arrow {
   font-size: 15px;
 }
 .purpose-illustration {
-  max-width: 960px;
-  margin: 20px auto 48px;
+  width: min(100%, 520px);
+  margin: 28px 0 0;
 }
 .purpose-illustration img {
+  display: block;
   width: 100%;
   height: auto;
 }
 .purpose-illustration figcaption {
-  max-width: 740px;
-  margin: 12px auto 0;
+  margin-top: 12px;
   font-size: 13px;
   line-height: 1.6;
   color: var(--muted);
 }
-.purpose-inspection {
-  max-width: 960px;
-}
 .purpose-inspection .purpose-illustration {
-  margin-bottom: 0;
+  margin: 0;
 }
 .purpose-footnotes {
-  max-width: 740px;
-  margin-inline: auto;
-  padding-block: 16px var(--section);
+  padding-block: 0 var(--section);
   font-size: 15px;
   line-height: 1.7;
 }
 .purpose-footnotes .disclosure-body {
-  max-width: none;
+  max-width: 80ch;
 }
 .purpose-footnotes ol {
   padding-inline-start: 24px;
@@ -960,6 +960,15 @@ canvas.has-geometry {
   }
 }
 @media (max-width: 760px) {
+  .purpose-introduction,
+  .purpose-inspection,
+  .purpose-conclusion {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .purpose-introduction {
+    gap: 0;
+  }
   .purpose-evidence {
     display: flex;
     flex-direction: column;

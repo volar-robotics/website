@@ -128,11 +128,14 @@ workplace falls, AUTOASSESS's confined-space inspection goal and Volar's commitm
 to supporting human expertise. AUTOASSESS's About page supplies the inspection
 context; the human role is expressed as Volar's purpose. A full-width patterned Deep
 Blue hero holds the Sand title and standfirst, with an unframed Orange heart carve.
-The article keeps a bounded reading column on Sand. Evidence sits in a Deep Blue
+The article uses one bounded frame on Sand, with consistent full-frame section
+dividers and readable prose columns. Evidence sits in a Deep Blue
 capsule on the right, then an Aqua capsule on the left; narrow screens put each
 capsule after its text while retaining alternate alignment where space allows.
 Editorial illustrations show AED delivery and human-supervised contact inspection,
-with captions identifying them as concepts. A patterned Deep Blue outlook panel
+in their related sections, at a bounded supporting size and in the website palette,
+with captions identifying them as concepts. Dot grids stay inset from the curved
+ends of evidence capsules. A patterned Deep Blue outlook panel
 closes the narrative. The article uses no reused laboratory photograph.
 On this route the fixed header mark shares Home's arrow behavior: Home at the top,
 return to the article's top after departure, with the same hover and touch states.
