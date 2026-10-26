@@ -137,8 +137,8 @@ capsule after its text while retaining alternate alignment where space allows.
 Editorial illustrations show AED delivery and human-supervised contact inspection,
 in their related sections, at a bounded supporting size and in the website palette,
 with captions identifying them as concepts. Dot grids stay inset from the curved
-ends of evidence capsules. A patterned Deep Blue outlook panel
-closes the narrative. The article uses no reused laboratory photograph.
+ends of evidence capsules. A patterned Deep Blue outlook panel with left-aligned
+prose closes the narrative. The article uses no reused laboratory photograph.
 On this route the fixed header mark shares Home's arrow behavior: Home at the top,
 return to the article's top after departure, with the same hover and touch states.
 

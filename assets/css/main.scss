@@ -540,8 +540,7 @@ a:is(:hover, :focus-visible) .link-arrow {
 .purpose-copy {
   min-width: 0;
 }
-.purpose-copy > p:not(.eyebrow),
-.purpose-outlook > p:not(.eyebrow) {
+.purpose-copy > p:not(.eyebrow) {
   text-align: justify;
   hyphens: auto;
 }
