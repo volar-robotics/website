@@ -2023,6 +2023,7 @@ canvas.has-geometry {
   }
   .company-scene-details {
     display: flex;
+    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
     gap: 24px;
@@ -2470,6 +2471,11 @@ canvas.has-geometry {
   border-top: 1px solid var(--line);
 }
 .story-compact .company-scene-details {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   gap: 12px;
 }
 .story-compact .company-origin {
