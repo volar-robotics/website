@@ -129,7 +129,9 @@ to supporting human expertise. AUTOASSESS's About page supplies the inspection
 context; the human role is expressed as Volar's purpose. A full-width patterned Deep
 Blue hero holds the Sand title and standfirst, with an unframed Orange heart carve.
 The article uses one bounded frame on Sand, with consistent full-frame section
-dividers and readable prose columns. Evidence sits in a Deep Blue
+dividers and justified, automatically hyphenated prose columns. The introduction
+uses the same column split and gap as the evidence row with a left capsule.
+Evidence sits in a Deep Blue
 capsule on the right, then an Aqua capsule on the left; narrow screens put each
 capsule after its text while retaining alternate alignment where space allows.
 Editorial illustrations show AED delivery and human-supervised contact inspection,

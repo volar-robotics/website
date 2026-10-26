@@ -494,6 +494,7 @@ a:is(:hover, :focus-visible) .link-arrow {
   color: var(--orange);
 }
 .purpose-body {
+  --purpose-gap: clamp(32px, 5vw, 72px);
   max-width: 1240px;
   margin-inline: auto;
   padding-inline: var(--gutter);
@@ -539,20 +540,26 @@ a:is(:hover, :focus-visible) .link-arrow {
 .purpose-copy {
   min-width: 0;
 }
+.purpose-copy > p:not(.eyebrow),
+.purpose-outlook > p:not(.eyebrow) {
+  text-align: justify;
+  hyphens: auto;
+}
 .purpose-introduction,
 .purpose-inspection,
 .purpose-conclusion {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
-  gap: var(--gap);
+  gap: var(--purpose-gap);
 }
 .purpose-evidence {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;
   align-items: center;
-  gap: clamp(32px, 5vw, 72px);
+  gap: var(--purpose-gap);
 }
+.purpose-introduction,
 .purpose-evidence-left {
   grid-template-columns: 300px minmax(0, 1fr);
 }
