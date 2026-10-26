@@ -1867,7 +1867,7 @@ canvas.has-geometry {
 .company-founder h3 a:is(:hover, :focus-visible) {
   text-decoration-line: underline;
 }
-.company-founder h3 span {
+.company-founder h3 .link-arrow {
   font-size: 0.6em;
   vertical-align: middle;
 }
@@ -1883,6 +1883,9 @@ canvas.has-geometry {
   margin-top: 24px;
   padding-top: 24px;
   border-top: 1px solid var(--line);
+}
+.company-scene-details {
+  display: contents;
 }
 .company-origin {
   max-width: 210px;
@@ -2010,6 +2013,23 @@ canvas.has-geometry {
   .company-links {
     display: grid;
     gap: 8px;
+  }
+}
+
+@media (max-width: 999px), (max-height: 699px) {
+  .founder-family-name {
+    display: block;
+    white-space: nowrap;
+  }
+  .company-scene-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    grid-column: 1 / -1;
+  }
+  .company-scene-details > * {
+    min-width: 0;
   }
 }
 
@@ -2440,13 +2460,23 @@ canvas.has-geometry {
   margin-top: 4px;
 }
 .story-compact .company-scene-band {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   gap: 12px;
   margin: 0 12px;
   padding: 12px 0 16px;
   background: transparent;
   border-top: 1px solid var(--line);
+}
+.story-compact .company-scene-details {
+  gap: 12px;
+}
+.story-compact .company-origin {
+  flex: 0 1 120px;
+}
+.story-compact .company-scene-details .office-address {
+  flex: 0 1 auto;
 }
 .story-compact .company-origin img {
   width: 120px;
@@ -2463,8 +2493,7 @@ canvas.has-geometry {
   margin-bottom: 4px;
 }
 .story-compact .company-scene-band .contact-button {
-  grid-column: 1 / -1;
-  justify-self: stretch;
+  align-self: stretch;
   justify-content: space-between;
   min-height: 44px;
   padding-block: 10px;

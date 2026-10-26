@@ -16,6 +16,7 @@
       <div class="company-directory-content">
         <div class="company-people" aria-label="Co-founders">
           {% for founder in site.data.company.founders %}
+          {% assign given_name = founder.name | split: ' ' | first %}
           <figure class="company-founder">
             <div class="company-portrait">
               <div class="company-portrait-window portrait-{{ founder.id }}">
@@ -32,7 +33,7 @@
             <figcaption>
               <h3>
                 <a href="{{ founder.website }}"
-                  >{{ founder.name }}<span class="link-arrow" aria-hidden="true">↗</span></a
+                  >{{ given_name }} <span class="founder-family-name">{{ founder.name | remove_first: given_name | strip }}<span class="link-arrow" aria-hidden="true">↗</span></span></a
                 >
               </h3>
               <p>Co-founder</p>
@@ -41,17 +42,20 @@
           {% endfor %}
         </div>
         <div class="company-scene-band">
-          <a class="company-origin" href="https://www.uniroma1.it/it/pagina/vetrina-spin-e-start">
-            <img
-              src="{{ '/assets/img/Uniroma1.svg' | relative_url }}"
-              width="354"
-              height="106"
-              alt="Sapienza Università di Roma"
-              loading="lazy"
-            />
-            <span>Recognized university start-up</span>
-          </a>
-          {% include office-address.html %} {% include contact-button.html %}
+          <div class="company-scene-details">
+            <a class="company-origin" href="https://www.uniroma1.it/it/pagina/vetrina-spin-e-start">
+              <img
+                src="{{ '/assets/img/Uniroma1.svg' | relative_url }}"
+                width="354"
+                height="106"
+                alt="Sapienza Università di Roma"
+                loading="lazy"
+              />
+              <span>Recognized university start-up</span>
+            </a>
+            {% include office-address.html %}
+          </div>
+          {% include contact-button.html %}
         </div>
       </div>
     </div>
