@@ -542,7 +542,9 @@ a:is(:hover, :focus-visible) .link-arrow {
 }
 .purpose-copy > p:not(.eyebrow) {
   text-align: justify;
+  -webkit-hyphens: auto;
   hyphens: auto;
+  hyphenate-limit-chars: 8 3 3;
 }
 .purpose-introduction,
 .purpose-inspection,

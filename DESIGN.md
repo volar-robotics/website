@@ -129,7 +129,9 @@ to supporting human expertise. AUTOASSESS's About page supplies the inspection
 context; the human role is expressed as Volar's purpose. A full-width patterned Deep
 Blue hero holds the Sand title and standfirst, with an unframed Orange heart carve.
 The article uses one bounded frame on Sand, with consistent full-frame section
-dividers and justified, automatically hyphenated prose columns. The article and
+dividers and justified prose columns with English hyphenation. Dictionary-based
+discretionary breaks in longer body words support browsers without automatic
+hyphenation dictionaries. The article and
 hero use bounded inner padding independent of the outer viewport gutters, keeping
 the reading columns stable on very wide or zoomed-out viewports. The introduction
 uses the same column split and gap as the evidence row with a left capsule.
