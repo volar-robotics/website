@@ -57,6 +57,8 @@ export class HomeStory {
     this.screen.addEventListener('change', () => this.refresh());
     this.frame = 0;
     addEventListener('scroll', () => this.schedule(), { passive: true });
+    this.settledY = scrollY;
+    addEventListener('scrollend', () => this.settle());
     addEventListener('resize', () => this.measure());
     window.visualViewport?.addEventListener('resize', () => this.measure());
     document.querySelectorAll('a[href="#technology"]').forEach((link) =>
@@ -235,6 +237,24 @@ export class HomeStory {
       if (this.compact) this.drawCompact();
       else this.draw();
     });
+  }
+  readingIntervals() {
+    if (this.compact)
+      return [[0, this.introHold], ...this.compactScenes.map((scene) => [scene.stop, scene.stop + scene.hold])];
+    return [[0, 0], [1.35, this.researchStart], [this.researchReady, this.companyStart], [this.companyReady, Infinity]];
+  }
+  // A scroll that stops inside a handover would freeze it half drawn, so finish it in the scroll's direction.
+  settle() {
+    const forward = scrollY >= this.settledY;
+    this.settledY = scrollY;
+    if (!this.enhanced) return;
+    const travel = Math.max(0, (scrollY - this.start) / this.height);
+    const pixel = 1 / this.height;
+    const intervals = this.readingIntervals();
+    const next = intervals.findIndex(([from]) => from > travel + pixel);
+    if (next < 1 || travel <= intervals[next - 1][1] + pixel) return;
+    const top = Math.round(this.start + this.height * (forward ? intervals[next][0] : intervals[next - 1][1]));
+    if (Math.abs(top - scrollY) >= 1) scrollTo({ top, behavior: 'smooth' });
   }
   revealTechnology() {
     scrollTo({ top: this.start + this.height * (this.compact ? this.compactScenes[0].stop : 1.35), behavior: 'smooth' });

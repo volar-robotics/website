@@ -179,7 +179,9 @@ SOAR-NDT slides in from the right as an inset Deep Blue patterned panel over the
 research scene. Scrolling onward expands that panel's bounds to the full viewport,
 revealing Company after the research content clears. The complete pattern aligns
 with viewport coordinates during expansion and remains fixed behind Company.
-Reversing scroll retraces both transitions. On phones, the opening mark occupies
+Reversing scroll retraces both transitions. A scroll that ends during a transition
+completes it in the direction of travel, so the stage comes to rest only at a reading
+stop. On phones, the opening mark occupies
 the remaining space below the introduction, bounded by the available height and
 width, with its base near the viewport's lower edge. The mark zooms
 into the first capsule. Each stop includes a reading interval; content taller than the available region pans within
