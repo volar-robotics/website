@@ -56,15 +56,17 @@ export class HomeStory {
     this.screen = matchMedia('(min-width: 1000px) and (min-height: 700px)');
     this.screen.addEventListener('change', () => this.refresh());
     this.frame = 0;
+    this.position = scrollY;
+    this.velocity = 0;
     this.lastScrollY = scrollY;
     this.scrollDirection = 1;
-    this.settleFrame = 0;
+    this.settleTarget = null;
     addEventListener('scroll', () => {
       this.schedule();
-      if (!this.settleFrame) {
+      if (this.settleTarget === null) {
         if (scrollY !== this.lastScrollY) this.scrollDirection = Math.sign(scrollY - this.lastScrollY);
         clearTimeout(this.settleTimer);
-        this.settleTimer = setTimeout(() => this.settle(), 320);
+        this.settleTimer = setTimeout(() => this.settle(), 120);
       }
       this.lastScrollY = scrollY;
     }, { passive: true });
@@ -138,6 +140,8 @@ export class HomeStory {
   refresh() {
     this.cancelSettle();
     this.navigationFade?.cancel();
+    this.position = scrollY;
+    this.velocity = 0;
     this.enhanced = !this.motionPaused();
     this.compact = !this.screen.matches;
     this.root.classList.toggle('story-enhanced', this.enhanced);
@@ -247,15 +251,35 @@ export class HomeStory {
       };
     }
     this.schedule();
-    this.settleTimer = setTimeout(() => this.settle(), 320);
+    this.settleTimer = setTimeout(() => this.settle(), 120);
   }
   schedule() {
     if (!this.enhanced || this.frame) return;
-    this.frame = requestAnimationFrame(() => {
-      this.frame = 0;
+    this.lastFrameTime = performance.now();
+    const step = (now) => {
+      const seconds = Math.min((now - this.lastFrameTime) / 1000, 0.064);
+      this.lastFrameTime = now;
+      const target = this.settleTarget ?? scrollY;
+      // One critically damped spring preserves velocity when scrolling hands over to settling.
+      const offset = this.position - target;
+      const decay = Math.exp(-14 * seconds);
+      const motion = (this.velocity + 14 * offset) * seconds;
+      this.position = target + (offset + motion) * decay;
+      this.velocity = (this.velocity - 14 * motion) * decay;
+      const moving = Math.abs(target - this.position) > 0.1 || Math.abs(this.velocity) > 1;
+      if (!moving) {
+        this.position = target;
+        this.velocity = 0;
+      }
+      if (this.settleTarget !== null) {
+        scrollTo({ top: this.position, behavior: 'instant' });
+        if (!moving) this.settleTarget = null;
+      }
       if (this.compact) this.drawCompact();
       else this.draw();
-    });
+      this.frame = moving ? requestAnimationFrame(step) : 0;
+    };
+    this.frame = requestAnimationFrame(step);
   }
   readingIntervals() {
     if (this.compact)
@@ -264,8 +288,7 @@ export class HomeStory {
   }
   cancelSettle() {
     clearTimeout(this.settleTimer);
-    cancelAnimationFrame(this.settleFrame);
-    this.settleFrame = 0;
+    this.settleTarget = null;
   }
   // Small movements return to their reading stop; committed handovers finish after input rests.
   settle() {
@@ -279,26 +302,18 @@ export class HomeStory {
     const to = intervals[next][0];
     const progress = (travel - from) / (to - from);
     const forward = this.scrollDirection > 0 ? progress >= 0.12 : progress > 0.88;
-    const top = Math.round(this.start + this.height * (forward ? to : from));
-    const startY = scrollY;
-    const distance = top - startY;
-    const duration = 700 + 500 * Math.min(1, Math.abs(distance) / this.height);
-    const started = performance.now();
-    const step = (now) => {
-      const p = Math.min(1, (now - started) / duration);
-      const eased = p * p * p * (p * (p * 6 - 15) + 10);
-      scrollTo({ top: startY + distance * eased, behavior: 'instant' });
-      this.settleFrame = p < 1 ? requestAnimationFrame(step) : 0;
-    };
-    this.settleFrame = requestAnimationFrame(step);
+    this.settleTarget = Math.round(this.start + this.height * (forward ? to : from));
+    this.schedule();
   }
   revealTechnology() {
     this.navigateTo(this.start + this.height * (this.compact ? this.compactScenes[0].stop : 1.35));
   }
   navigateTo(top) {
     this.cancelSettle();
-    if (Math.abs(top - scrollY) < 1) return;
+    if (Math.abs(top - scrollY) < 1 && Math.abs(top - this.position) < 1) return;
     scrollTo({ top, behavior: 'instant' });
+    this.position = scrollY;
+    this.velocity = 0;
     if (this.compact) this.drawCompact();
     else this.draw();
     this.navigationFade?.cancel();
@@ -344,14 +359,14 @@ export class HomeStory {
       const pan = Math.min(scene.overflow, Math.max(0, bounds.bottom + scene.pan - stage.top - this.height + 28));
       destination += (pan / scene.overflow) * (scene.hold - 0.15);
     } else if (reading) return;
-    scrollTo({ top: this.start + this.height * destination, behavior: 'instant' });
+    this.navigateTo(this.start + this.height * destination);
   }
   drawCompact() {
     const clamp = (n) => Math.min(1, Math.max(0, n));
     const ease = (n) => n * n * (3 - 2 * n);
     const interval = (p, from, to) => ease(clamp((p - from) / (to - from)));
     const mix = (a, b, t) => a + (b - a) * t;
-    const travel = Math.max(0, (scrollY - this.start) / this.height);
+    const travel = Math.max(0, (this.position - this.start) / this.height);
     this.travel = travel;
     const p = clamp((travel - this.introHold) / 1.35);
     const research = this.compactScenes.find((scene) => scene.section === 'research');
@@ -454,7 +469,7 @@ export class HomeStory {
     const ease = (n) => n * n * (3 - 2 * n);
     const interval = (p, from, to) => ease(clamp((p - from) / (to - from)));
     const mix = (a, b, t) => a + (b - a) * t;
-    const travel = Math.max(0, (scrollY - this.start) / this.height);
+    const travel = Math.max(0, (this.position - this.start) / this.height);
     this.travel = travel;
     const p = clamp(travel / 1.35);
     const labOpening = interval(travel, this.researchStart, this.researchReady);

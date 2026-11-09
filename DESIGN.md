@@ -181,8 +181,9 @@ SOAR-NDT slides in from the right as an inset Deep Blue patterned panel over the
 research scene. Scrolling onward expands that panel's bounds to the full viewport,
 revealing Company after the research content clears. The complete pattern aligns
 with viewport coordinates during expansion and remains fixed behind Company.
-Reversing scroll retraces both transitions. After 320 ms without scrolling, a
-transition settles at a reading stop over 700–1200 ms with a soft ease at both ends.
+Reversing scroll retraces both transitions. One critically damped spring smooths
+scene progress during both scrolling and settling. After 120 ms without scrolling,
+its target becomes a reading stop, preserving the current position and velocity.
 Movements within the first 12% of a handover return to the reading stop they left;
 committed handovers complete in the latest scroll direction. Wheel, touch, pointer
 and scrolling keys interrupt settling. On phones, the opening mark occupies
