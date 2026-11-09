@@ -56,9 +56,24 @@ export class HomeStory {
     this.screen = matchMedia('(min-width: 1000px) and (min-height: 700px)');
     this.screen.addEventListener('change', () => this.refresh());
     this.frame = 0;
-    addEventListener('scroll', () => this.schedule(), { passive: true });
-    this.settledY = scrollY;
-    addEventListener('scrollend', () => this.settle());
+    this.lastScrollY = scrollY;
+    this.scrollDirection = 1;
+    this.settleFrame = 0;
+    addEventListener('scroll', () => {
+      this.schedule();
+      if (!this.settleFrame) {
+        if (scrollY !== this.lastScrollY) this.scrollDirection = Math.sign(scrollY - this.lastScrollY);
+        clearTimeout(this.settleTimer);
+        this.settleTimer = setTimeout(() => this.settle(), 320);
+      }
+      this.lastScrollY = scrollY;
+    }, { passive: true });
+    ['wheel', 'touchstart', 'pointerdown'].forEach((type) =>
+      addEventListener(type, () => this.cancelSettle(), { passive: true }),
+    );
+    addEventListener('keydown', (event) => {
+      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) this.cancelSettle();
+    });
     addEventListener('resize', () => this.measure());
     window.visualViewport?.addEventListener('resize', () => this.measure());
     document.querySelectorAll('a[href="#technology"]').forEach((link) =>
@@ -108,7 +123,7 @@ export class HomeStory {
       }),
     );
     this.copy.addEventListener('focusin', () => {
-      if (this.enhanced && this.progress > 0.1) scrollTo({ top: this.start, behavior: 'smooth' });
+      if (this.enhanced && this.progress > 0.1) this.navigateTo(this.start);
     });
     document.fonts.ready.then(() => {
       this.measure();
@@ -121,6 +136,8 @@ export class HomeStory {
     });
   }
   refresh() {
+    this.cancelSettle();
+    this.navigationFade?.cancel();
     this.enhanced = !this.motionPaused();
     this.compact = !this.screen.matches;
     this.root.classList.toggle('story-enhanced', this.enhanced);
@@ -148,6 +165,7 @@ export class HomeStory {
     this.measure();
   }
   measure() {
+    this.cancelSettle();
     if (!this.enhanced) return;
     if (this.compact) {
       const viewport = window.visualViewport;
@@ -229,6 +247,7 @@ export class HomeStory {
       };
     }
     this.schedule();
+    this.settleTimer = setTimeout(() => this.settle(), 320);
   }
   schedule() {
     if (!this.enhanced || this.frame) return;
@@ -243,21 +262,50 @@ export class HomeStory {
       return [[0, this.introHold], ...this.compactScenes.map((scene) => [scene.stop, scene.stop + scene.hold])];
     return [[0, 0], [1.35, this.researchStart], [this.researchReady, this.companyStart], [this.companyReady, Infinity]];
   }
-  // A scroll that stops inside a handover would freeze it half drawn, so finish it in the scroll's direction.
+  cancelSettle() {
+    clearTimeout(this.settleTimer);
+    cancelAnimationFrame(this.settleFrame);
+    this.settleFrame = 0;
+  }
+  // Small movements return to their reading stop; committed handovers finish after input rests.
   settle() {
-    const forward = scrollY >= this.settledY;
-    this.settledY = scrollY;
     if (!this.enhanced) return;
     const travel = Math.max(0, (scrollY - this.start) / this.height);
     const pixel = 1 / this.height;
     const intervals = this.readingIntervals();
     const next = intervals.findIndex(([from]) => from > travel + pixel);
     if (next < 1 || travel <= intervals[next - 1][1] + pixel) return;
-    const top = Math.round(this.start + this.height * (forward ? intervals[next][0] : intervals[next - 1][1]));
-    if (Math.abs(top - scrollY) >= 1) scrollTo({ top, behavior: 'smooth' });
+    const from = intervals[next - 1][1];
+    const to = intervals[next][0];
+    const progress = (travel - from) / (to - from);
+    const forward = this.scrollDirection > 0 ? progress >= 0.12 : progress > 0.88;
+    const top = Math.round(this.start + this.height * (forward ? to : from));
+    const startY = scrollY;
+    const distance = top - startY;
+    const duration = 700 + 500 * Math.min(1, Math.abs(distance) / this.height);
+    const started = performance.now();
+    const step = (now) => {
+      const p = Math.min(1, (now - started) / duration);
+      const eased = p * p * p * (p * (p * 6 - 15) + 10);
+      scrollTo({ top: startY + distance * eased, behavior: 'instant' });
+      this.settleFrame = p < 1 ? requestAnimationFrame(step) : 0;
+    };
+    this.settleFrame = requestAnimationFrame(step);
   }
   revealTechnology() {
-    scrollTo({ top: this.start + this.height * (this.compact ? this.compactScenes[0].stop : 1.35), behavior: 'smooth' });
+    this.navigateTo(this.start + this.height * (this.compact ? this.compactScenes[0].stop : 1.35));
+  }
+  navigateTo(top) {
+    this.cancelSettle();
+    if (Math.abs(top - scrollY) < 1) return;
+    scrollTo({ top, behavior: 'instant' });
+    if (this.compact) this.drawCompact();
+    else this.draw();
+    this.navigationFade?.cancel();
+    this.navigationFade = this.stage.animate([{ opacity: 0 }, { opacity: 1 }], {
+      duration: 280,
+      easing: 'ease-out',
+    });
   }
   followHash() {
     if (!this.enhanced) {
@@ -275,23 +323,18 @@ export class HomeStory {
       this.revealResearch(location.hash.slice(1));
   }
   revealResearch(id) {
-    scrollTo({
-      top: this.start + this.height * (this.compact
+    this.navigateTo(this.start + this.height * (this.compact
         ? this.compactScenes.find((scene) => scene.section === 'research' &&
           (!id || id === 'research' || scene.project.id === id)).stop
-        : this.researchReady),
-      behavior: 'smooth',
-    });
+        : this.researchReady));
   }
   revealCompany() {
-    scrollTo({
-      top: this.start + this.height * (this.compact
+    this.navigateTo(this.start + this.height * (this.compact
         ? this.compactScenes.find((scene) => scene.section === 'company').stop
-        : this.companyReady),
-      behavior: 'smooth',
-    });
+        : this.companyReady));
   }
   revealCompactScene(scene, focused) {
+    this.cancelSettle();
     const reading = this.travel >= scene.stop && this.travel <= scene.stop + scene.hold;
     let destination = scene.stop;
     if (focused && scene.overflow) {

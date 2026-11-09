@@ -80,7 +80,9 @@ the sitemap. All internal links use the canonical destinations directly. The rou
 inventory and build checks are in [README.md](README.md).
 Persistent navigation and contact are utilities. The opening “Scroll to explore” link
 starts the homepage journey and uses the same `.text-link` treatment as “Meet the
-projects.” There is no technology-only progress bar. Each project has one main external
+projects.” With motion enabled, chapter links and the fixed return mark move directly
+to their reading stop with a 280 ms fade-in. Scroll gestures retain the full sequence.
+There is no technology-only progress bar. Each project has one main external
 link; paper resources sit beneath SOAR-Touch. Both pillar explanations remain inline,
 beside miniThex on desktop and in successive pinned capsule scenes on compact screens.
 
@@ -179,9 +181,11 @@ SOAR-NDT slides in from the right as an inset Deep Blue patterned panel over the
 research scene. Scrolling onward expands that panel's bounds to the full viewport,
 revealing Company after the research content clears. The complete pattern aligns
 with viewport coordinates during expansion and remains fixed behind Company.
-Reversing scroll retraces both transitions. A scroll that ends during a transition
-completes it in the direction of travel, so the stage comes to rest only at a reading
-stop. On phones, the opening mark occupies
+Reversing scroll retraces both transitions. After 320 ms without scrolling, a
+transition settles at a reading stop over 700–1200 ms with a soft ease at both ends.
+Movements within the first 12% of a handover return to the reading stop they left;
+committed handovers complete in the latest scroll direction. Wheel, touch, pointer
+and scrolling keys interrupt settling. On phones, the opening mark occupies
 the remaining space below the introduction, bounded by the available height and
 width, with its base near the viewport's lower edge. The mark zooms
 into the first capsule. Each stop includes a reading interval; content taller than the available region pans within
@@ -196,8 +200,11 @@ In document flow, scene headings leave clearance for the fixed return mark when
 opened directly through a fragment URL.
 
 Enhanced viewports at least 1600 pixels wide and 850 pixels high use a shared
-chapter frame up to 1440 pixels wide, bounded to the available height and clear of
-the fixed return mark. Technology, Research
+chapter frame, bounded to the available height and clear of the fixed return mark.
+A common scene unit grows from a 1600 × 900 reference viewport up to twice its
+size, limited by both viewport dimensions. The frame, typography, capsules, imagery,
+portraits and spacing scale together; the fixed navigation keeps its utility scale.
+Technology, Research
 and Company share a left heading anchor, headline scale, reserved heading row
 and centered content region. Capsule proportions remain vertical as the content
 region changes height. Intro shares the horizontal frame with balanced copy and

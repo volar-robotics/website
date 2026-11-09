@@ -88,7 +88,8 @@ if (returnBrand) {
     if (document.body.classList.contains('purpose-route') && scrollY <= 8) return;
     event.preventDefault();
     history.replaceState(null, '', location.pathname + location.search);
-    scrollTo({ top: 0, behavior: paused ? 'instant' : 'smooth' });
+    if (homeStory?.enhanced) homeStory.navigateTo(0);
+    else scrollTo({ top: 0, behavior: paused ? 'instant' : 'smooth' });
   });
 }
 
@@ -321,7 +322,8 @@ function revealHash() {
   if (!location.hash) return;
   const id = decodeURIComponent(location.hash.slice(1));
   if (id === 'page-top') {
-    scrollTo({ top: 0, behavior: paused ? 'instant' : 'smooth' });
+    if (homeStory?.enhanced) homeStory.navigateTo(0);
+    else scrollTo({ top: 0, behavior: paused ? 'instant' : 'smooth' });
     return;
   }
   if (id === 'technology' && document.querySelector('[data-home-story]')) {
