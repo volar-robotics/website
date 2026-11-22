@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny-ps" width="128" height="128" viewBox="0 0 64 64">
   <title>Volar Robotics</title>
-  <rect width="64" height="64" fill="#074158"/>
-  <g fill="#EB6029" transform="translate(8,8) scale(0.1280120)">
+  <rect width="64" height="64" fill="#1D1D1B"/>
+  <g fill="#FFFFFF" transform="translate(8,8) scale(0.1280120)">
     <rect x="0.00" y="138.51" width="22.02" height="97.94" rx="11.01"/>
     <rect x="352.94" y="138.51" width="22.02" height="97.94" rx="11.01"/>
     <rect x="35.29" y="81.43" width="22.02" height="86.20" rx="11.01"/>
