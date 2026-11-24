@@ -110,8 +110,8 @@ the founders and purpose.
 
 ## Evidence and disclosure
 
-The user's two-pillar description, the local SOAR-Touch report, and the `soar-touch-phynt`
-and `soar-touch-sot` source repositories support the technology description. Public copy
+The user's two-pillar description, the local SOAR-Touch report, and the `friction-anchor`
+and `sot-sensing` source repositories support the technology description. Public copy
 states laboratory contact flight as the demonstrated scope. It contains no generalized
 energy, cost, slip-detection, field-reliability or inspection-accuracy claims.
 
