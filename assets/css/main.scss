@@ -346,32 +346,6 @@ a:is(:hover, :focus-visible) .link-arrow {
   animation: productHover 8s ease-in-out infinite;
 }
 
-.accent-dot {
-  display: block;
-  flex: none;
-  width: var(--dot-size, 28px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--orange);
-  pointer-events: none;
-}
-.accent-dot-sand {
-  background: var(--sand);
-}
-.stage-orbit {
-  position: absolute;
-}
-.orbit-one {
-  left: 21%;
-  top: 9%;
-  width: clamp(26px, 5%, 38px);
-}
-.orbit-two {
-  left: 55%;
-  top: 75%;
-  width: clamp(14px, 2.4%, 18px);
-}
-
 .route-path {
   display: flex;
   justify-content: space-between;
@@ -1169,12 +1143,6 @@ canvas.has-geometry {
 .story-mark-source img {
   width: 100%;
 }
-.story-accent {
-  position: absolute;
-  left: 92%;
-  top: 29%;
-  width: 24px;
-}
 .story-bars {
   display: none;
   position: absolute;
@@ -1243,16 +1211,6 @@ canvas.has-geometry {
   top: 22%;
   transform: scaleX(-1);
   filter: drop-shadow(0 20px 16px rgba(4, 28, 37, 0.2));
-}
-.story-product-window .orbit-one {
-  left: 9%;
-  top: 10%;
-  width: 30px;
-}
-.story-product-window .orbit-two {
-  left: 81%;
-  top: 70%;
-  width: 16px;
 }
 .story-platform .platform-drift {
   animation-play-state: paused;
@@ -1421,12 +1379,6 @@ canvas.has-geometry {
     margin: 32px auto 8px;
     transform: none;
   }
-  .story-accent {
-    left: auto;
-    right: 12%;
-    top: 64%;
-    width: 18px;
-  }
   .story-technology {
     padding-block: 48px;
   }
@@ -1544,12 +1496,6 @@ canvas.has-geometry {
   height: 100%;
   object-fit: cover;
   object-position: 70% 50%;
-}
-.research-dot {
-  position: absolute;
-  left: 5%;
-  top: 11%;
-  --dot-size: 28px;
 }
 .research-credit {
   font-size: 11px;
@@ -1912,18 +1858,6 @@ canvas.has-geometry {
   position: relative;
   width: 100%;
 }
-.company-dot {
-  --dot-size: clamp(20px, 2vw, 28px);
-  position: absolute;
-  top: 25%;
-  right: -6px;
-}
-.company-founder:nth-child(even) .company-dot {
-  top: auto;
-  right: auto;
-  bottom: 15%;
-  left: -6px;
-}
 .company-portrait-window {
   position: relative;
   width: 100%;
@@ -2153,9 +2087,6 @@ canvas.has-geometry {
     .story-mark-source {
       width: calc(480 * var(--scene-unit));
     }
-    .story-accent {
-      width: calc(24 * var(--scene-unit));
-    }
     .story-windows {
       gap: calc(64 * var(--scene-unit));
     }
@@ -2176,12 +2107,6 @@ canvas.has-geometry {
       width: calc(112 * var(--scene-unit));
       height: calc(112 * var(--scene-unit));
       margin-top: calc(28 * var(--scene-unit));
-    }
-    .orbit-one {
-      width: calc(30 * var(--scene-unit));
-    }
-    .orbit-two {
-      width: calc(16 * var(--scene-unit));
     }
     .research-panels {
       --research-gap: calc(48 * var(--scene-unit));
@@ -2288,9 +2213,6 @@ canvas.has-geometry {
       font-size: var(--ui);
       padding: calc(12 * var(--scene-unit)) calc(24 * var(--scene-unit));
       min-height: calc(48 * var(--scene-unit));
-    }
-    .accent-dot {
-      --dot-size: calc(28 * var(--scene-unit));
     }
   }
 }
@@ -2449,11 +2371,6 @@ canvas.has-geometry {
   margin: 0 auto;
   flex: none;
   transform: none;
-}
-.story-compact .story-accent {
-  left: 100%;
-  right: auto;
-  top: 64%;
 }
 .story-compact .story-technology,
 .story-compact .story-windows,

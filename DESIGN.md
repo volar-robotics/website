@@ -60,12 +60,8 @@ Sand. Deep Blue carries body text and dark bands; Aqua carries navigation bands 
 product fields; Orange marks small points of attention. Body copy scales from 16 to
 20 pixels; reading widths and section spacing have shared limits.
 
-`.accent-dot` is the shared decorative dot treatment, with a Sand variant. Reuse it
-occasionally at a capsule rim or in a brand field, including Technology, Research and
-the Company mark. Orange supplies the larger accent; Sand supplies a smaller accent
-on dark or aqua surfaces. Keep dots clear of text and primary image subjects. They
-remain static, ignore pointer events and are hidden from assistive technology; they
-carry no status or navigation meaning.
+Capsules, portraits, photographs and brand fields carry no decorative dots at their
+rims. A dot appears only where it encodes data, as in the data-dot grids.
 
 ## Navigation
 
@@ -219,8 +215,8 @@ miniThex has
 a Deep Blue opening and an internal miniThex / Research platform caption; the two
 pillar windows use Sand with Deep Blue text. Their surfaces change during the handover
 from the mark. The two pillars retain equal visual weight. The platform uses matched
-`.platform-drift` layers for hovering and pointer response, plus its Sand and
-Orange dot accents. The two image layers move together while their clipping planes
+`.platform-drift` layers for hovering and pointer response. The two image layers move
+together while their clipping planes
 stay fixed. Homepage hovering pauses outside the technology reading state; the shared
 pause and reduced-motion controls still apply.
 The technology eyebrow sits directly above its headline, aligned to the capsule grid's
@@ -298,8 +294,7 @@ routes above it. A compact band places affiliation and office side by side, with
 Contact spanning both columns. The Sand surface belongs to the complete directory
 and ends at its content boundary. Paused motion and unavailable JavaScript show the
 final content in document flow.
-Orange `.accent-dot` elements sit at the portrait rims, alternating between upper right and lower left, outside the image
-masks and clear of faces and names. Portraits do not have an automatic animation.
+Portraits do not have an automatic animation.
 
 The canvas mark follows the design repository's motion rules. Automatic sequences stop
 offscreen or when the document is hidden.
